@@ -1,0 +1,359 @@
+/* ------------------------------------------------------------ *\
+	Reset
+\* ------------------------------------------------------------ */
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------ *\
+	Variables
+\* ------------------------------------------------------------ */
+
+$serif: "Open Sans", sans-serif;
+$cursive: "Playwrite GB S", cursive;
+
+$green :#208040;
+$light-green :#65A903;
+$gray :#F3F4F6;
+
+/* ------------------------------------------------------------ *\
+	Base
+\* ------------------------------------------------------------ */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-size: 14px;
+	font-family: $serif;
+	color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $serif;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 90px;
+}
+
+h2 {
+	font-size: 80px;
+}
+
+h3 {
+	font-size: 60px;
+}
+
+h4 {
+	font-size: 40px;
+}
+
+h5 {
+	font-size: 30px;
+}
+
+h6 {
+	font-size: 20px;
+}
+
+.shell {
+	max-width: calc(1140px + 120px);
+	width: 100%;
+	padding-inline: 60px;
+	margin: 0 auto;
+}
+
+/* ------------------------------------------------------------ *\
+	Image fit
+\* ------------------------------------------------------------ */
+
+.image-fit {
+	overflow: hidden;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Logo
+\* ------------------------------------------------------------ */
+
+.logo {
+	font-size: 0;
+	line-height: 0;
+	text-indent: -4004px;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 100px;
+	aspect-ratio: 1;
+
+	>img {
+		display: block;
+		width: 100%;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Header
+\* ------------------------------------------------------------ */
+
+.header {
+	background-color: $gray;
+
+	.header__content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 30px;
+	}
+
+	.header__logo {
+		flex-basis: 150px;
+	}
+
+	.header__actions {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+
+	.header__menu {
+		justify-self: flex-end;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Menu
+\* ------------------------------------------------------------ */
+
+.menu {
+	list-style-type: none;
+	display: flex;
+	gap: 20px;
+	font-size: 20px;
+	text-transform: uppercase;
+
+	li a {
+		text-decoration: none;
+		color: inherit;
+		font-weight: 700;
+		transition: color .3s;
+
+		&:hover {
+			color: $green;
+		}
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Login
+\* ------------------------------------------------------------ */
+
+.login {
+	display: block;
+	text-decoration: none;
+	width: 40px;
+	aspect-ratio: 1;
+	border: 2px solid #000;
+	border-radius: 50%;
+
+	>img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Hero
+\* ------------------------------------------------------------ */
+
+.hero {
+	position: relative;
+	min-height: 90vh;
+	display: flex;
+	align-items: center;
+
+	.hero__bg-video {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+
+		&:after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: #000;
+			opacity: .4;
+		}
+	}
+
+	.hero__bg-video video {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		max-height: 100%;
+		min-width: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+
+	.hero__body {
+		width: 100%;
+		padding: 50px 0;
+		position: relative;
+		z-index: 5;
+		color: #fff;
+	}
+
+	.hero__head {
+		text-align: center;
+		font-family: $cursive;
+	}
+
+	.hero__head h1 {
+		font-family: inherit;
+		font-size: 100px;
+	}
+
+	.hero__head+.hero__actions {
+		margin-top: 40px;
+	}
+
+	.hero__actions {
+		text-align: center;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Btn
+\* ------------------------------------------------------------ */
+
+.btn {
+	text-decoration: none;
+	font-size: 20px;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #65A903;
+	color: #fff;
+	border-radius: 999em;
+	transition: background-color .3s;
+
+	&:hover {
+		background-color: $green;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Section-top-rated
+\* ------------------------------------------------------------ */
+
+.section-top-rated {
+	background-color: #FCF8EC;
+	padding: 80px 0;
+
+	.section__head {
+		text-align: center;
+	}
+
+	.section__head+.section__items {
+		margin-top: 60px;
+	}
+
+	.section__items {
+		display: grid;
+		grid-template-columns: .33fr .33fr .33fr;
+		gap: 30px;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Tile-book
+\* ------------------------------------------------------------ */
+
+.tile-book {
+	position: relative;
+
+	>a {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+	}
+
+	.tile__img {
+		width: 100%;
+		aspect-ratio: 578 / 867;
+	}
+
+	.tile__body h5 {
+		font-size: 25px;
+	}
+
+	.tile__body h5 a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.tile__stars-outer,
+	.tile__stars-inner {
+		font-size: 28px;
+	}
+
+	.tile__stars-outer {
+		position: relative;
+		display: inline-block;
+
+		&:before {
+			content: "\2606 \2606 \2606 \2606 \2606";
+			color: gold;
+		}
+	}
+
+	.tile__stars-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		color: black;
+		width: calc((var(--average) / 5) * 100%);
+		overflow: hidden;
+
+		&:before {
+			content: "\2605 \2605 \2605 \2605 \2605";
+			color: gold;
+		}
+	}
+}
