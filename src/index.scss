@@ -13,12 +13,13 @@
 	Variables
 \* ------------------------------------------------------------ */
 
-$serif: "Open Sans", sans-serif;
-$cursive: "Playwrite GB S", cursive;
+$ff-serif 		: "Open Sans", sans-serif;
+$ff-cursive 	: "Playwrite GB S", cursive;
 
-$green :#208040;
-$light-green :#65A903;
-$gray :#F3F4F6;
+$c-green 			:#208040;
+$c-light-green 		:#65A903;
+$c-gray 			:#F3F4F6;
+$c-beige 			:#FCF8EC;
 
 /* ------------------------------------------------------------ *\
 	Base
@@ -30,7 +31,7 @@ html {
 
 body {
 	font-size: 14px;
-	font-family: $serif;
+	font-family: $ff-serif;
 	color: #000;
 }
 
@@ -40,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $serif;
+	font-family: $ff-serif;
 	line-height: 1.2;
 	font-weight: 700;
 }
@@ -122,7 +123,7 @@ h6 {
 \* ------------------------------------------------------------ */
 
 .header {
-	background-color: $gray;
+	background-color: $c-beige;
 
 	.header__content {
 		display: flex;
@@ -164,7 +165,7 @@ h6 {
 		transition: color .3s;
 
 		&:hover {
-			color: $green;
+			color: $c-green;
 		}
 	}
 }
@@ -237,7 +238,7 @@ h6 {
 
 	.hero__head {
 		text-align: center;
-		font-family: $cursive;
+		font-family: $ff-cursive;
 	}
 
 	.hero__head h1 {
@@ -270,7 +271,7 @@ h6 {
 	transition: background-color .3s;
 
 	&:hover {
-		background-color: $green;
+		background-color: $c-green;
 	}
 }
 
@@ -279,7 +280,7 @@ h6 {
 \* ------------------------------------------------------------ */
 
 .section-top-rated {
-	background-color: #FCF8EC;
+	background-color: $c-beige;
 	padding: 80px 0;
 
 	.section__head {
@@ -354,6 +355,218 @@ h6 {
 		&:before {
 			content: "\2605 \2605 \2605 \2605 \2605";
 			color: gold;
+		}
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Modal-user
+\* ------------------------------------------------------------ */
+
+.modal-user {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 10;
+
+	.modal__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		opacity: .3;
+	}
+
+	.modal__content {
+		max-width: 800px;
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.modal__close-btn {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 20px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		transition: transform .3s ease-in;
+
+		&:hover {
+			transform: rotate(180deg) scale(1.2);
+		}
+
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 15px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(45deg);
+			background-color: #000;
+		}
+
+		&:after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+	
+	.modal__shell {
+		width: 100%;
+		background-color: $c-beige;
+		border-radius: 20px;
+		padding: 50px;
+	}
+
+	.modal__items {
+		display: grid;
+		grid-template-columns: .5fr .5fr;
+		gap: 50px 100px;
+		position: relative;
+	}
+
+	.modal__separator {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 80px;
+		height: 100%;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 1px;
+			height: 100%;
+			background-color: #000;
+		}
+
+		> span {
+			text-transform: uppercase;
+			background-color: $c-beige;
+			border: 2px solid #000;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: block;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			border-radius: 50%;
+		}
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Form
+\* ------------------------------------------------------------ */
+
+.form {
+	.form__head {
+		text-align: center;
+	}
+
+	.form__head h5 {
+		font-family: $ff-cursive;
+		font-size: 25px;
+	}
+
+	.form__head + .form__body {
+		margin-top: 30px;
+	}
+
+	.form__cols {
+		display: flex;
+		margin: 0 -14px;
+		row-gap: 15px;
+		flex-wrap: wrap;
+	}
+	
+	.form__col {
+		flex-basis: 50%;
+		padding: 0 7px;
+	}
+	
+	/*  Form__col--full-width  */
+	.form__col--full-width {
+		flex-basis: 100%;
+	}
+
+	.form__row {
+		position: relative;
+	}
+
+	.form__row + .form__row {
+		margin-top: 15px;
+	}
+
+	label {
+		font-size: 12px;
+		position: absolute;
+		top: -9px;
+		left: 10px;
+		background-color: #fff;
+		display: block;
+		padding: 0px 5px;
+		border-radius: 999em;
+		border: 1px solid rgba($color: #000000, $alpha: .2)
+	}
+
+	input.field {
+		width: 100%;
+		height: 45px;
+		border-radius: 10px;
+		border: 1px solid rgba($color: #000000, $alpha: .2);
+		padding: 0 10px;
+		font-size: 18px;
+		transition: border-color .3s;
+	
+		&:active,
+		&:focus {
+			border-color: #000;
+		}
+	}
+	
+	.form__body + .form__actions {
+		margin-top: 15px;
+	}
+
+	.form__actions {
+		text-align: center;
+	}
+
+	.form__btn {
+		width: fit-content;
+		padding: 10px;
+		border-radius: 999em;
+		background-color: $c-light-green;
+		border: none;
+		color: #fff;
+		font-size: 15px;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background-color .3s;
+
+		&:hover,
+		&:focus {
+			background-color: $c-green;
 		}
 	}
 }
