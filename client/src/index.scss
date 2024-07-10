@@ -32,6 +32,7 @@ html {
 body {
 	font-size: 14px;
 	font-family: $ff-serif;
+	background-color: $c-beige;
 	color: #000;
 }
 
@@ -68,6 +69,12 @@ h5 {
 
 h6 {
 	font-size: 20px;
+}
+
+img {
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .shell {
@@ -306,7 +313,6 @@ h6 {
 \* ------------------------------------------------------------ */
 
 .section-top-rated {
-	background-color: $c-beige;
 	padding: 80px 0;
 
 	.section__head {
@@ -591,7 +597,7 @@ h6 {
 		margin-top: 15px;
 	}
 
-	label {
+	.form__label {
 		font-size: 12px;
 		position: absolute;
 		top: -9px;
@@ -612,6 +618,22 @@ h6 {
 		font-size: 18px;
 		transition: border-color .3s;
 	
+		&:active,
+		&:focus {
+			border-color: #000;
+		}
+	}
+
+	.textarea {
+		width: 100%;
+		border: 1px solid rgba($color: #000000, $alpha: .2);
+		border-radius: 10px;
+		padding: 10px;
+		transition: border-color .3s;
+		font-size: 18px;
+		height: 200px;
+		resize: none;
+
 		&:active,
 		&:focus {
 			border-color: #000;
@@ -667,5 +689,48 @@ h6 {
 	
 	.card__body footer {
 		font-family: $ff-cursive;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Section-contact
+\* ------------------------------------------------------------ */
+
+.section-contact {
+	padding: 100px 0;
+	
+	.section__content {
+		display: flex;
+		margin: 0 -30px;
+	}
+
+	.section__media {
+		flex: 0 1 50%;
+		padding: 0 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.section__img {
+		max-width: 320px;
+		width: 100%;
+	}
+
+	.section__main {
+		flex: 0 1 50%;
+		padding: 0 15px;
+	}
+
+	.section__head {
+		text-align: center;
+	}
+
+	.section__head h2 {
+		font-size: 60px;
+	}
+
+	.section__head + .section__form {
+		margin-top: 50px;
 	}
 }
