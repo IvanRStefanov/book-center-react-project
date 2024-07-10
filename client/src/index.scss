@@ -77,6 +77,11 @@ h6 {
 	margin: 0 auto;
 }
 
+.wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
 /* ------------------------------------------------------------ *\
 	Image fit
 \* ------------------------------------------------------------ */
@@ -178,7 +183,7 @@ h6 {
 	display: block;
 	text-decoration: none;
 	width: 40px;
-	aspect-ratio: 1;
+	height: 40px;
 	border: 2px solid #000;
 	border-radius: 50%;
 
@@ -308,7 +313,7 @@ h6 {
 		text-align: center;
 	}
 
-	.section__head + .section__items {
+	.section__head + .section__slider {
 		margin-top: 60px;
 	}
 
@@ -322,6 +327,14 @@ h6 {
 		margin-top: 30px;
 		text-align: center;
 	}
+}
+
+/* ------------------------------------------------------------ *\
+	Slider-top-rated
+\* ------------------------------------------------------------ */
+
+.slider-top-rated {
+	overflow: visible;
 }
 
 /* ------------------------------------------------------------ *\
@@ -343,15 +356,41 @@ h6 {
 	.tile__img {
 		width: 100%;
 		aspect-ratio: 578 / 867;
+
+		img {
+			object-fit: contain;
+		}
 	}
 
-	.tile__body h5 {
+	.tile__head {
 		font-size: 25px;
 	}
 
-	.tile__body h5 a {
+	.tile__head a {
 		text-decoration: none;
 		color: inherit;
+		transition: color .3s;
+
+		&:hover {
+			color: $c-light-green;
+		}
+	}
+
+	.tile__author a {
+		color: #000;
+		transition: color .3s;
+		
+		&:hover {
+			color: $c-light-green;
+		}
+	}
+
+	.tile__bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 10px 20px;
 	}
 
 	.tile__stars-outer,
@@ -382,6 +421,15 @@ h6 {
 			content: "\2605 \2605 \2605 \2605 \2605";
 			color: gold;
 		}
+	}
+
+	.tile__price {
+		font-size: 25px;
+		font-weight: 600;
+	}
+
+	.tile__price sup {
+		font-size: 18px;
 	}
 }
 

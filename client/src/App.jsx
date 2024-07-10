@@ -1,10 +1,11 @@
-import TileBook from './components/tile-book/TileBook'
+// import TileBook from './components/tile-book/TileBook'
 import SectionTestimonials from './components/section-testimonials/SeectionTestimonials'
+import SectionTopRated from './components/section-top-rated/SectionTopRated'
 
 function App() {
 
 	return (
-		<>
+		<div className='wrapper'>
 			<header className="header">
 				<div className="shell">
 					<div className="header__content">
@@ -196,31 +197,7 @@ function App() {
 					</div>
 				</div>
 
-				<section className="section-top-rated">
-					<div className="shell">
-						<header className="section__head">
-							<h2>Top rated books</h2>
-						</header>
-
-						<div className="section__items">
-							<div className="section__item">
-								<TileBook />
-							</div>
-
-							<div className="section__item">
-								<TileBook />
-							</div>
-
-							<div className="section__item">
-								<TileBook />
-							</div>
-						</div>
-
-						<div className="section__actions">
-							<a href="#" className="btn btn--transparent">Show more</a>
-						</div>
-					</div>
-				</section>
+				<SectionTopRated />
 
 				<SectionTestimonials />
 			</main>
@@ -228,7 +205,7 @@ function App() {
 			<footer className="footer">
 
 			</footer>
-		</>
+		</div>
 	)
 }
 

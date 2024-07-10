@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { baseUrl } from '../../utils/utils';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -8,9 +9,6 @@ import 'swiper/css/autoplay';
 
 import sliderStyles from './TestimonialsSlider.module.scss';
 import CardTestimonial from './card-testimonial/CardTestimonial';
-
-
-const baseUrl = 'http://localhost:3030/jsonstore/booksData';
 
 export default function TestimonialSlider() {
 	const [testimonials, setTestimonials] = useState([]);

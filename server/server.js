@@ -1321,444 +1321,240 @@
 	var protectedData = {
 		users: {
 			"35c62d76-8152-4626-8712-eeb96381bea8": {
-				email: "peter@abv.bg",
-				username: "Peter",
-				hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+				"email": "peter@abv.bg",
+				"username": "Peter",
+				"imageUrl": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=ais_user",
+				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+				"readBooks": [
+					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+				],
+				"ratedBooks": [
+					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+					"8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+					"985d9eab-ad2e-4622-a5c8-116261fb1fd2"
+				]
 			},
 			"847ec027-f659-4086-8032-5173e2f9c93a": {
-				email: "george@abv.bg",
-				username: "George",
-				hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+				"email": "george@abv.bg",
+				"username": "George",
+				"imageUrl": "https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg",
+				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+				"readBooks": [
+					"985d9eab-ad2e-4622-a5c8-116261fb1fd2",
+					"0a272c58-b7ea-4e09-a000-7ec988248f66",
+					"07f260f4-466c-4607-9a33-f7273b24f1b4"
+				],
+				"ratedBooks": [
+					"985d9eab-ad2e-4622-a5c8-116261fb1fd2",
+					"0a272c58-b7ea-4e09-a000-7ec988248f66",
+					"07f260f4-466c-4607-9a33-f7273b24f1b4",
+					"3987279d-0ad4-4afb-8ca9-5b256ae3b298"
+				]
+			},
+			"634aaee2-9dd3-4b9e-b48c-df2c960d7fd4": {
+				"email": "maria@abv.bg",
+				"username": "Maria",
+				"imageUrl": "https://imgcdn.stablediffusionweb.com/2024/4/21/536cb98c-a33d-48eb-a490-4f82aee0ffce.jpg",
+				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+				"readBooks": [],
+				"ratedBooks": [],
+				"_id": "634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"
 			},
 			"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
-				email: "admin@abv.bg",
-				username: "Admin",
-				hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302"
+				"email": "admin@abv.bg",
+				"username": "Admin",
+				"imageUrl": "https://as2.ftcdn.net/v2/jpg/00/98/59/19/1000_F_98591907_rv0Ta95LggBWGzPlahed0RSClgy6jReR.jpg",
+				"hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
+				"readBooks": [],
+				"ratedBooks": []
 			}
 		},
 		sessions: {
 		}
 	};
 	var seedData = {
-		books: {
+		"books": {
 			"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-				_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-				name: "The Wheel of Time #1 The Eye of the World",
-				series: "The Wheel of Time",
-				author: "Robert Jordan",
-				genre: ["Fantasy", "Fiction"],
-				imgUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
-				description: "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
-				price: 25.00,
-				numberOfLikes: 0,
-				totalRating: 0,
-				averageRating: 0,
-				_createdOn: 1719792000000,
-				_id: "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"name": "The Wheel of Time #1 The Eye of the World",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
+				"description": "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
+				"price": "25.00",
+				"timesRated": 15,
+				"ratings": {
+					"1": 0,
+					"2": 0,
+					"3": 0,
+					"4": 5,
+					"5": 10
+				},
+				"averageRating": 4.66,
+				"_createdOn": 1719792000000,
+				"_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
 			},
 			"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-				_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-				name: "The Wheel of Time #2 The Great Hunt",
-				series: "The Wheel of Time",
-				author: "Robert Jordan",
-				genre: ["Fantasy", "Fiction"],
-				imgUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
-				description: "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
-				price: 15.00,
-				numberOfLikes: 0,
-				totalRating: 0,
-				averageRating: 0,
-				_createdOn: 1719792000000,
-				_id: "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"name": "The Wheel of Time #2 The Great Hunt",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
+				"description": "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
+				"price": "15.00",
+				"timesRated": 32,
+				"ratings": {
+					"1": 0,
+					"2": 0,
+					"3": 2,
+					"4": 10,
+					"5": 20
+				},
+				"averageRating": 4.56,
+				"_createdOn": 1719792000000,
+				"_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
 			},
 			"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-				_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-				name: "The Wheel of Time #3 The Dragon Reborn",
-				series: "The Wheel of Time",
-				author: "Robert Jordan",
-				genre: ["Fantasy", "Fiction"],
-				imgUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
-				description: "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
-				price: 20.00,
-				numberOfLikes: 0,
-				totalRating: 0,
-				averageRating: 0,
-				_createdOn: 1719792000000,
-				_id: "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "The Wheel of Time #3 The Dragon Reborn",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
+				"description": "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
+				"price": "20.00",
+				"timesRated": 5,
+				"ratings": {
+					"1": 0,
+					"2": 0,
+					"3": 0,
+					"4": 2,
+					"5": 3
+				},
+				"averageRating": 4.6,
+				"_createdOn": 1719792000000,
+				"_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
 			},
 			"0a272c58-b7ea-4e09-a000-7ec988248f66": {
-				_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-				name: "The Way of Kings (The Stormlight Archive, #1)",
-				series: "The Stormlight Archive",
-				author: "Brandon Sanderson",
-				genre: ["Fantasy", "Fiction"],
-				imgUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
-				description: "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
-				price: 30.00,
-				numberOfLikes: 0,
-				totalRating: 0,
-				averageRating: 0,
-				_createdOn: 1719792000000,
-				_id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "The Way of Kings (The Stormlight Archive, #1)",
+				"series": "The Stormlight Archive",
+				"author": "Brandon Sanderson",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
+				"description": "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
+				"price": "30.00",
+				"timesRated": 25,
+				"ratings": {
+					"1": 0,
+					"2": 0,
+					"3": 0,
+					"4": 5,
+					"5": 20
+				},
+				"averageRating": 4.8,
+				"_createdOn": 1719792000000,
+				"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
 			},
 			"07f260f4-466c-4607-9a33-f7273b24f1b4": {
-				_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-				name: "Words of Radiance (The Stormlight Archive, #2)",
-				series: "The Stormlight Archive",
-				author: "Brandon Sanderson",
-				genre: ["Fantasy", "Fiction"],
-				imgUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
-				description: "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
-				price: 35.00,
-				numberOfLikes: 0,
-				totalRating: 0,
-				averageRating: 0,
-				_createdOn: 1719792000000,
-				_id: "07f260f4-466c-4607-9a33-f7273b24f1b4"
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Words of Radiance (The Stormlight Archive, #2)",
+				"series": "The Stormlight Archive",
+				"author": "Brandon Sanderson",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
+				"description": "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
+				"price": "35.00",
+				"timesRated": 30,
+				"ratings": {
+					"1": 0,
+					"2": 0,
+					"3": 0,
+					"4": 5,
+					"5": 25
+				},
+				"averageRating": 4.83,
+				"_createdOn": 1719792000000,
+				"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
 			}
 		},
-		bookLikes: {
-
-		},
-		bookComments: {
-			"0a272c58-b7ea-4e09-a000-7ec988248f66": {
-				_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-				content: "Fantastic book! One of my favorites",
-				bookId: "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-				_createdOn: 1720002801,
-				_id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
+		"bookLikes": {},
+		"bookSeries": {
+			"a45f5fb4-df74-49da-92bb-6403742a4133": {
+				"seriesName": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"books": [
+					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+					"8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+					"985d9eab-ad2e-4622-a5c8-116261fb1fd2"
+				],
+				"seriesDescription": "Written by Robert Jordan and completed posthumously by Brandon Sanderson, The Wheel of Time is one of the greatest epics of fantasy and a #1 internationally bestselling series. Taking place both in our past and our future, the saga tells the story of a man destined to face the Evil One and save the world—or destroy it in the process.\nThe Wheel of Time turns and Ages come and pass. What was, what will be, and what is, may yet fall under the Shadow.",
+				"_id": "a45f5fb4-df74-49da-92bb-6403742a4133"
 			},
+			"9d926112-c44d-46f1-a179-3771fb0cbff7": {
+				"seriesName": "The Stormlight Archive",
+				"author": "Brandon Sanderson",
+				"books": [
+					"0a272c58-b7ea-4e09-a000-7ec988248f66",
+					"07f260f4-466c-4607-9a33-f7273b24f1b4"
+				],
+				"seriesDescription": "Brandon Sanderson's epic fantasy cycle tells the story of Roshar, a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain. It has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. As brutal wars rage over the control of these magical weapons, an ancient text called The Way of Kings tells of ancient times, the Knights Radiant, and perhaps the true cause of the war. The Knights Radiant must stand again.",
+				"_id": "9d926112-c44d-46f1-a179-3771fb0cbff7"
+			}
 		},
-		testimonials: {
+		"bookComments": {
+			"0a272c58-b7ea-4e09-a000-7ec988248f66": {
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"content": "Fantastic book! One of my favorites",
+				"bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+				"_createdOn": 1720002801,
+				"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
+			}
+		},
+		"testimonials": {
 			"833e0e57-71dc-42c0-b387-0ce0caf5225e": {
-				firstName: "John",
-				lastName: "Doe",
-				email: "john@test.bg",
-				text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde, quam accusamus iure libero quos atque!",
-				_createdOn: 1615033373504,
-				_id: "833e0e57-71dc-42c0-b387-0ce0caf5225e"
+				"firstName": "John",
+				"lastName": "Doe",
+				"email": "john@test.bg",
+				"text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde, quam accusamus iure libero quos atque!",
+				"_createdOn": 1615033373504,
+				"_id": "833e0e57-71dc-42c0-b387-0ce0caf5225e"
 			},
 			"247efaa7-8a3e-48a7-813f-b5bfdad0f46c": {
-				firstName: "Peter",
-				lastName: "Peterson",
-				email: "peter@test.bg",
-				text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima possimus eveniet ullam aspernatur.",
-				_createdOn: 1615033373504,
-				_id: "247efaa7-8a3e-48a7-813f-b5bfdad0f46c"
+				"firstName": "Peter",
+				"lastName": "Peterson",
+				"email": "peter@test.bg",
+				"text": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima possimus eveniet ullam aspernatur.",
+				"_createdOn": 1615033373504,
+				"_id": "247efaa7-8a3e-48a7-813f-b5bfdad0f46c"
 			},
 			"b8608c22-dd57-4b24-948e-b358f536b958": {
-				firstName: "George",
-				lastName: "Washington",
-				email: "",
-				text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-				_createdOn: 1615033373504,
-				_id: "b8608c22-dd57-4b24-948e-b358f536b958"
+				"firstName": "George",
+				"lastName": "Washington",
+				"email": "",
+				"text": "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+				"_createdOn": 1615033373504,
+				"_id": "b8608c22-dd57-4b24-948e-b358f536b958"
 			}
 		}
-		// recipes: {
-		// 	"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		name: "Easy Lasagna",
-		// 		img: "assets/lasagna.jpg",
-		// 		ingredients: [
-		// 			"1 tbsp Ingredient 1",
-		// 			"2 cups Ingredient 2",
-		// 			"500 g  Ingredient 3",
-		// 			"25 g Ingredient 4"
-		// 		],
-		// 		steps: [
-		// 			"Prepare ingredients",
-		// 			"Mix ingredients",
-		// 			"Cook until done"
-		// 		],
-		// 		_createdOn: 1613551279012
-		// 	},
-		// 	"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		name: "Grilled Duck Fillet",
-		// 		img: "assets/roast.jpg",
-		// 		ingredients: [
-		// 			"500 g  Ingredient 1",
-		// 			"3 tbsp Ingredient 2",
-		// 			"2 cups Ingredient 3"
-		// 		],
-		// 		steps: [
-		// 			"Prepare ingredients",
-		// 			"Mix ingredients",
-		// 			"Cook until done"
-		// 		],
-		// 		_createdOn: 1613551344360
-		// 	},
-		// 	"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		name: "Roast Trout",
-		// 		img: "assets/fish.jpg",
-		// 		ingredients: [
-		// 			"4 cups Ingredient 1",
-		// 			"1 tbsp Ingredient 2",
-		// 			"1 tbsp Ingredient 3",
-		// 			"750 g  Ingredient 4",
-		// 			"25 g Ingredient 5"
-		// 		],
-		// 		steps: [
-		// 			"Prepare ingredients",
-		// 			"Mix ingredients",
-		// 			"Cook until done"
-		// 		],
-		// 		_createdOn: 1613551388703
-		// 	}
-		// },
-		// comments: {
-		// 	"0a272c58-b7ea-4e09-a000-7ec988248f66": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		content: "Great recipe!",
-		// 		recipeId: "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-		// 		_createdOn: 1614260681375,
-		// 		_id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
-		// 	}
-		// },
-		// records: {
-		// 	i01: {
-		// 		name: "John1",
-		// 		val: 1,
-		// 		_createdOn: 1613551388703
-		// 	},
-		// 	i02: {
-		// 		name: "John2",
-		// 		val: 1,
-		// 		_createdOn: 1613551388713
-		// 	},
-		// 	i03: {
-		// 		name: "John3",
-		// 		val: 2,
-		// 		_createdOn: 1613551388723
-		// 	},
-		// 	i04: {
-		// 		name: "John4",
-		// 		val: 2,
-		// 		_createdOn: 1613551388733
-		// 	},
-		// 	i05: {
-		// 		name: "John5",
-		// 		val: 2,
-		// 		_createdOn: 1613551388743
-		// 	},
-		// 	i06: {
-		// 		name: "John6",
-		// 		val: 3,
-		// 		_createdOn: 1613551388753
-		// 	},
-		// 	i07: {
-		// 		name: "John7",
-		// 		val: 3,
-		// 		_createdOn: 1613551388763
-		// 	},
-		// 	i08: {
-		// 		name: "John8",
-		// 		val: 2,
-		// 		_createdOn: 1613551388773
-		// 	},
-		// 	i09: {
-		// 		name: "John9",
-		// 		val: 3,
-		// 		_createdOn: 1613551388783
-		// 	},
-		// 	i10: {
-		// 		name: "John10",
-		// 		val: 1,
-		// 		_createdOn: 1613551388793
-		// 	}
-		// },
-		// catches: {
-		// 	"07f260f4-466c-4607-9a33-f7273b24f1b4": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		angler: "Paulo Admorim",
-		// 		weight: 636,
-		// 		species: "Atlantic Blue Marlin",
-		// 		location: "Vitoria, Brazil",
-		// 		bait: "trolled pink",
-		// 		captureTime: 80,
-		// 		_createdOn: 1614760714812,
-		// 		_id: "07f260f4-466c-4607-9a33-f7273b24f1b4"
-		// 	},
-		// 	"bdabf5e9-23be-40a1-9f14-9117b6702a9d": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		angler: "John Does",
-		// 		weight: 554,
-		// 		species: "Atlantic Blue Marlin",
-		// 		location: "Buenos Aires, Argentina",
-		// 		bait: "trolled pink",
-		// 		captureTime: 120,
-		// 		_createdOn: 1614760782277,
-		// 		_id: "bdabf5e9-23be-40a1-9f14-9117b6702a9d"
-		// 	}
-		// },
-		// furniture: {
-		// },
-		// orders: {
-		// },
-		// movies: {
-		// 	"1240549d-f0e0-497e-ab99-eb8f703713d7": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		title: "Black Widow",
-		// 		description: "Natasha Romanoff aka Black Widow confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Comes on the screens 2020.",
-		// 		img: "https://miro.medium.com/max/735/1*akkAa2CcbKqHsvqVusF3-w.jpeg",
-		// 		_createdOn: 1614935055353,
-		// 		_id: "1240549d-f0e0-497e-ab99-eb8f703713d7"
-		// 	},
-		// 	"143e5265-333e-4150-80e4-16b61de31aa0": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		title: "Wonder Woman 1984",
-		// 		description: "Diana must contend with a work colleague and businessman, whose desire for extreme wealth sends the world down a path of destruction, after an ancient artifact that grants wishes goes missing.",
-		// 		img: "https://pbs.twimg.com/media/ETINgKwWAAAyA4r.jpg",
-		// 		_createdOn: 1614935181470,
-		// 		_id: "143e5265-333e-4150-80e4-16b61de31aa0"
-		// 	},
-		// 	"a9bae6d8-793e-46c4-a9db-deb9e3484909": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		title: "Top Gun 2",
-		// 		description: "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
-		// 		img: "https://i.pinimg.com/originals/f2/a4/58/f2a458048757bc6914d559c9e4dc962a.jpg",
-		// 		_createdOn: 1614935268135,
-		// 		_id: "a9bae6d8-793e-46c4-a9db-deb9e3484909"
-		// 	}
-		// },
-		// likes: {
-		// },
-		// ideas: {
-		// 	"833e0e57-71dc-42c0-b387-0ce0caf5225e": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		title: "Best Pilates Workout To Do At Home",
-		// 		description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima possimus eveniet ullam aspernatur corporis tempore quia nesciunt nostrum mollitia consequatur. At ducimus amet aliquid magnam nulla sed totam blanditiis ullam atque facilis corrupti quidem nisi iusto saepe, consectetur culpa possimus quos? Repellendus, dicta pariatur! Delectus, placeat debitis error dignissimos nesciunt magni possimus quo nulla, fuga corporis maxime minus nihil doloremque aliquam quia recusandae harum. Molestias dolorum recusandae commodi velit cum sapiente placeat alias rerum illum repudiandae? Suscipit tempore dolore autem, neque debitis quisquam molestias officia hic nesciunt? Obcaecati optio fugit blanditiis, explicabo odio at dicta asperiores distinctio expedita dolor est aperiam earum! Molestias sequi aliquid molestiae, voluptatum doloremque saepe dignissimos quidem quas harum quo. Eum nemo voluptatem hic corrupti officiis eaque et temporibus error totam numquam sequi nostrum assumenda eius voluptatibus quia sed vel, rerum, excepturi maxime? Pariatur, provident hic? Soluta corrupti aspernatur exercitationem vitae accusantium ut ullam dolor quod!",
-		// 		img: "./images/best-pilates-youtube-workouts-2__medium_4x3.jpg",
-		// 		_createdOn: 1615033373504,
-		// 		_id: "833e0e57-71dc-42c0-b387-0ce0caf5225e"
-		// 	},
-		// 	"247efaa7-8a3e-48a7-813f-b5bfdad0f46c": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		title: "4 Eady DIY Idea To Try!",
-		// 		description: "Similique rem culpa nemo hic recusandae perspiciatis quidem, quia expedita, sapiente est itaque optio enim placeat voluptates sit, fugit dignissimos tenetur temporibus exercitationem in quis magni sunt vel. Corporis officiis ut sapiente exercitationem consectetur debitis suscipit laborum quo enim iusto, labore, quod quam libero aliquid accusantium! Voluptatum quos porro fugit soluta tempore praesentium ratione dolorum impedit sunt dolores quod labore laudantium beatae architecto perspiciatis natus cupiditate, iure quia aliquid, iusto modi esse!",
-		// 		img: "./images/brightideacropped.jpg",
-		// 		_createdOn: 1615033452480,
-		// 		_id: "247efaa7-8a3e-48a7-813f-b5bfdad0f46c"
-		// 	},
-		// 	"b8608c22-dd57-4b24-948e-b358f536b958": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		title: "Dinner Recipe",
-		// 		description: "Consectetur labore et corporis nihil, officiis tempora, hic ex commodi sit aspernatur ad minima? Voluptas nesciunt, blanditiis ex nulla incidunt facere tempora laborum ut aliquid beatae obcaecati quidem reprehenderit consequatur quis iure natus quia totam vel. Amet explicabo quidem repellat unde tempore et totam minima mollitia, adipisci vel autem, enim voluptatem quasi exercitationem dolor cum repudiandae dolores nostrum sit ullam atque dicta, tempora iusto eaque! Rerum debitis voluptate impedit corrupti quibusdam consequatur minima, earum asperiores soluta. A provident reiciendis voluptates et numquam totam eveniet! Dolorum corporis libero dicta laborum illum accusamus ullam?",
-		// 		img: "./images/dinner.jpg",
-		// 		_createdOn: 1615033491967,
-		// 		_id: "b8608c22-dd57-4b24-948e-b358f536b958"
-		// 	}
-		// },
-		// catalog: {
-		// 	"53d4dbf5-7f41-47ba-b485-43eccb91cb95": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		make: "Table",
-		// 		model: "Swedish",
-		// 		year: 2015,
-		// 		description: "Medium table",
-		// 		price: 235,
-		// 		img: "./images/table.png",
-		// 		material: "Hardwood",
-		// 		_createdOn: 1615545143015,
-		// 		_id: "53d4dbf5-7f41-47ba-b485-43eccb91cb95"
-		// 	},
-		// 	"f5929b5c-bca4-4026-8e6e-c09e73908f77": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		make: "Sofa",
-		// 		model: "ES-549-M",
-		// 		year: 2018,
-		// 		description: "Three-person sofa, blue",
-		// 		price: 1200,
-		// 		img: "./images/sofa.jpg",
-		// 		material: "Frame - steel, plastic; Upholstery - fabric",
-		// 		_createdOn: 1615545572296,
-		// 		_id: "f5929b5c-bca4-4026-8e6e-c09e73908f77"
-		// 	},
-		// 	"c7f51805-242b-45ed-ae3e-80b68605141b": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		make: "Chair",
-		// 		model: "Bright Dining Collection",
-		// 		year: 2017,
-		// 		description: "Dining chair",
-		// 		price: 180,
-		// 		img: "./images/chair.jpg",
-		// 		material: "Wood laminate; leather",
-		// 		_createdOn: 1615546332126,
-		// 		_id: "c7f51805-242b-45ed-ae3e-80b68605141b"
-		// 	}
-		// },
-		// teams: {
-		// 	"34a1cab1-81f1-47e5-aec3-ab6c9810efe1": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		name: "Storm Troopers",
-		// 		logoUrl: "/assets/atat.png",
-		// 		description: "These ARE the droids we're looking for",
-		// 		_createdOn: 1615737591748,
-		// 		_id: "34a1cab1-81f1-47e5-aec3-ab6c9810efe1"
-		// 	},
-		// 	"dc888b1a-400f-47f3-9619-07607966feb8": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		name: "Team Rocket",
-		// 		logoUrl: "/assets/rocket.png",
-		// 		description: "Gotta catch 'em all!",
-		// 		_createdOn: 1615737655083,
-		// 		_id: "dc888b1a-400f-47f3-9619-07607966feb8"
-		// 	},
-		// 	"733fa9a1-26b6-490d-b299-21f120b2f53a": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		name: "Minions",
-		// 		logoUrl: "/assets/hydrant.png",
-		// 		description: "Friendly neighbourhood jelly beans, helping evil-doers succeed.",
-		// 		_createdOn: 1615737688036,
-		// 		_id: "733fa9a1-26b6-490d-b299-21f120b2f53a"
-		// 	}
-		// },
-		// members: {
-		// 	"cc9b0a0f-655d-45d7-9857-0a61c6bb2c4d": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		teamId: "34a1cab1-81f1-47e5-aec3-ab6c9810efe1",
-		// 		status: "member",
-		// 		_createdOn: 1616236790262,
-		// 		_updatedOn: 1616236792930
-		// 	},
-		// 	"61a19986-3b86-4347-8ca4-8c074ed87591": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		teamId: "dc888b1a-400f-47f3-9619-07607966feb8",
-		// 		status: "member",
-		// 		_createdOn: 1616237188183,
-		// 		_updatedOn: 1616237189016
-		// 	},
-		// 	"8a03aa56-7a82-4a6b-9821-91349fbc552f": {
-		// 		_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-		// 		teamId: "733fa9a1-26b6-490d-b299-21f120b2f53a",
-		// 		status: "member",
-		// 		_createdOn: 1616237193355,
-		// 		_updatedOn: 1616237195145
-		// 	},
-		// 	"9be3ac7d-2c6e-4d74-b187-04105ab7e3d6": {
-		// 		_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-		// 		teamId: "dc888b1a-400f-47f3-9619-07607966feb8",
-		// 		status: "member",
-		// 		_createdOn: 1616237231299,
-		// 		_updatedOn: 1616237235713
-		// 	},
-		// 	"280b4a1a-d0f3-4639-aa54-6d9158365152": {
-		// 		_ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-		// 		teamId: "dc888b1a-400f-47f3-9619-07607966feb8",
-		// 		status: "member",
-		// 		_createdOn: 1616237257265,
-		// 		_updatedOn: 1616237278248
-		// 	},
-		// 	"e797fa57-bf0a-4749-8028-72dba715e5f8": {
-		// 		_ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-		// 		teamId: "34a1cab1-81f1-47e5-aec3-ab6c9810efe1",
-		// 		status: "member",
-		// 		_createdOn: 1616237272948,
-		// 		_updatedOn: 1616237293676
-		// 	}
-		// }
 	};
 	var rules$1 = {
 		users: {
