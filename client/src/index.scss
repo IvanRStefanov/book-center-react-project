@@ -13,13 +13,15 @@
 	Variables
 \* ------------------------------------------------------------ */
 
-$ff-serif 		: "Open Sans", sans-serif;
-$ff-cursive 	: "Playwrite GB S", cursive;
+$ff-serif : "Open Sans",
+sans-serif;
+$ff-cursive : "Playwrite GB S",
+cursive;
 
-$c-green 			:#208040;
-$c-light-green 		:#65A903;
-$c-gray 			:#F3F4F6;
-$c-beige 			:#FCF8EC;
+$c-green :#208040;
+$c-light-green :#65A903;
+$c-gray :#F3F4F6;
+$c-beige :#FCF8EC;
 
 /* ------------------------------------------------------------ *\
 	Base
@@ -121,12 +123,17 @@ img {
 	display: inline-block;
 	vertical-align: middle;
 	text-decoration: none;
-	width: 100px;
+	width: 80px;
 	aspect-ratio: 1;
 
 	>img {
 		display: block;
 		width: 100%;
+	}
+
+	/*  Logo--footer  */
+	&.logo--footer {
+		width: 60px;
 	}
 }
 
@@ -290,7 +297,7 @@ img {
 	&.btn--uppercase {
 		text-transform: uppercase;
 	}
-	
+
 	/*  Btn--transparent  */
 	&.btn--transparent {
 		background-color: transparent;
@@ -305,7 +312,7 @@ img {
 			color: #fff;
 		}
 	}
-	
+
 }
 
 /* ------------------------------------------------------------ *\
@@ -319,7 +326,7 @@ img {
 		text-align: center;
 	}
 
-	.section__head + .section__slider {
+	.section__head+.section__slider {
 		margin-top: 60px;
 	}
 
@@ -385,7 +392,7 @@ img {
 	.tile__author a {
 		color: #000;
 		transition: color .3s;
-		
+
 		&:hover {
 			color: $c-light-green;
 		}
@@ -502,7 +509,7 @@ img {
 			transform: translate(-50%, -50%) rotate(-45deg);
 		}
 	}
-	
+
 	.modal__shell {
 		width: 100%;
 		background-color: $c-beige;
@@ -537,7 +544,7 @@ img {
 			background-color: #000;
 		}
 
-		> span {
+		>span {
 			text-transform: uppercase;
 			background-color: $c-beige;
 			border: 2px solid #000;
@@ -568,7 +575,7 @@ img {
 		font-size: 25px;
 	}
 
-	.form__head + .form__body {
+	.form__head+.form__body {
 		margin-top: 30px;
 	}
 
@@ -578,12 +585,12 @@ img {
 		row-gap: 15px;
 		flex-wrap: wrap;
 	}
-	
+
 	.form__col {
 		flex-basis: 50%;
 		padding: 0 7px;
 	}
-	
+
 	/*  Form__col--full-width  */
 	.form__col--full-width {
 		flex-basis: 100%;
@@ -593,7 +600,7 @@ img {
 		position: relative;
 	}
 
-	.form__row + .form__row {
+	.form__row+.form__row {
 		margin-top: 15px;
 	}
 
@@ -617,7 +624,7 @@ img {
 		padding: 0 10px;
 		font-size: 18px;
 		transition: border-color .3s;
-	
+
 		&:active,
 		&:focus {
 			border-color: #000;
@@ -639,8 +646,8 @@ img {
 			border-color: #000;
 		}
 	}
-	
-	.form__body + .form__actions {
+
+	.form__body+.form__actions {
 		margin-top: 15px;
 	}
 
@@ -683,10 +690,10 @@ img {
 		font-size: 20px;
 	}
 
-	.card__body p + footer {
+	.card__body p+footer {
 		margin-top: 20px;
 	}
-	
+
 	.card__body footer {
 		font-family: $ff-cursive;
 	}
@@ -698,7 +705,7 @@ img {
 
 .section-contact {
 	padding: 100px 0;
-	
+
 	.section__content {
 		display: flex;
 		margin: 0 -30px;
@@ -730,7 +737,104 @@ img {
 		font-size: 60px;
 	}
 
-	.section__head + .section__form {
+	.section__head+.section__form {
 		margin-top: 50px;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Footer
+\* ------------------------------------------------------------ */
+
+.footer {
+	background-color: #0095B6;
+	padding: 80px 0 0;
+
+	.footer__content {
+		padding: 0 0 80px;
+	}
+
+	.footer__cols {
+		display: flex;
+		margin: 0 -40px;
+		flex-wrap: wrap;
+	}
+
+	.footer__col {
+		flex: 0 1 33.333%;
+		padding: 0 20px;
+	}
+
+	.footer__foot {
+		text-align: center;
+		color: #fff;
+		background-color: #000;
+		padding: 10px 0;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Quick-links-menu
+\* ------------------------------------------------------------ */
+
+.quick-links-menu {
+	.quick-links-head {
+		font-size: 20px;
+	}
+
+	.quick-links-head+.quick-links-nav {
+		margin-top: 15px;
+	}
+
+	.quick-links-nav {
+		font-size: 15px;
+	}
+
+	ul {
+		list-style-type: none;
+	}
+
+	ul li+li {
+		margin-top: 5px;
+	}
+
+	a {
+		color: #000;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Ico-background
+\* ------------------------------------------------------------ */
+
+.ico-background {
+	position: relative;
+	width: 44px;
+	height: 44px;
+	// background-color: #000;
+	border-radius: 50%;
+	cursor: pointer;
+
+	&:hover:before {
+		transform: scale(1.3);
+		opacity: 0;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: -1px;
+		left: -1px;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		border: 1px solid #000;
+		transition: transform, opacity;
+		transition-duration: .4s;
 	}
 }
