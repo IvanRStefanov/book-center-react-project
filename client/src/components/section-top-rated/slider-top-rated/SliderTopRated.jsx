@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TileBook from '../../tile-book/TileBook.jsx';
-import { baseUrl } from '../../../utils/utils.js';
+import { baseUrl } from '../../../utils/variables.js';
 
 import 'swiper/css';
 
