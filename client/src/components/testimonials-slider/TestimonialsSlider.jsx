@@ -16,7 +16,7 @@ export default function TestimonialSlider() {
 	useEffect(() => {
 		async function getTestimonials() {
 			try {
-				const response = await fetch(`${baseUrl}/testimonials`)
+				const response = await fetch(`${baseUrl}/data/testimonials`)
 				const result = await response.json()
 				const testimonials = Object.values(result)
 

@@ -1,6 +1,4 @@
-// import TileBook from "../tile-book/TileBook";
 import SliderTopRated from "./slider-top-rated/SliderTopRated";
-// import { baseUrl } from '../../utils/utils.js';
 
 
 export default function SectionTopRated() {
