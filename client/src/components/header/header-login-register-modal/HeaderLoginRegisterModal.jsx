@@ -1,11 +1,13 @@
-export default function HeaderLoginRegisterModal() {
+export default function HeaderLoginRegisterModal({
+    onCLose
+}) {
     return (
-        <div className="header__accaunt-modal" style={{ display: "none" }}>
+        <div className="header__accaunt-modal">
             <div className="modal-user">
-                <div className="modal__bg"></div>
+                <div className="modal__bg" onClick={onCLose}></div>
 
                 <div className="modal__content">
-                    <button className="modal__close-btn"></button>
+                    <button className="modal__close-btn" onClick={onCLose}></button>
 
                     <div className="modal__shell">
                         <div className="modal__items">

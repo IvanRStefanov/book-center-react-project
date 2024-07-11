@@ -1,4 +1,21 @@
+import { useState } from "react";
+import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
+
+
+
 export default function Header() {
+    const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
+
+    function showLoginRegisterMmodal(event) {
+        event.preverntDefault;
+    
+        setShowLoginRegisterModal(true);
+    }
+
+    function hideLoginRegisterModal() {
+        setShowLoginRegisterModal(false);
+    }
+
     return (
         <header className="header">
             <div className="shell">
@@ -37,13 +54,15 @@ export default function Header() {
                         </div>
 
                         <div className="header__utils">
-                            <a href="#" className="login ico-background">
+                            <a href="#" className="login ico-background" onClick={showLoginRegisterMmodal}>
                                 <img src="./src/assets/svgs/user-ico.svg" alt=""></img>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {showLoginRegisterModal && <HeaderLoginRegisterModal onCLose={hideLoginRegisterModal}/>}
         </header>
 
     );
