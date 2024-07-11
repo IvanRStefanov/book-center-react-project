@@ -838,3 +838,23 @@ img {
 		transition-duration: .4s;
 	}
 }
+
+/* ------------------------------------------------------------ *\
+	User-utils
+\* ------------------------------------------------------------ */
+.user-utils {
+	display: block;
+	width: 42px;
+	aspect-ratio: 1;
+	position: relative;
+	border-radius: 50%;
+
+	> img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+}

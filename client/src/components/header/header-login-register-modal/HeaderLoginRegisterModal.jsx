@@ -1,6 +1,10 @@
+import { baseUrl } from "../../../utils/variables";
+
 export default function HeaderLoginRegisterModal({
-    onCLose
+    onCLose,
+    loginSubmitHandler
 }) {
+   
     return (
         <div className="header__accaunt-modal">
             <div className="modal-user">
@@ -9,11 +13,19 @@ export default function HeaderLoginRegisterModal({
                 <div className="modal__content">
                     <button className="modal__close-btn" onClick={onCLose}></button>
 
+                    {/* <form>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email"/>
+
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password"/>
+                    </form> */}
+
                     <div className="modal__shell">
                         <div className="modal__items">
                             <div className="modal__item">
                                 <div className="form">
-                                    <form action="">
+                                    <form onSubmit={loginSubmitHandler}>
                                         <div className="form__head">
                                             <h5>Login</h5>
                                         </div>
@@ -24,7 +36,7 @@ export default function HeaderLoginRegisterModal({
                                                     className="form__label">Email</label>
 
                                                 <div className="form__controls">
-                                                    <input type="email" className="field" id="email"></input>
+                                                    <input type="email" className="field" id="email" name="email"></input>
                                                 </div>
                                             </div>
 
@@ -33,7 +45,7 @@ export default function HeaderLoginRegisterModal({
                                                     className="form__label">Password</label>
 
                                                 <div className="form__controls">
-                                                    <input type="password" className="field" id="password"></input>
+                                                    <input type="password" className="field" id="password" name="password"></input>
                                                 </div>
                                             </div>
                                         </div>
