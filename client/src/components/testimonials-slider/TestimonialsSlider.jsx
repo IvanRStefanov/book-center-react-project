@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
-import { baseUrl } from '../../utils/utils';
+import { baseUrl } from '../../utils/variables';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -52,8 +52,13 @@ export default function TestimonialSlider() {
 				modules={[Autoplay, Pagination]}
 			>
 				{testimonials.map(testimonial =>
-					<SwiperSlide key={testimonial._id} className={sliderStyles['swiper-slide']}>
-						<CardTestimonial testimonial={testimonial} />
+					<SwiperSlide
+						key={testimonial._id}
+						className={sliderStyles['swiper-slide']}
+					>
+						<CardTestimonial
+							testimonial={testimonial}
+						/>
 					</SwiperSlide>
 				)}
 			</Swiper>
