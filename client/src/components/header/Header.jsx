@@ -40,15 +40,48 @@ export default function Header() {
 				const error = await response.json();
 				throw new Error(error.message);
 			}
-
+			
 			const userData = await response.json();
-		   
+			
 			setUserData(userData);
 			hideLoginRegisterModal();
 			setLogedInUser(userData);
-
+			
 		} catch (error) {
-			console.log('User login error', error)
+			console.log('User login error', error.message);
+		}
+	}
+
+	async function registerUserSubmitHandler(event) {
+		event.preventDefault();
+		console.log(event.currentTarget)
+
+		const formData = new FormData(event.currentTarget);
+		const formDataObj = (Object.fromEntries(formData));
+
+		try {
+			const response = await fetch('http://localhost:3030/users/register', {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formDataObj)
+			});
+
+			if(response.ok != true) {
+				const error = await response.json();
+				throw new Error(error.message)
+			}
+			
+			const userData = await response.json();
+			console.log(userData)
+
+			setUserData(userData);
+			hideLoginRegisterModal();
+			setLogedInUser(userData)
+		} catch (error) {
+			console.log('register error', error.message);
+
 		}
 	}
 
@@ -89,7 +122,13 @@ export default function Header() {
 							</nav>
 						</div>
 
-						{logedInUser ? 	<HeaderUserUtils logedInUser={logedInUser}/>	: <HeaderLoginUtils showLoginRegisterMmodal={showLoginRegisterMmodal}/>}
+						{logedInUser ? 	<HeaderUserUtils
+											logedInUser={logedInUser}
+										/> 
+										:
+										<HeaderLoginUtils
+											showLoginRegisterMmodal={showLoginRegisterMmodal}
+										/>}
 					</div>
 				</div>
 			</div>
@@ -97,6 +136,7 @@ export default function Header() {
 			{showLoginRegisterModal && <HeaderLoginRegisterModal
 											onCLose={hideLoginRegisterModal}
 											loginSubmitHandler={loginSubmitHandler}
+											registerUserSubmitHandler={registerUserSubmitHandler}
 										/>}
 		</header>
 
