@@ -7,19 +7,11 @@ export default function HeaderLoginRegisterModal({
    
     return (
         <div className="header__accaunt-modal">
-            <div className="modal-user">
+            <div className="modal-login-register">
                 <div className="modal__bg" onClick={onCLose}></div>
 
                 <div className="modal__content">
                     <button className="modal__close-btn" onClick={onCLose}></button>
-
-                    {/* <form>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email"/>
-
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password"/>
-                    </form> */}
 
                     <div className="modal__shell">
                         <div className="modal__items">

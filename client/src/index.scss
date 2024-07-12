@@ -447,10 +447,10 @@ img {
 }
 
 /* ------------------------------------------------------------ *\
-	Modal-user
+	Modal-login-register
 \* ------------------------------------------------------------ */
 
-.modal-user {
+.modal-login-register {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -674,73 +674,6 @@ img {
 	}
 }
 
-/* ------------------------------------------------------------ *\
-	Card-testimonial
-\* ------------------------------------------------------------ */
-
-.card-testimonial {
-	.card__body {
-		text-align: center;
-		max-width: 500px;
-		width: 100%;
-		margin: 0 auto;
-	}
-
-	.card__body p {
-		font-size: 20px;
-	}
-
-	.card__body p+footer {
-		margin-top: 20px;
-	}
-
-	.card__body footer {
-		font-family: $ff-cursive;
-	}
-}
-
-/* ------------------------------------------------------------ *\
-	Section-contact
-\* ------------------------------------------------------------ */
-
-.section-contact {
-	padding: 100px 0;
-
-	.section__content {
-		display: flex;
-		margin: 0 -30px;
-	}
-
-	.section__media {
-		flex: 0 1 50%;
-		padding: 0 15px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.section__img {
-		max-width: 320px;
-		width: 100%;
-	}
-
-	.section__main {
-		flex: 0 1 50%;
-		padding: 0 15px;
-	}
-
-	.section__head {
-		text-align: center;
-	}
-
-	.section__head h2 {
-		font-size: 60px;
-	}
-
-	.section__head+.section__form {
-		margin-top: 50px;
-	}
-}
 
 /* ------------------------------------------------------------ *\
 	Footer
@@ -856,5 +789,6 @@ img {
 		width: 100%;
 		height: 100%;
 		border-radius: 50%;
+		object-fit: cover;
 	}
 }
