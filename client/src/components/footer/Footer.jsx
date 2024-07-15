@@ -7,7 +7,7 @@ export default function Footer() {
                         <div className="footer__col">
                             <div className="footer__logo">
                                 <a href="#" className="logo logo--footer">
-                                    <img src="./src/assets/svgs/opened-book.svg" alt=""></img>
+                                    <img src="../src/assets/svgs/opened-book.svg" alt=""></img>
                                 </a>
                             </div>
                         </div>
