@@ -29,7 +29,7 @@ export default function HeaderLoginRegisterModal({
                                                     className="form__label">Email</label>
 
                                                 <div className="form__controls">
-                                                    <input type="email" className="field" id="email" name="email"></input>
+                                                    <input type="email" className="field" id="email" name="email" autoComplete="off"></input>
                                                 </div>
                                             </div>
 
@@ -56,7 +56,7 @@ export default function HeaderLoginRegisterModal({
 
                             <div className="modal__item">
                                 <div className="form">
-                                    <form action="" onSubmit={registerUserSubmitHandler}>
+                                    <form onSubmit={registerUserSubmitHandler}>
                                         <div className="form__head">
                                             <h5>
                                                 Register
@@ -71,7 +71,7 @@ export default function HeaderLoginRegisterModal({
                                                             name</label>
 
                                                         <div className="form__controls">
-                                                            <input type="text" className="field" id="firstName" name="firstName"></input>
+                                                            <input type="text" className="field" id="firstName" name="firstName" autoComplete="off"></input>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -82,14 +82,14 @@ export default function HeaderLoginRegisterModal({
                                                             name</label>
 
                                                         <div className="form__controls">
-                                                            <input type="text" className="field" id="lastName" name="lastName"></input>
+                                                            <input type="text" className="field" id="lastName" name="lastName" autoComplete="off"></input>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div className="form__col form__col--full-width">
                                                     <div className="form__row">
-                                                        <label hmtlfor="email" id="email" className="form__label">Email</label>
+                                                        <label hmtlfor="email" id="email" className="form__label" autoComplete="off">Email</label>
 
                                                         <div className="form__controls">
                                                             <input type="email" id="email" className="field" name="email"></input>

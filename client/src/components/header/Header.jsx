@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
-import { getUserData, setUserData, showBodyScroll } from "../../utils/utils";
+import { getUserData, removeUserData, setUserData, showBodyScroll } from "../../utils/utils";
 import { NavLink } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
+import UserDetails from "./user-details/UserDetails";
 
 
 export default function Header() {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
+	const [showUserDetails, setShowUserDetails] = useState(false);
 	const [logedInUser, setLogedInUser] = useState('');
 
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
 
-		if(hasLogedInUser) {
+		if (hasLogedInUser) {
 			const userFound = JSON.parse(hasLogedInUser);
 			setUserData(userFound);
 			setLogedInUser(userFound);
 		}
 	}, [])
 
-	function showLoginRegisterMmodal(event) {
-		event.preverntDefault;
-	
+	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(true);
 		showBodyScroll(false);
 	}
@@ -51,22 +51,19 @@ export default function Header() {
 				const error = await response.json();
 				throw new Error(error.message);
 			}
-			
+
 			const userData = await response.json();
-			
+
 			setUserData(userData);
 			hideLoginRegisterModal();
 			setLogedInUser(userData);
-			
+
 		} catch (error) {
 			console.log('User login error', error.message);
 		}
 	}
 
 	async function registerUserSubmitHandler(event) {
-		event.preventDefault();
-		console.log(event.currentTarget)
-
 		const formData = new FormData(event.currentTarget);
 		const formDataObj = (Object.fromEntries(formData));
 
@@ -79,11 +76,11 @@ export default function Header() {
 				body: JSON.stringify(formDataObj)
 			});
 
-			if(response.ok != true) {
+			if (response.ok != true) {
 				const error = await response.json();
 				throw new Error(error.message)
 			}
-			
+
 			const userData = await response.json();
 			// console.log(userData)
 
@@ -92,8 +89,24 @@ export default function Header() {
 			setLogedInUser(userData)
 		} catch (error) {
 			console.log('register error', error.message);
-
 		}
+	}
+
+	function showUserInfo() {
+		setShowUserDetails(true);
+		showBodyScroll(false);
+	}
+
+	function hideUserInfo() {
+		setShowUserDetails(false);
+		showBodyScroll(true);
+	}
+
+	function logOut() {
+		removeUserData();
+		setShowUserDetails(false);
+		showBodyScroll(true);
+		setLogedInUser('')
 	}
 
 	return (
@@ -126,7 +139,7 @@ export default function Header() {
 										<NavLink to="/about">About</NavLink>
 									</li>
 
-									{logedInUser && 
+									{logedInUser &&
 										<li>
 											<NavLink to="/add-new-book">Publish</NavLink>
 										</li>
@@ -135,23 +148,32 @@ export default function Header() {
 							</nav>
 						</div>
 
-						{logedInUser ? 	<HeaderUserUtils
-											logedInUser={logedInUser}
-											// showUserDetails={showUserDetails}
-										/> 
-										:
-										<HeaderLoginUtils
-											showLoginRegisterMmodal={showLoginRegisterMmodal}
-										/>}
+
+						{logedInUser ? <HeaderUserUtils
+							logedInUser={logedInUser}
+							showUserInfo={showUserInfo}
+						// showUserDetails={showUserDetails}
+						/>
+							:
+							<HeaderLoginUtils
+								showLoginRegisterMmodal={showLoginRegisterMmodal}
+							/>}
 					</div>
 				</div>
 			</div>
 
 			{showLoginRegisterModal && <HeaderLoginRegisterModal
-											onCLose={hideLoginRegisterModal}
-											loginSubmitHandler={loginSubmitHandler}
-											registerUserSubmitHandler={registerUserSubmitHandler}
-										/>}
+				onCLose={hideLoginRegisterModal}
+				loginSubmitHandler={loginSubmitHandler}
+				registerUserSubmitHandler={registerUserSubmitHandler}
+			/>}
+			
+			{showUserDetails && <UserDetails
+									logedInUser={logedInUser}
+									onClose={hideUserInfo}
+									onLogout={logOut}
+								/>}
+			{/* <UserDetails /> */}
 		</header>
 
 	);

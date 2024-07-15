@@ -1,10 +1,14 @@
-export default function HeaderUserUtils({logedInUser}) {
-    console.log(logedInUser)
+import { Link } from "react-router-dom";
+
+export default function HeaderUserUtils({
+    logedInUser,
+    showUserInfo
+}) {
     return (
         <div className="header__user-utils">
-            <a href="#" className="user-utils ico-background" >
+            <Link href="#" className="user-utils ico-background" onClick={showUserInfo}>
                 <img src={logedInUser.imageUrl} alt="" />
-            </a>
+            </Link>
         </div>
     );
 }
