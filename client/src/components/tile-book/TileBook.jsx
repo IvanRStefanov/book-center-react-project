@@ -1,13 +1,23 @@
+import { Link, useLocation } from "react-router-dom";
+
 export default function TileBook({ book }) {
+	const location = useLocation();
+
+	let classes = "tile-book" + (location.pathname == '/catalog' ? ' tile-book--catalog' : '');
+
 	return (
-		<div className="tile-book">
+		<div className= {classes}>
 			<div className="tile__img image-fit">
-				<img src={book.imgUrl} alt=""></img>
+				<img src={book.imgUrl} alt={`${book.name} cover`}></img>
+
+				<span className="tile__img-loading-spinner"></span>
 			</div>
 
 			<div className="tile__content">
 				<div className="tile__body">
-					<h5 className="tile__head"><a href="#">{book.name}</a></h5>
+					<h5 className="tile__head">
+						<Link to={`/catalog/${book._id}`}>{book.name}</Link>
+					</h5>
 
 					<p className="tile__author">by <span><a href="#">{book.author}</a></span></p>
 				</div>
