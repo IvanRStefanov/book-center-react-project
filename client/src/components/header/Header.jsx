@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUserData, setUserData, showBodyScroll } from "../../utils/utils";
+import { NavLink } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
-import { setUserData, showBodyScroll } from "../../utils/utils";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 
 
 export default function Header() {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
-	const [logedInUser, setLogedInUser] = useState(undefined);
+	const [logedInUser, setLogedInUser] = useState('');
+
+	useEffect(() => {
+		const hasLogedInUser = sessionStorage.getItem('userData');
+
+		if(hasLogedInUser) {
+			const userFound = JSON.parse(hasLogedInUser);
+			setUserData(userFound);
+			setLogedInUser(userFound);
+		}
+	}, [])
 
 	function showLoginRegisterMmodal(event) {
 		event.preverntDefault;
@@ -74,7 +85,7 @@ export default function Header() {
 			}
 			
 			const userData = await response.json();
-			console.log(userData)
+			// console.log(userData)
 
 			setUserData(userData);
 			hideLoginRegisterModal();
@@ -90,9 +101,9 @@ export default function Header() {
 			<div className="shell">
 				<div className="header__content">
 					<div className="header__logo">
-						<a href="#" className="logo">
-							<img src="./src/assets/svgs/opened-book.svg" alt=""></img>
-						</a>
+						<NavLink to="/" className="logo">
+							<img src="../src/assets/svgs/opened-book.svg" alt=""></img>
+						</NavLink>
 					</div>
 
 					<div className="header__actions">
@@ -100,30 +111,33 @@ export default function Header() {
 							<nav>
 								<ul className="menu">
 									<li>
-										<a href="#">Featured</a>
+										<NavLink to="/featured">Featured</NavLink>
 									</li>
 
 									<li>
-										<a href="#">Catalog</a>
+										<NavLink to="/catalog">Catalog</NavLink>
 									</li>
 
 									<li>
-										<a href="#">Contact</a>
+										<NavLink to="/contact">Contact</NavLink>
 									</li>
 
 									<li>
-										<a href="#">About</a>
+										<NavLink to="/about">About</NavLink>
 									</li>
 
-									{logedInUser && <li>
-										<a href="#">Publish</a>
-									</li>}
+									{logedInUser && 
+										<li>
+											<NavLink to="/add-new-book">Publish</NavLink>
+										</li>
+									}
 								</ul>
 							</nav>
 						</div>
 
 						{logedInUser ? 	<HeaderUserUtils
 											logedInUser={logedInUser}
+											// showUserDetails={showUserDetails}
 										/> 
 										:
 										<HeaderLoginUtils
