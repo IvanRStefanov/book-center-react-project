@@ -1325,7 +1325,10 @@
 				"username": "Peter",
 				"imageUrl": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=ais_user",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-				"postedBooks": [],
+				"postedBooks": [
+                    "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+                    "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+                ],
 				"readBooks": [
 					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
 					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
