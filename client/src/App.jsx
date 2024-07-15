@@ -1,7 +1,12 @@
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
-import Hero from './components/hero/Hero'
-import SectionTopRated from './components/section-top-rated/SectionTopRated'
+import { Routes, Route } from 'react-router-dom';
+
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import HomePage from './components/pages/home-page/HomePage';
+import CatalogPage from './components/pages/catalog-page/CatalogPage';
+import BookDetails from './components/pages/book-details/BookDetails';
+import PublishPage from './components/pages/publish-page/PublishPage';
+
 
 function App() {
 
@@ -10,9 +15,13 @@ function App() {
 			<Header />
 
 			<main>
-				<Hero />
-
-				<SectionTopRated />
+				<Routes>
+					<Route path="/" element={<HomePage />} /> 
+					<Route path="/catalog" element={<CatalogPage />} />
+					<Route path="/catalog/:bookId" element={<BookDetails />} />
+					<Route path="/add-new-book" element={<PublishPage />} />
+				</Routes>
+				
 			</main>
 
 			<Footer />
