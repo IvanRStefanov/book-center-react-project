@@ -203,38 +203,12 @@
     "bookComments": {
         "0a272c58-b7ea-4e09-a000-7ec988248f66": {
             "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "content": "Fantastic book! One of my favorites",
+            "username": "Peter",
+            "comment": "Fantastic book! One of my favorites",
+            "rated": 5,
             "bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
             "_createdOn": 1720002801,
             "_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
         }
-    },
-    "testimonials": {
-        "testimonials": {
-			"833e0e57-71dc-42c0-b387-0ce0caf5225e": {
-				"firstName": "John",
-				"lastName": "Doe",
-				"email": "john@test.bg",
-				"text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde, quam accusamus iure libero quos atque!",
-				"_createdOn": 1720709465000,
-				"_id": "833e0e57-71dc-42c0-b387-0ce0caf5225e"
-			},
-			"247efaa7-8a3e-48a7-813f-b5bfdad0f46c": {
-				"firstName": "Peter",
-				"lastName": "Peterson",
-				"email": "peter@test.bg",
-				"text": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima possimus eveniet ullam aspernatur.",
-				"_createdOn": 1720713065000,
-				"_id": "247efaa7-8a3e-48a7-813f-b5bfdad0f46c"
-			},
-			"b8608c22-dd57-4b24-948e-b358f536b958": {
-				"firstName": "George",
-				"lastName": "Washington",
-				"email": "",
-				"text": "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-				"_createdOn": 1720716665000,
-				"_id": "b8608c22-dd57-4b24-948e-b358f536b958"
-			}
-		}
     }
 }
