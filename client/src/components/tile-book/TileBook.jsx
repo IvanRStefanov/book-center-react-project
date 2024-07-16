@@ -1,9 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 
-export default function TileBook({ book }) {
+export default function TileBook({
+	book
+}) {
 	const location = useLocation();
+	const pathname = location.pathname;
+	let classes = 'tile-book';
 
-	let classes = "tile-book" + (location.pathname == '/catalog' ? ' tile-book--catalog' : '');
+	if (pathname == '/catalog') {
+		classes = classes + ' tile-book--catalog';
+	} else if(pathname == '/my-account/my-published-books') {
+		classes = classes + ' tile-book--xtra-small';
+	}
+
+	console.log(classes)
 
 	return (
 		<div className= {classes}>
