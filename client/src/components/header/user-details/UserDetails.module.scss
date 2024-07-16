@@ -131,10 +131,9 @@
 		&:hover {
 			background-color: #208040;
 		}
-
 	}
 
-	.modal__btn+.modal__btn {
+	.modal__btn + .modal__btn {
 		margin-top: 10px;
 	}
 }

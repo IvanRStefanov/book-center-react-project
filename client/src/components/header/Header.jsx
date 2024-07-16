@@ -7,20 +7,13 @@ import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 import UserDetails from "./user-details/UserDetails";
 
 
-export default function Header() {
+export default function Header({
+	loggedInUser,
+	setLoggedInUser
+}) {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
-	const [logedInUser, setLogedInUser] = useState('');
-
-	useEffect(() => {
-		const hasLogedInUser = sessionStorage.getItem('userData');
-
-		if (hasLogedInUser) {
-			const userFound = JSON.parse(hasLogedInUser);
-			setUserData(userFound);
-			setLogedInUser(userFound);
-		}
-	}, [])
+	
 
 	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(true);
@@ -56,7 +49,7 @@ export default function Header() {
 
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLogedInUser(userData);
+			setLoggedInUser(userData);
 
 		} catch (error) {
 			console.log('User login error', error.message);
@@ -64,8 +57,25 @@ export default function Header() {
 	}
 
 	async function registerUserSubmitHandler(event) {
+		event.preventDefault();
+		
 		const formData = new FormData(event.currentTarget);
-		const formDataObj = (Object.fromEntries(formData));
+		const firstName = formData.get('firstName').trim();
+		const lastName = formData.get('lastName').trim();
+		const email = formData.get('email').trim();
+		const password = formData.get('password').trim();
+		const imageUrl = formData.get('imageUrl').trim();
+
+		const bodytoSend = {
+			email,
+			firstName,
+			lastName,
+			imageUrl,
+			password,
+			"postedBooks": [],
+			"ratedBooks": [],
+			"readBooks": []
+		}
 
 		try {
 			const response = await fetch('http://localhost:3030/users/register', {
@@ -73,20 +83,19 @@ export default function Header() {
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(formDataObj)
+				body: JSON.stringify(bodytoSend)
 			});
 
 			if (response.ok != true) {
 				const error = await response.json();
-				throw new Error(error.message)
+				throw new Error(error.message);
 			}
 
 			const userData = await response.json();
-			// console.log(userData)
 
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLogedInUser(userData)
+			setLoggedInUser(userData)
 		} catch (error) {
 			console.log('register error', error.message);
 		}
@@ -106,7 +115,7 @@ export default function Header() {
 		removeUserData();
 		setShowUserDetails(false);
 		showBodyScroll(true);
-		setLogedInUser('')
+		setLoggedInUser('')
 	}
 
 	return (
@@ -139,7 +148,7 @@ export default function Header() {
 										<NavLink to="/about">About</NavLink>
 									</li>
 
-									{logedInUser &&
+									{loggedInUser &&
 										<li>
 											<NavLink to="/add-new-book">Publish</NavLink>
 										</li>
@@ -149,10 +158,10 @@ export default function Header() {
 						</div>
 
 
-						{logedInUser ? <HeaderUserUtils
-							logedInUser={logedInUser}
+						{loggedInUser ? <HeaderUserUtils
 							showUserInfo={showUserInfo}
-						// showUserDetails={showUserDetails}
+							loggedInUser={loggedInUser}
+							showUserDetails={showUserDetails}
 						/>
 							:
 							<HeaderLoginUtils
@@ -167,12 +176,12 @@ export default function Header() {
 				loginSubmitHandler={loginSubmitHandler}
 				registerUserSubmitHandler={registerUserSubmitHandler}
 			/>}
-			
+
 			{showUserDetails && <UserDetails
-									logedInUser={logedInUser}
-									onClose={hideUserInfo}
-									onLogout={logOut}
-								/>}
+				loggedInUser={loggedInUser}
+				onClose={hideUserInfo}
+				onLogout={logOut}
+			/>}
 			{/* <UserDetails /> */}
 		</header>
 

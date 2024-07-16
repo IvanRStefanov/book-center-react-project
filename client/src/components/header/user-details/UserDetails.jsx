@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from './UserDetails.module.scss'
 
 export default function UserDetails({
-    logedInUser,
+    loggedInUser,
     onClose,
     onLogout
 }) {
@@ -15,35 +15,35 @@ export default function UserDetails({
                     <button className={styles['modal__close-btn']} onClick={onClose}></button>
                     
                     <div className={styles['modal__user-img']}>
-                        <img src={logedInUser.imageUrl} alt="Your photo" />
+                        <img src={loggedInUser.imageUrl} alt="Your photo" />
                     </div>
 
                     <div className={styles['modal__user-body']}>
                         <ul>
                             <li>
-                                <span>Username:</span> {logedInUser.username}
+                                <span>Name:</span> {loggedInUser.firstName} {loggedInUser.lastName}
                             </li>
 
                             <li>
-                                <span>Email:</span> {logedInUser.email}
+                                <span>Email:</span> {loggedInUser.email}
                             </li>
                             <li>
-                                <span>Books Added:</span> {logedInUser.postedBooks.length}
-                            </li>
-
-                            <li>
-                                <span>Books Rated:</span> {logedInUser.ratedBooks.length}
+                                <span>Books Added:</span> {loggedInUser.postedBooks.length}
                             </li>
 
                             <li>
-                                <span>Books Read:</span> {logedInUser.readBooks.length}
+                                <span>Books Rated:</span> {loggedInUser.ratedBooks.length}
+                            </li>
+
+                            <li>
+                                <span>Books Read:</span> {loggedInUser.readBooks.length}
                             </li>
                         </ul>
                     </div>
 
                     <div className={styles['modal__user-actions']}>
                         <Link className={styles['modal__btn']} to="/" onClick={onLogout}>Logout</Link>
-                        <Link className={styles['modal__btn']}>Account details</Link>
+                        <Link className={styles['modal__btn']} to="/my-account" onClick={onClose}>Account details</Link>
                     </div>
                 </div>
             </div>

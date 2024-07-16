@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 export default function HeaderUserUtils({
-    logedInUser,
+    loggedInUser,
     showUserInfo
 }) {
     return (
         <div className="header__user-utils">
             <Link href="#" className="user-utils ico-background" onClick={showUserInfo}>
-                <img src={logedInUser.imageUrl} alt="" />
+                <img src={loggedInUser.imageUrl} alt="" />
             </Link>
         </div>
     );
