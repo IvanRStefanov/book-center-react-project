@@ -1322,13 +1322,14 @@
 		users: {
 			"35c62d76-8152-4626-8712-eeb96381bea8": {
 				"email": "peter@abv.bg",
-				"username": "Peter",
+				"firstName": "Peter",
+				"lastName": "Peterson",
 				"imageUrl": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=ais_user",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
 				"postedBooks": [
-                    "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-                    "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
-                ],
+					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+				],
 				"readBooks": [
 					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
 					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
@@ -1341,7 +1342,8 @@
 			},
 			"847ec027-f659-4086-8032-5173e2f9c93a": {
 				"email": "george@abv.bg",
-				"username": "George",
+				"firstName": "George",
+				"lastName": "Smith",
 				"imageUrl": "https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
 				"postedBooks": [],
@@ -1351,7 +1353,6 @@
 					"07f260f4-466c-4607-9a33-f7273b24f1b4"
 				],
 				"ratedBooks": [
-					"985d9eab-ad2e-4622-a5c8-116261fb1fd2",
 					"0a272c58-b7ea-4e09-a000-7ec988248f66",
 					"07f260f4-466c-4607-9a33-f7273b24f1b4",
 					"3987279d-0ad4-4afb-8ca9-5b256ae3b298"
@@ -1359,7 +1360,8 @@
 			},
 			"634aaee2-9dd3-4b9e-b48c-df2c960d7fd4": {
 				"email": "maria@abv.bg",
-				"username": "Maria",
+				"firstName": "Maria",
+				"lastName": "Peterson",
 				"imageUrl": "https://imgcdn.stablediffusionweb.com/2024/4/21/536cb98c-a33d-48eb-a490-4f82aee0ffce.jpg",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
 				"postedBooks": [],
@@ -1530,13 +1532,54 @@
 		"bookComments": {
 			"0a272c58-b7ea-4e09-a000-7ec988248f66": {
 				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-				"username": "Peter",
+				"firstName": "Peter",
+				"lastName": "Peterson",
 				"comment": "Fantastic book! One of my favorites",
 				"rated": 5,
 				"bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
 				"_createdOn": 1720002801,
 				"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
-			}
+			},
+			"d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"comment": "Loved it! Strongly recommend!",
+				"rated": 5,
+				"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+				"firstName": "George",
+				"lastName": "Smith",
+				"_createdOn": 1721139907926,
+				"_id": "d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec"
+			},
+			"0453b38a-9fc2-4010-98f3-b08d3c65a97a": {
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"firstName": "Peter",
+				"lastName": "Peterson",
+				"comment": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, nam.",
+				"rated": 5,
+				"bookId": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
+				"_createdOn": 1721145383461,
+				"_id": "0453b38a-9fc2-4010-98f3-b08d3c65a97a"
+			},
+			"9c754a2c-4cca-415b-a42d-7cca3c081c10": {
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"comment": "Lorem ipsum dolor sit",
+				"rated": 5,
+				"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+				"firstName": "Peter",
+				"lastName": "Peterson",
+				"_createdOn": 1721145675405,
+				"_id": "9c754a2c-4cca-415b-a42d-7cca3c081c10"
+			},
+			"cb3328bf-de81-4f13-96f7-6b07358470c7": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"comment": "Lorem ipsum dolor sit",
+				"rated": 5,
+				"bookId": "0a272c58-b7ea-4e09-a000-7ec988248f66",
+				"firstName": "George",
+				"lastName": "Smith",
+				"_createdOn": 1721146181098,
+				"_id": "cb3328bf-de81-4f13-96f7-6b07358470c7"
+			},
 		}
 	};
 	var rules$1 = {
