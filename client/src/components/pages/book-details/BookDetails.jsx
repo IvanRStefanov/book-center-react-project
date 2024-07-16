@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseUrl } from "../../../utils/variables";
+import FormReview from "../../form-review/FormReview";
+import SingleBookReview from "../../single-book-review/SingleBookReview";
 
-export default function BookDetails() {
+export default function BookDetails({
+  loggedInUser
+}) {
   const [book, setBook] = useState({});
   const [reviews, setReviews] = useState([]);
   const { bookId } = useParams();
 
-
-  useEffect(() => {
-    async function bookDetails() {
-      const response = await fetch(`${baseUrl}/books/${bookId}`)
-      const bookData = await response.json();
-      setBook(bookData)
-    }
-
-    bookDetails();
-
-  }, []);
+  const isBookOwner = loggedInUser._id == book._ownerId;
+  let hasReviewed = false;
 
   useEffect(() => {
     async function getBookReviews() {
@@ -27,7 +22,20 @@ export default function BookDetails() {
     }
 
     getBookReviews()
+
+    async function bookDetails() {
+      const response = await fetch(`${baseUrl}/books/${bookId}`)
+      const bookData = await response.json();
+      setBook(bookData)
+    }
+
+    bookDetails();
   }, [])
+
+  if (loggedInUser) {
+    hasReviewed = loggedInUser.ratedBooks.includes(bookId)
+  }
+  console.log('has reviewed', hasReviewed)
 
   return (
     <section className="section-details">
@@ -60,83 +68,53 @@ export default function BookDetails() {
               </div>
             </div>
           </div>
-          <div className="section__actions">
-            <div className="section__owner-actions">
-              <a href="#" className="btn btn--edit">EDIT</a>
-              <a href="#" className="btn btn--delete">DELETE</a>
+
+          {loggedInUser && isBookOwner
+            ? <div className="section__actions">
+              {isBookOwner &&
+                <div className="section__owner-actions">
+                  <a href="#" className="btn btn--edit">EDIT</a>
+                  <a href="#" className="btn btn--delete">DELETE</a>
+                </div>
+              }
+            </div>
+            : ''
+          }
+
+
+          <div className="section__comments">
+            <div className="section__comments-head">
+              <p>Users reviews</p>
             </div>
 
-            <div className="section__comments">
-              <div className="section__comments-head">
-                <p>Users reviews</p>
-              </div>
+            <div className="section__comments-list">
+              {reviews.length > 0
+                ? <ul>{ reviews.map(review => <SingleBookReview
+                                                key={review._id}
+                                                review={review}
+                                                loggedInUser={loggedInUser}
+                                              />
+                                    )}
+                  </ul>
+                : <p>no reviews yet be the first!</p>
+              }
+            </div>
 
-              <div className="section__comments-list">
-                <ul>
-                  {reviews.map(review =>
-                    <li key={review._id}>
-                      <p>
-                        {review.comment}
-                      </p>
-
-                      <p>
-                        - {review.username}
-                      </p>
-                    </li>
-                  )}
-                </ul>
-              </div>
-
-              <div className="section__comment-form">
+            {!hasReviewed
+              ? <div className="section__comment-form">
                 <header className="section__comment-form-head">
                   <h6>Write a review</h6>
                 </header>
 
                 <div className="section__comment-form-body">
-                  <div className="form form--review">
-                    <form action="">
-                      <div className="form__body">
-                        <div className="form__row">
-                          <div className="form__row-head">
-                            Your rating:
-                          </div>
-                          <div className="form__radios star-rating">
-                            <input type="radio" name="rated" className="star" value={5} id="five" />
-                            <label htmlFor="five" title="Loved it!">&#9734;</label>
-
-                            <input type="radio" name="rated" className="star" value={4} id="four" />
-                            <label htmlFor="four" title="Liked it.">&#9734;</label>
-
-                            <input type="radio" name="rated" className="star" value={3} id="three" />
-                            <label htmlFor="three" title="It was ok.">&#9734;</label>
-
-                            <input type="radio" name="rated" className="star" value={2} id="two" />
-                            <label htmlFor="two" title="Didn't like it.">&#9734;</label>
-
-                            <input type="radio" name="rated" className="star" value={1} id="one" />
-                            <label htmlFor="one" title="Hated it!">&#9734;</label>
-                          </div>
-                        </div>
-
-                        <div className="form__row">
-                          <label htmlFor="comment" className="form__label">Describe your reading experience</label>
-                          <div className="form__controls">
-                            <textarea name="comment" id="comment" className="textarea"></textarea>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="form__actions">
-                        <input type="submit" value="submit" className="form__btn" />
-                      </div>
-                    </form>
-                  </div>
+                  <FormReview />
                 </div>
               </div>
-            </div>
+              : ''
+            }
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }
