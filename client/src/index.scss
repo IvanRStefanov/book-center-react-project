@@ -306,6 +306,8 @@ main {
 	background-color: #65A903;
 	color: #fff;
 	border-radius: 999em;
+	border: none;
+	cursor: pointer;
 	transition: background-color .3s;
 
 	&:hover {
@@ -345,7 +347,6 @@ main {
 	}
 
 	/*  Btn--delete  */
-
 	&.btn--delete {
 		background-color: red;
 		transition: background-color, box-shadow;
@@ -536,7 +537,25 @@ main {
 	}
 }
 
+/*  Tile-book--xtra-small  */
+.tile-book--xtra-small {
+	.tile__head {
+		font-size: 20px;
+	}
 
+	.tile__bar {
+		display: block;
+	}
+
+	.tile__stars-outer,
+	.tile__stars-inner {
+		font-size: 20px;
+	}
+
+	.tile__price {
+		font-size: 20px;
+	}
+}
 
 /* ------------------------------------------------------------ *\
 	Modal-login-register
@@ -698,7 +717,7 @@ main {
 		position: relative;
 	}
 
-	.form__row + .form__row {
+	.form__row+.form__row {
 		margin-top: 20px;
 	}
 
@@ -771,10 +790,20 @@ main {
 		&:focus {
 			background-color: $c-green;
 		}
+
+		/*  form__btn--large-fs  */
+		&.form__btn--large-fs {
+			font-size: 20px;
+			padding: 10px 20px;
+		}
+	}
+
+	.form__btn[disabled] {
+		cursor: not-allowed;
+		background-color: rgba($color: #777777, $alpha: 1.0);
 	}
 
 	/*  Form--review  */
-
 	&.form--review {
 		.form__row+.form__row {
 			margin-top: 30px;
@@ -1042,6 +1071,10 @@ main {
 		z-index: 1;
 	}
 
+	.section__head {
+		font-size: 60px;
+	}
+
 	.section__rating-outer,
 	.section__rating-inner {
 		font-size: 35px;
@@ -1085,6 +1118,7 @@ main {
 
 	.section__comments {
 		margin-top: 20px;
+		grid-column: 1 / span 2;
 	}
 
 	.section__comments-head {
@@ -1100,13 +1134,19 @@ main {
 			list-style-type: none;
 		}
 
+		li:not(:last-child) {
+			padding-bottom: 20px;
+		}
+
+		li+li {
+			padding-top: 20px;
+			border-top: 2px solid rgba($color: #000000, $alpha: .3);
+		}
+
 		li p:nth-child(1) {
 			font-size: 20px;
 		}
 
-		li+li {
-			border-top: 2px solid rgba($color: #000000, $alpha: .3);
-		}
 	}
 
 	.section__comment-form {
@@ -1177,4 +1217,89 @@ main {
 		position: relative;
 		z-index: 3;
 	}
+}
+
+/* ------------------------------------------------------------ *\
+	Section-my-acc
+\* ------------------------------------------------------------ */
+
+.section-my-acc {
+	padding: 100px 0;
+
+	.section__intro {
+		font-size: 20px;
+	}
+
+	.section__inner {
+		display: grid;
+		grid-template-columns: .2fr .8fr;
+		border: 1px solid #000;
+		border-radius: 20px;
+		min-height: 500px;
+	}
+
+	.section__aside {
+		border-right: 1px solid #000;
+		overflow: hidden;
+		border-top-left-radius: inherit;
+		border-bottom-left-radius: inherit;
+	}
+
+	.section__list ul {
+		list-style-type: none;
+	}
+
+	.section__list a {
+		text-decoration: none;
+		font-size: 17px;
+		color: #000;
+		display: block;
+		position: relative;
+		text-transform: uppercase;
+		padding: 10px;
+		transition: color .4s ease-in-out;
+		transition-delay: .2s;
+
+		&:hover,
+		&.active {
+			color: #fff;
+		}
+
+		&:hover:before,
+		&.active:before {
+			width: 100%;
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 100%;
+			background-color: $c-light-green;
+			z-index: -1;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity, visibility, width;
+			transition-duration: .4s;
+			transition-timing-function: ease-in-out;
+		}
+	}
+
+	.section__main {
+		padding: 20px;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	List-published-books
+\* ------------------------------------------------------------ */
+.list-published-books {
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: repeat(5, .25fr);
+	gap: 20px;
 }
