@@ -1543,7 +1543,7 @@
 			"d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec": {
 				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
 				"comment": "Loved it! Strongly recommend!",
-				"rated": 5,
+				"rated": 4,
 				"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
 				"firstName": "George",
 				"lastName": "Smith",
@@ -1580,6 +1580,16 @@
 				"_createdOn": 1721146181098,
 				"_id": "cb3328bf-de81-4f13-96f7-6b07358470c7"
 			},
+			"04706f81-bb67-4a74-8d8c-75df7fd385d8": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"comment": "George's comment",
+				"rated": 4,
+				"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+				"firstName": "George",
+				"lastName": "Smith",
+				"_createdOn": 1721205490698,
+				"_id": "04706f81-bb67-4a74-8d8c-75df7fd385d8"
+			}
 		}
 	};
 	var rules$1 = {
