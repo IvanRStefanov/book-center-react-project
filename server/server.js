@@ -1326,14 +1326,6 @@
 				"lastName": "Peterson",
 				"imageUrl": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=ais_user",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-				"postedBooks": [
-					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
-				],
-				"readBooks": [
-					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-					"8f414b4f-ab39-4d36-bedb-2ad69da9c830"
-				],
 				"ratedBooks": [
 					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
 					"8f414b4f-ab39-4d36-bedb-2ad69da9c830",
@@ -1346,12 +1338,6 @@
 				"lastName": "Smith",
 				"imageUrl": "https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-				"postedBooks": [],
-				"readBooks": [
-					"985d9eab-ad2e-4622-a5c8-116261fb1fd2",
-					"0a272c58-b7ea-4e09-a000-7ec988248f66",
-					"07f260f4-466c-4607-9a33-f7273b24f1b4"
-				],
 				"ratedBooks": [
 					"0a272c58-b7ea-4e09-a000-7ec988248f66",
 					"07f260f4-466c-4607-9a33-f7273b24f1b4",
@@ -1364,9 +1350,6 @@
 				"lastName": "Peterson",
 				"imageUrl": "https://imgcdn.stablediffusionweb.com/2024/4/21/536cb98c-a33d-48eb-a490-4f82aee0ffce.jpg",
 				"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-				"postedBooks": [],
-				"readBooks": [],
-				"ratedBooks": [],
 				"_id": "634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"
 			},
 			"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
@@ -1374,9 +1357,6 @@
 				"username": "Admin",
 				"imageUrl": "https://as2.ftcdn.net/v2/jpg/00/98/59/19/1000_F_98591907_rv0Ta95LggBWGzPlahed0RSClgy6jReR.jpg",
 				"hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
-				"postedBooks": [],
-				"readBooks": [],
-				"ratedBooks": []
 			}
 		},
 		sessions: {
@@ -1389,6 +1369,8 @@
 				"name": "The Wheel of Time #1 The Eye of the World",
 				"series": "The Wheel of Time",
 				"author": "Robert Jordan",
+				"readBy": ["35c62d76-8152-4626-8712-eeb96381bea8", "847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy":["847ec027-f659-4086-8032-5173e2f9c93a"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1414,6 +1396,8 @@
 				"name": "The Wheel of Time #2 The Great Hunt",
 				"series": "The Wheel of Time",
 				"author": "Robert Jordan",
+				"readBy": ["35c62d76-8152-4626-8712-eeb96381bea8", "847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1439,6 +1423,8 @@
 				"name": "The Wheel of Time #3 The Dragon Reborn",
 				"series": "The Wheel of Time",
 				"author": "Robert Jordan",
+				"readBy": ["35c62d76-8152-4626-8712-eeb96381bea8", "847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1464,6 +1450,8 @@
 				"name": "The Way of Kings (The Stormlight Archive, #1)",
 				"series": "The Stormlight Archive",
 				"author": "Brandon Sanderson",
+				"readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1489,6 +1477,8 @@
 				"name": "Words of Radiance (The Stormlight Archive, #2)",
 				"series": "The Stormlight Archive",
 				"author": "Brandon Sanderson",
+				"readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy": ["634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1510,7 +1500,6 @@
 				"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
 			}
 		},
-		"bookLikes": {},
 		"bookSeries": {
 			"a45f5fb4-df74-49da-92bb-6403742a4133": {
 				"seriesName": "The Wheel of Time",

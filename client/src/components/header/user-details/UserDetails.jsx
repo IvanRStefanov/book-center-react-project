@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from './UserDetails.module.scss'
+import { baseUrl } from "../../../utils/variables";
+import { useEffect, useState } from "react";
 
 export default function UserDetails({
     loggedInUser,
+    postedBooks,
+    ratedBooks,
+    readBooks,
     onClose,
     onLogout
 }) {
@@ -13,7 +18,7 @@ export default function UserDetails({
             <div className={styles.modal__content}>
                 <div className={styles['modal__content-inner']}>
                     <button className={styles['modal__close-btn']} onClick={onClose}></button>
-                    
+
                     <div className={styles['modal__user-img']}>
                         <img src={loggedInUser.imageUrl} alt="Your photo" />
                     </div>
@@ -28,15 +33,15 @@ export default function UserDetails({
                                 <span>Email:</span> {loggedInUser.email}
                             </li>
                             <li>
-                                <span>Books Added:</span> {loggedInUser.postedBooks.length}
+                                <span>Books Added:</span> {postedBooks.length}
                             </li>
 
                             <li>
-                                <span>Books Rated:</span> {loggedInUser.ratedBooks.length}
+                                <span>Books Rated:</span> {ratedBooks.length}
                             </li>
 
                             <li>
-                                <span>Books Read:</span> {loggedInUser.readBooks.length}
+                                <span>Books Read:</span> {readBooks.length}
                             </li>
                         </ul>
                     </div>

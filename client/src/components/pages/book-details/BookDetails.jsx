@@ -6,14 +6,18 @@ import ListReviews from "../../list-reviews/ListReviews";
 
 export default function BookDetails({
   loggedInUser,
-  setLoggedInUser
+  setLoggedInUser,
+  postedBooks,
+  ratedBooks,
+  readBooks
 }) {
   const [book, setBook] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [isBookOwner, setIsBookOwner] = useState(false);
+  const [hasRead, setHasRead] = useState(false);
+  const [hasReviewed, sethasReviewed] = useState({});
+  const [token, setToken] = useState('');
   const { bookId } = useParams();
-
-  const isBookOwner = loggedInUser._id == book._ownerId;
-  let hasReviewed = false;
 
   useEffect(() => {
     async function getBookReviews() {
@@ -25,18 +29,53 @@ export default function BookDetails({
     getBookReviews()
 
     async function bookDetails() {
-      const response = await fetch(`${baseUrl}/books/${bookId}`)
+      const response = await fetch(`${baseUrl}/books/${bookId}`);
       const bookData = await response.json();
-      setBook(bookData)
+
+      setBook(bookData);
     }
 
     bookDetails();
+
+    if (loggedInUser) {
+    }
   }, [])
 
-  if (loggedInUser) {
-    hasReviewed = loggedInUser.ratedBooks.includes(bookId)
-  }
+  useEffect(() => {
+    setIsBookOwner(loggedInUser._id == book._ownerId);
+    setHasRead(postedBooks.includes(bookId));
+    // sethasReviewed(ratedBooks.includes(bookId));
+    sethasReviewed(ratedBooks.find((book) => book.bookId == bookId));
+    setToken(loggedInUser.accessToken);
 
+    // ratedBooks.forEach((book) => console.log(book))
+
+    // const hasReviewed = ratedBooks.find((book) => book.bookId == bookId)
+    // console.log(hasReviewed)
+    // console.log(ratedBooks.includes(bookId))
+
+  }, [loggedInUser])
+
+  function readToggler(e) {
+    e.target.disabled = true;
+    if (hasRead) {
+      setHasRead(false);
+      console.log(readBooks)
+      const newReads = readBooks.filter(readBookId => readBookId !== bookId);
+      console.log(newReads);
+      e.target.disabled = false;
+    }
+
+    if (!hasRead) {
+      setHasRead(true);
+      console.log(readBooks)
+      const newReads = readBooks.push(bookId);
+      console.log(newReads);
+      e.target.disabled = false;
+
+    }
+    // hasRead ? setHasRead(false) : setHasRead(true);
+  }
   return (
     <section className="section-details">
       <div className="shell">
@@ -66,6 +105,12 @@ export default function BookDetails({
                   <div className="section__rating-inner" style={{ "--average": book.averageRating }}></div>
                 </div>
               </div>
+            </div>
+
+            <div className="section__main-actions">
+              <p>Times read: {book.timesRead}</p>
+
+              <button className="btn" onClick={readToggler}>{hasRead ? "Remove from my read list" : "Add to my read list"}</button>
             </div>
           </div>
 
@@ -99,7 +144,6 @@ export default function BookDetails({
                 : <p>no reviews yet be the first!</p>
               }
             </div>
-
             {!hasReviewed
               ? <div className="section__comment-form">
                 <header className="section__comment-form-head">

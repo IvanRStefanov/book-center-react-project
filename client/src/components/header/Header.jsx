@@ -9,7 +9,10 @@ import UserDetails from "./user-details/UserDetails";
 
 export default function Header({
 	loggedInUser,
-	setLoggedInUser
+	setLoggedInUser,
+	postedBooks,
+	readBooks,
+	ratedBooks
 }) {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
@@ -72,9 +75,6 @@ export default function Header({
 			lastName,
 			imageUrl,
 			password,
-			"postedBooks": [],
-			"ratedBooks": [],
-			"readBooks": []
 		}
 
 		try {
@@ -181,6 +181,9 @@ export default function Header({
 				loggedInUser={loggedInUser}
 				onClose={hideUserInfo}
 				onLogout={logOut}
+				postedBooks={postedBooks}
+				ratedBooks={ratedBooks}
+				readBooks={readBooks}
 			/>}
 			{/* <UserDetails /> */}
 		</header>
