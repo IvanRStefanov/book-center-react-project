@@ -13,8 +13,6 @@ export default function TileBook({
 		classes = classes + ' tile-book--xtra-small';
 	}
 
-	console.log(classes)
-
 	return (
 		<div className= {classes}>
 			<div className="tile__img image-fit">
