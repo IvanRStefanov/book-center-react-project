@@ -1129,25 +1129,6 @@ main {
 		margin-top: 30px;
 	}
 
-	.section__comments-list {
-		ul {
-			list-style-type: none;
-		}
-
-		li:not(:last-child) {
-			padding-bottom: 20px;
-		}
-
-		li+li {
-			padding-top: 20px;
-			border-top: 2px solid rgba($color: #000000, $alpha: .3);
-		}
-
-		li p:nth-child(1) {
-			font-size: 20px;
-		}
-
-	}
 
 	.section__comment-form {
 		margin-top: 30px;
@@ -1155,6 +1136,129 @@ main {
 
 	.section__comment-form-body {
 		padding-top: 20px;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	List-reviews
+\* ------------------------------------------------------------ */
+
+.list-reviews {
+	list-style-type: none;
+
+	li {
+		position: relative;
+		padding: 20px 0;
+	}
+
+	li + li {
+		padding-top: 30px;
+		border-top: 2px solid rgba($color: #000000, $alpha: .3);
+	}
+
+	.list__item-comment {
+		font-size: 20px;
+	}
+
+	.list__item-rating-outer,
+	.list__item-rating-inner {
+		font-size: 20px;
+	}
+
+	.list__item-rating-outer {
+		position: relative;
+		display: inline-block;
+
+		&:before {
+			content: "\2606 \2606 \2606 \2606 \2606";
+			color: gold;
+		}
+	}
+
+	.list__item-rating-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		color: black;
+		width: calc((var(--rating) / 5) * 100%);
+		overflow: hidden;
+
+		&:before {
+			content: "\2605 \2605 \2605 \2605 \2605";
+			color: gold;
+		}
+	}
+
+	.list__item-owner-delete-btn {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		width: 20px;
+		aspect-ratio: 1;
+		overflow: hidden;
+		border: none;
+		cursor: pointer;
+		transition: transform .3s ease-in-out;
+
+		&:hover {
+			transform: scale(1.5)
+		}
+
+		> img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.list__item-warning {
+		position: absolute;
+		z-index: 3;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($color: #000000, $alpha: .8);
+		text-align: center;
+		padding: 10px 20px;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.list__item-owner-actions {
+		margin-top: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+	}
+
+	.list__item-warning-btn {
+		border: none;
+		background-color: red;
+		color: #fff;
+		padding: 10px 20px;
+		border-radius: 999em;
+		transition: background-color, color;
+		transition-duration: .3s;
+		cursor: pointer;
+
+		&:hover {
+			background-color: rgba($color: red, $alpha: .8);
+		}
+	}
+
+	.list__item-reject-delete-btn {
+		background-color: $c-green;
+
+		&:hover {
+			background-color: $c-light-green;
+		}
 	}
 }
 
