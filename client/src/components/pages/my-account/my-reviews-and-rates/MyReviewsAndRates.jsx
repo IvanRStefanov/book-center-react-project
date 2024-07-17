@@ -1,5 +1,5 @@
 export default function MyReviewsAndRates() {
-    return (
-        <h1>reviews and Rates</h1>
-    );
+	return (
+		<h1>reviews and Rates</h1>
+	);
 }
