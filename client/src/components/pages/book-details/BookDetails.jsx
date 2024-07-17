@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseUrl } from "../../../utils/variables";
 import FormReview from "../../form-review/FormReview";
-import SingleBookReview from "../../single-book-review/SingleBookReview";
+import ListReviews from "../../list-reviews/ListReviews";
 
 export default function BookDetails({
-  loggedInUser
+  loggedInUser,
+  setLoggedInUser
 }) {
   const [book, setBook] = useState({});
   const [reviews, setReviews] = useState([]);
@@ -35,7 +36,6 @@ export default function BookDetails({
   if (loggedInUser) {
     hasReviewed = loggedInUser.ratedBooks.includes(bookId)
   }
-  console.log('has reviewed', hasReviewed)
 
   return (
     <section className="section-details">
@@ -89,13 +89,13 @@ export default function BookDetails({
 
             <div className="section__comments-list">
               {reviews.length > 0
-                ? <ul>{ reviews.map(review => <SingleBookReview
-                                                key={review._id}
-                                                review={review}
-                                                loggedInUser={loggedInUser}
-                                              />
-                                    )}
-                  </ul>
+                ?
+                <ListReviews
+                  reviews={reviews}
+                  setReviews={setReviews}
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                />
                 : <p>no reviews yet be the first!</p>
               }
             </div>

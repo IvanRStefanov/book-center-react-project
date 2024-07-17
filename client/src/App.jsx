@@ -19,26 +19,32 @@ function App() {
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
 
-		if(hasLogedInUser) {
+		if (hasLogedInUser) {
 			const userFound = JSON.parse(hasLogedInUser);
+
 			setLoggedInUser(userFound);
 		}
 	}, [])
 
 	return (
 		<div className='wrapper'>
-			<Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
+			<Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
 
 			<main>
 				<Routes>
-					<Route path="/" element={<HomePage />} /> 
+					<Route path="/" element={<HomePage />} />
 					<Route path="/catalog" element={<CatalogPage />} />
-					<Route path="/catalog/:bookId" element={<BookDetails loggedInUser={loggedInUser} />} />
+					<Route path="/catalog/:bookId" element={
+						<BookDetails
+							loggedInUser={loggedInUser}
+							setLoggedInUser={setLoggedInUser}
+						/>}
+					/>
 					<Route path="/add-new-book" element={<PublishPage />} />
-					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser}/>}>
-						<Route path="my-published-books" element={<MyPublishedBooks loggedInUser={loggedInUser}/>}/>
-						<Route path="my-reviews-and-rates" element={<MyReviewsAndRates loggedInUser={loggedInUser}/>}/>
-						<Route path="my-read-books" element={<MyReadBooks/>}/>
+					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
+						<Route path="my-published-books" element={<MyPublishedBooks loggedInUser={loggedInUser} />} />
+						<Route path="my-reviews-and-rates" element={<MyReviewsAndRates loggedInUser={loggedInUser} />} />
+						<Route path="my-read-books" element={<MyReadBooks />} />
 					</Route>
 				</Routes>
 			</main>
