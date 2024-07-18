@@ -12,7 +12,6 @@ export default function SliderTopRated() {
     useEffect(() => {
         async function getTopRatedBooks() {
             try {
-                // Get the top 5 top rated books
                 const response = await fetch(`${baseUrl}/books?sortBy=averageRating%20desc&pageSize=5`);
                 const resultTopFiveRatedBooks = await response.json();
                 const topFiveRatedBooks = Object.values(resultTopFiveRatedBooks);
