@@ -15,7 +15,7 @@ export default function BookDetails({
 	const [reviews, setReviews] = useState([]);
 	const [isBookOwner, setIsBookOwner] = useState(false);
 	const [hasRead, setHasRead] = useState(false);
-	const [hasReviewed, sethasReviewed] = useState({});
+	const [hasReviewed, setHasReviewed] = useState({});
 	const [isUser, setIsUser] = useState(false);
 	const [isVisiblePostReviewForm, setIsVisiblePostReviewForm] = useState(false)
 
@@ -46,14 +46,11 @@ export default function BookDetails({
 
 	useEffect(() => {
 		setIsBookOwner(loggedInUser._id == book._ownerId);
-		setHasRead(postedBooks.includes(bookId));
-		sethasReviewed(ratedBooks.find((book) => book.bookId == bookId));
+		setHasRead(readBooks.includes(bookId));
+		setHasReviewed(ratedBooks.find((book) => book.bookId == bookId));
 		
 	}, [loggedInUser])
 	
-	useEffect(() => {
-		sethasReviewed(ratedBooks.find((book) => book.bookId == bookId));
-	}, [])
 
 	function readToggler(e) {
 		e.target.disabled = true;
@@ -74,6 +71,11 @@ export default function BookDetails({
 
 		}
 	}
+
+	function deleteReviewStateHandler() {
+		setHasReviewed(false);
+	}
+	
 	return (
 		<section className="section-details">
 			<div className="shell">
@@ -138,7 +140,7 @@ export default function BookDetails({
 									setReviews={setReviews}
 									loggedInUser={loggedInUser}
 									setLoggedInUser={setLoggedInUser}
-									sethasReviewed = {sethasReviewed}
+									deleteReviewStateHandler={deleteReviewStateHandler}
 								/>
 								: <p>no reviews yet be the first!</p>
 							}

@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { baseUrl } from "../../../../../utils/variables";
-// import { setUserData } from "../../../../../utils/utils";
 
 export default function SingleBookReviewListItem({
 	review,
-	// reviews,
 	setReviews,
 	loggedInUser,
-	// setLoggedInUser,
-	sethasReviewed
+	deleteReviewStateHandler
 }) {
 	const [isDeleting, setIsDeleting] = useState(false);
 
@@ -38,14 +35,13 @@ export default function SingleBookReviewListItem({
 			}
 
 			setReviews(reviews => reviews.filter(review => review._id !== reviewId));
-			//TODO: find a way to render review form when owner of review has deleted his review
-			sethasReviewed(false)
-			// useEffect(() => {
-			// }, [sethasReviewed])
+			deleteReviewStateHandler(false)
+			
 		} catch (error) {
 			console.log('Delete error', error.message);
 		}
 	}
+	
 
 
 	return (
