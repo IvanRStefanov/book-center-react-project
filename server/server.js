@@ -1351,9 +1351,9 @@
 				"hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
 				"_id": "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
 			}
+		},
+		sessions: {
 		}
-		// sessions: {
-		// }
 	};
 	var seedData = {
 		"books": {
@@ -1363,7 +1363,7 @@
 				"series": "The Wheel of Time",
 				"author": "Robert Jordan",
 				"readBy": ["35c62d76-8152-4626-8712-eeb96381bea8", "847ec027-f659-4086-8032-5173e2f9c93a"],
-				"ratedBy":["847ec027-f659-4086-8032-5173e2f9c93a"],
+				"ratedBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1444,7 +1444,7 @@
 				"series": "The Stormlight Archive",
 				"author": "Brandon Sanderson",
 				"readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-				"ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
+				"ratedBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1471,7 +1471,7 @@
 				"series": "The Stormlight Archive",
 				"author": "Brandon Sanderson",
 				"readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-				"ratedBy": ["634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"],
+				"ratedBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
 				"genre": [
 					"Fantasy",
 					"Fiction"
@@ -1491,29 +1491,6 @@
 				"averageRating": 4.83,
 				"_createdOn": 1719792000000,
 				"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
-			}
-		},
-		"bookSeries": {
-			"a45f5fb4-df74-49da-92bb-6403742a4133": {
-				"seriesName": "The Wheel of Time",
-				"author": "Robert Jordan",
-				"books": [
-					"3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-					"8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-					"985d9eab-ad2e-4622-a5c8-116261fb1fd2"
-				],
-				"seriesDescription": "Written by Robert Jordan and completed posthumously by Brandon Sanderson, The Wheel of Time is one of the greatest epics of fantasy and a #1 internationally bestselling series. Taking place both in our past and our future, the saga tells the story of a man destined to face the Evil One and save the world—or destroy it in the process.\nThe Wheel of Time turns and Ages come and pass. What was, what will be, and what is, may yet fall under the Shadow.",
-				"_id": "a45f5fb4-df74-49da-92bb-6403742a4133"
-			},
-			"9d926112-c44d-46f1-a179-3771fb0cbff7": {
-				"seriesName": "The Stormlight Archive",
-				"author": "Brandon Sanderson",
-				"books": [
-					"0a272c58-b7ea-4e09-a000-7ec988248f66",
-					"07f260f4-466c-4607-9a33-f7273b24f1b4"
-				],
-				"seriesDescription": "Brandon Sanderson's epic fantasy cycle tells the story of Roshar, a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain. It has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. As brutal wars rage over the control of these magical weapons, an ancient text called The Way of Kings tells of ancient times, the Knights Radiant, and perhaps the true cause of the war. The Knights Radiant must stand again.",
-				"_id": "9d926112-c44d-46f1-a179-3771fb0cbff7"
 			}
 		},
 		"bookReviews": {
