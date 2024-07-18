@@ -27,8 +27,7 @@ function App() {
 
 			setLoggedInUser(userFound);
 		}
-	}, [])
-
+	}, []);
 
 	useEffect(() => {
 		async function getMyRatedBooks() {
@@ -54,12 +53,6 @@ function App() {
 		}
 		getMyPostedBooks()
 	}, [loggedInUser]);
-
-	// useEffect(() => {
-	// }, [loggedInUser]);
-
-	// useEffect(() => {
-	// }, [loggedInUser]);
 
 	return (
 		<div className='wrapper'>

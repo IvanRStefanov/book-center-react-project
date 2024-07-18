@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserData, removeUserData, setUserData, showBodyScroll } from "../../utils/utils";
-import { NavLink } from 'react-router-dom';
+import { NavLink, redirect } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
@@ -17,7 +17,6 @@ export default function Header({
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
 	
-
 	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(true);
 		showBodyScroll(false);
@@ -30,8 +29,8 @@ export default function Header({
 
 	async function loginSubmitHandler(event) {
 		event.preventDefault();
+		
 		const formData = new FormData(event.currentTarget);
-
 		const email = formData.get('email').trim();
 		const password = formData.get('password').trim();
 
@@ -53,7 +52,6 @@ export default function Header({
 			setUserData(userData);
 			hideLoginRegisterModal();
 			setLoggedInUser(userData);
-
 		} catch (error) {
 			console.log('User login error', error.message);
 		}
@@ -95,7 +93,8 @@ export default function Header({
 
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData)
+			setLoggedInUser(userData);
+			redirect('/')
 		} catch (error) {
 			console.log('register error', error.message);
 		}
@@ -115,7 +114,8 @@ export default function Header({
 		removeUserData();
 		setShowUserDetails(false);
 		showBodyScroll(true);
-		setLoggedInUser('')
+		setLoggedInUser('');
+		redirect('/')
 	}
 
 	return (
@@ -185,7 +185,6 @@ export default function Header({
 				ratedBooks={ratedBooks}
 				readBooks={readBooks}
 			/>}
-			{/* <UserDetails /> */}
 		</header>
 
 	);
