@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseUrl } from "../../../utils/variables";
-import FormReview from "../../list-reviews/form-review/FormReview";
-import ListReviews from "../../list-reviews/ListReviews";
+import FormReview from "./list-reviews/form-review/FormReview";
+import ListReviews from "./list-reviews/ListReviews";
 
 export default function BookDetails({
 	loggedInUser,
@@ -17,11 +17,13 @@ export default function BookDetails({
 	const [hasRead, setHasRead] = useState(false);
 	const [hasReviewed, sethasReviewed] = useState({});
 	const [isUser, setIsUser] = useState(false);
+	const [isVisiblePostReviewForm, setIsVisiblePostReviewForm] = useState(false)
+
 	const { bookId } = useParams();
 
 	useEffect(() => {
 		async function getBookReviews() {
-			const response = await fetch(`${baseUrl}/bookComments?where=bookId%3D%22${bookId}%22`);
+			const response = await fetch(`${baseUrl}/bookReviews?where=bookId%3D%22${bookId}%22`);
 			const reviewData = await response.json();
 			setReviews(reviewData);
 		}
@@ -46,8 +48,12 @@ export default function BookDetails({
 		setIsBookOwner(loggedInUser._id == book._ownerId);
 		setHasRead(postedBooks.includes(bookId));
 		sethasReviewed(ratedBooks.find((book) => book.bookId == bookId));
-
+		
 	}, [loggedInUser])
+	
+	useEffect(() => {
+		sethasReviewed(ratedBooks.find((book) => book.bookId == bookId));
+	}, [])
 
 	function readToggler(e) {
 		e.target.disabled = true;
@@ -132,6 +138,7 @@ export default function BookDetails({
 									setReviews={setReviews}
 									loggedInUser={loggedInUser}
 									setLoggedInUser={setLoggedInUser}
+									sethasReviewed = {sethasReviewed}
 								/>
 								: <p>no reviews yet be the first!</p>
 							}
@@ -141,9 +148,9 @@ export default function BookDetails({
 								<header className="section__comment-form-head">
 									<h6>Write a review</h6>
 								</header>
-
+								{/* {console.log(isVisiblePostReviewForm)} */}
 								<div className="section__comment-form-body">
-									<FormReview />
+									 <FormReview />
 								</div>
 							</div>
 							: ''

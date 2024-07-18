@@ -32,35 +32,34 @@ function App() {
 
 	useEffect(() => {
 		async function getMyRatedBooks() {
-			const response = await fetch(`${baseUrl}/bookComments?where=_ownerId%3D%22${loggedInUser._id}%22`);
+			const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
 			const data = await response.json();
 			setRatedBooks(data);
 		}
 		getMyRatedBooks()
 
-	}, [loggedInUser]);
-
-	useEffect(() => {
 		async function getMyReadBooks() {
 			const response = await fetch(`${baseUrl}/books?where=readBy%3D%22${loggedInUser._id}%22`);
 			const data = await response.json();
 
 			setReadBooks(data)
 		}
-
 		getMyReadBooks()
-	}, [loggedInUser]);
-
-	useEffect(() => {
+		
 		async function getMyPostedBooks() {
 			const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
 			const data = await response.json();
 
 			setPostedBooks(data);
 		}
-
 		getMyPostedBooks()
 	}, [loggedInUser]);
+
+	// useEffect(() => {
+	// }, [loggedInUser]);
+
+	// useEffect(() => {
+	// }, [loggedInUser]);
 
 	return (
 		<div className='wrapper'>
@@ -87,8 +86,16 @@ function App() {
 					/>
 					<Route path="/add-new-book" element={<PublishPage />} />
 					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
-						<Route path="my-published-books" element={<MyPublishedBooks loggedInUser={loggedInUser} />} />
-						<Route path="my-reviews-and-rates" element={<MyReviewsAndRates loggedInUser={loggedInUser} />} />
+						<Route path="my-published-books" element={
+							<MyPublishedBooks
+								loggedInUser={loggedInUser}
+							/>}
+						/>
+						<Route path="my-reviews-and-rates" element={
+							<MyReviewsAndRates
+								loggedInUser={loggedInUser}
+							/>}
+						/>
 						<Route path="my-read-books" element={<MyReadBooks />} />
 					</Route>
 				</Routes>

@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { baseUrl } from "../../../utils/variables";
-import { setUserData } from "../../../utils/utils";
+import { useEffect, useState } from "react";
+import { baseUrl } from "../../../../../utils/variables";
+// import { setUserData } from "../../../../../utils/utils";
 
 export default function SingleBookReviewListItem({
 	review,
-	reviews,
+	// reviews,
 	setReviews,
 	loggedInUser,
-	setLoggedInUser
+	// setLoggedInUser,
+	sethasReviewed
 }) {
 	const [isDeleting, setIsDeleting] = useState(false);
 
@@ -24,7 +25,7 @@ export default function SingleBookReviewListItem({
 		const accessToken = loggedInUser.accessToken;
 		
 		try {
-			const response = await fetch(`${baseUrl}/bookComments/${reviewId}`, {
+			const response = await fetch(`${baseUrl}/bookReviews/${reviewId}`, {
 				method: 'delete',
 				headers: {
 					'X-Authorization': accessToken,
@@ -37,10 +38,15 @@ export default function SingleBookReviewListItem({
 			}
 
 			setReviews(reviews => reviews.filter(review => review._id !== reviewId));
+			//TODO: find a way to render review form when owner of review has deleted his review
+			sethasReviewed(false)
+			// useEffect(() => {
+			// }, [sethasReviewed])
 		} catch (error) {
 			console.log('Delete error', error.message);
 		}
 	}
+
 
 	return (
 		<li>

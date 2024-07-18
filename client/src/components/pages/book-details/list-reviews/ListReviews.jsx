@@ -4,7 +4,8 @@ export default function ListReviews({
 	reviews,
 	setReviews,
 	loggedInUser,
-	setLoggedInUser
+	setLoggedInUser,
+	sethasReviewed,
 }) {
 	return (
 
@@ -17,6 +18,7 @@ export default function ListReviews({
 					setReviews={setReviews}
 					loggedInUser={loggedInUser}
 					setLoggedInUser={setLoggedInUser}
+					sethasReviewed={sethasReviewed}
 				/>
 			)}
 		</ul>
