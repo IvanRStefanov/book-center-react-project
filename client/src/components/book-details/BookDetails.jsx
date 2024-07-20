@@ -17,31 +17,35 @@ export default function BookDetails({
 	const [readBookCollectionId, setReadBookCollectionId] = useState('');
 	const [owner, setOwner] = useState(false);
 
-
-
 	useEffect(() => {
-		async function setBookAndOwner() {
-			try {
-				const response = await fetch(`${baseUrl}/books/${bookId}`)
-				
-				if(response.ok != true) {
-					const err = await response.json();
-					throw new Error(err.message)
-				}
+		async function getBookAndCheckOwner() {
+			const response = await fetch(`${baseUrl}/books/${bookId}`)
+			const bookData = await response.json();
 
-				const bookData = await response.json();
-	
-				if (loggedInUser._id == bookData._ownerId) {
-					setOwner(oldState => !oldState);
-				}
-	
-				setBook(bookData);
-				
-			} catch (err) {
-				console.log(err.message)
+			setBook(bookData);
+			
+			if (loggedInUser._id == bookData._ownerId) {
+				setOwner(oldState => !oldState);
 			}
 		}
-		setBookAndOwner();
+		getBookAndCheckOwner();
+
+		async function getUserReadBookStatus() {
+			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22&count`);
+			const data = await response.json();
+
+			setBookIsRead(data)
+		}
+		getUserReadBookStatus();
+		
+
+		async function getBookReadCollectionId() {
+			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22`);
+			const data = await response.json();
+
+			setReadBookCollectionId(data[0]._id);
+		}
+		getBookReadCollectionId()
 	}, []);
 
 	useEffect(() => {
@@ -53,16 +57,6 @@ export default function BookDetails({
 		}
 		getTotalCountBookRead();
 	}, [bookIsRead]);
-
-	useEffect(() => {
-		async function getUserReadBookStatus() {
-			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22&count`);
-			const data = await response.json();
-
-			setBookIsRead(data)
-		}
-		getUserReadBookStatus();
-	}, []);
 
 	async function addBookToMyReadList() {
 		try {
@@ -91,40 +85,6 @@ export default function BookDetails({
 			console.log(error)
 		}
 	}
-
-	async function removeBookFromMyReadList() {
-		console.log(readBookCollectionId)
-		try {
-			const response = await fetch(`${baseUrl}/booksRead/${readBookCollectionId}`, {
-				method: 'DELETE',
-				headers: {
-					'X-Authorization': loggedInUser.accessToken
-				}
-			});
-
-			if (response.ok != true) {
-				const err = await response.json();
-				const message = err.message;
-
-				throw new Error(message);
-			}
-
-			setTotalTimesBookRead(oldCount => oldCount - 1);
-			setBookIsRead(0);
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-	useEffect(() => {
-		async function getBookReadCollectionId() {
-			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
-
-			setReadBookCollectionId(data[0]._id);
-		}
-		getBookReadCollectionId()
-	}, []);
 
 	return (
 		<section className="section-details">
@@ -159,7 +119,7 @@ export default function BookDetails({
 
 
 
-							{(loggedInUser && !bookIsRead) &&
+							{(!owner && !bookIsRead) &&
 								< button className="btn" onClick={addBookToMyReadList}>
 									Add to my read list
 								</button>
@@ -168,12 +128,12 @@ export default function BookDetails({
 					</div>
 
 					{(loggedInUser && owner) &&
-						(<div className="section__actions">
+						<div className="section__actions">
 							<div className="section__owner-actions">
 								<button className="btn btn--edit">EDIT</button>
 								<button href="#" className="btn btn--delete">DELETE</button>
 							</div>
-						</div>)
+						</div>
 					}
 
 
