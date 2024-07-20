@@ -12,7 +12,7 @@ export default function Header({
 	setLoggedInUser,
 	postedBooks,
 	readBooks,
-	ratedBooks
+	reviewedBooks
 }) {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
@@ -184,7 +184,7 @@ export default function Header({
 				onClose={hideUserInfo}
 				onLogout={logOut}
 				postedBooks={postedBooks}
-				ratedBooks={ratedBooks}
+				reviewedBooks={reviewedBooks}
 				readBooks={readBooks}
 			/>}
 		</header>

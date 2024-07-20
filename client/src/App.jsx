@@ -15,7 +15,7 @@ import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 
 function App() {
 	const [loggedInUser, setLoggedInUser] = useState('');
-	const [ratedBooks, setRatedBooks] = useState([]);
+	const [reviewedBooks, setReviewedBooks] = useState([]);
 	const [readBooks, setReadBooks] = useState([]);
 	const [postedBooks, setPostedBooks] = useState([]);
 
@@ -35,7 +35,7 @@ function App() {
 			const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
 			const data = await response.json();
 
-			setRatedBooks(data);
+			setReviewedBooks(data);
 		}
 		getMyRatedBooks()
 
@@ -71,7 +71,7 @@ function App() {
 				setLoggedInUser={setLoggedInUser}
 				postedBooks={postedBooks}
 				readBooks={readBooks}
-				ratedBooks={ratedBooks}
+				reviewedBooks={reviewedBooks}
 			/>
 
 			<main>
@@ -82,9 +82,9 @@ function App() {
 						<BookDetails
 							loggedInUser={loggedInUser}
 							updateMyReadBooks={updateMyReadBooks}
+							reviewedBooks={reviewedBooks}
 						// setLoggedInUser={setLoggedInUser}
 						// postedBooks={postedBooks}
-						// ratedBooks={ratedBooks}
 						// readBooks={readBooks}
 						/>}
 					/>

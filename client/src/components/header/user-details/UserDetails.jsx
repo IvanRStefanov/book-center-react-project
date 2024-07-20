@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function UserDetails({
 	loggedInUser,
 	postedBooks,
-	ratedBooks,
+	reviewedBooks,
 	readBooks,
 	onClose,
 	onLogout
@@ -37,7 +37,7 @@ export default function UserDetails({
 							</li>
 
 							<li>
-								<span>Books Reviewed:</span> {ratedBooks.length}
+								<span>Books Reviewed:</span> {reviewedBooks.length}
 							</li>
 
 							<li>
