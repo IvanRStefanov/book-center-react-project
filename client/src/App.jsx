@@ -21,42 +21,40 @@ function App() {
 
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
-		
+
 		if (hasLogedInUser) {
 			const userFound = JSON.parse(hasLogedInUser);
-			
+
 			setLoggedInUser(userFound);
 			console.log('app refresh');
 		}
 	}, []);
 
 	useEffect(() => {
-		if (loggedInUser) {
-			async function getMyRatedBooks() {
-				const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
-				const data = await response.json();
-				
-				setRatedBooks(data);
-			}
-			getMyRatedBooks()
+		async function getMyRatedBooks() {
+			const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
+			const data = await response.json();
 
-			async function getMyReadBooks() {
-				const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
-				const data = await response.json();
-
-				setReadBooks(data)
-			}
-			getMyReadBooks()
-
-			async function getMyPostedBooks() {
-				const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
-				const data = await response.json();
-
-				setPostedBooks(data);
-			}
-			getMyPostedBooks()
+			setRatedBooks(data);
 		}
-	}, []);
+		getMyRatedBooks()
+
+		async function getMyReadBooks() {
+			const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
+			const data = await response.json();
+
+			setReadBooks(data)
+		}
+		getMyReadBooks()
+
+		async function getMyPostedBooks() {
+			const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
+			const data = await response.json();
+
+			setPostedBooks(data);
+		}
+		getMyPostedBooks()
+	}, [loggedInUser]);
 
 	async function updateMyReadBooks() {
 		const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserData, removeUserData, setUserData, showBodyScroll } from "../../utils/utils";
-import { NavLink, redirect, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
@@ -96,29 +96,28 @@ export default function Header({
 			setUserData(userData);
 			hideLoginRegisterModal();
 			setLoggedInUser(userData);
-			navigate('/');
-			
+			navigate('/')
 		} catch (error) {
 			console.log('register error', error.message);
 		}
 	}
 
 	function showUserInfo() {
-		setShowUserDetails(oldState => !oldState);
-		showBodyScroll(oldState => !oldState);
+		setShowUserDetails(true);
+		showBodyScroll(false);
 	}
 
 	function hideUserInfo() {
-		setShowUserDetails(oldState => !oldState);
-		showBodyScroll(oldState => !oldState);
+		setShowUserDetails(false);
+		showBodyScroll(true);
 	}
 
 	function logOut() {
 		removeUserData();
-		setShowUserDetails(oldState => !oldState);
-		showBodyScroll(oldState => !oldState);
+		setShowUserDetails(false);
+		showBodyScroll(true);
 		setLoggedInUser('');
-		redirect('/')
+		navigate('/')
 	}
 
 	return (
