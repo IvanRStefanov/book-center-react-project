@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { baseUrl } from './utils/variables';
 
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import HomePage from './components/pages/home-page/HomePage';
-import CatalogPage from './components/pages/catalog-page/CatalogPage';
-import BookDetails from './components/pages/book-details/BookDetails';
-import PublishPage from './components/pages/publish-page/PublishPage';
-import MyAccount from './components/pages/my-account/MyAccout';
-import MyPublishedBooks from './components/pages/my-account/my-published-books/MyPublishedBooks';
-import MyReviewsAndRates from './components/pages/my-account/my-reviews-and-rates/MyReviewsAndRates';
-import MyReadBooks from './components/pages/my-account/my-read-books/MyReadBooks';
+import HomePage from './components/home-page/HomePage';
+import CatalogPage from './components/catalog-page/CatalogPage';
+import BookDetails from './components/book-details/BookDetails';
+import PublishPage from './components/publish-page/PublishPage';
+import MyAccount from './components/my-account/MyAccout';
+import MyPublishedBooks from './components/my-account/my-published-books/MyPublishedBooks';
+import MyReviewsAndRates from './components/my-account/my-reviews-and-rates/MyReviewsAndRates';
+import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 
 function App() {
 	const [loggedInUser, setLoggedInUser] = useState('');
@@ -21,38 +21,50 @@ function App() {
 
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
-
+		
 		if (hasLogedInUser) {
 			const userFound = JSON.parse(hasLogedInUser);
-
+			
 			setLoggedInUser(userFound);
+			console.log('app refresh');
 		}
 	}, []);
 
 	useEffect(() => {
-		async function getMyRatedBooks() {
-			const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
-			setRatedBooks(data);
-		}
-		getMyRatedBooks()
+		if (loggedInUser) {
+			async function getMyRatedBooks() {
+				const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
+				const data = await response.json();
+				
+				setRatedBooks(data);
+			}
+			getMyRatedBooks()
 
-		async function getMyReadBooks() {
-			const response = await fetch(`${baseUrl}/books?where=readBy%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
+			async function getMyReadBooks() {
+				const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
+				const data = await response.json();
 
-			setReadBooks(data)
-		}
-		getMyReadBooks()
-		
-		async function getMyPostedBooks() {
-			const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
+				setReadBooks(data)
+			}
+			getMyReadBooks()
 
-			setPostedBooks(data);
+			async function getMyPostedBooks() {
+				const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
+				const data = await response.json();
+
+				setPostedBooks(data);
+			}
+			getMyPostedBooks()
 		}
-		getMyPostedBooks()
-	}, [loggedInUser]);
+	}, []);
+
+	async function updateMyReadBooks() {
+		const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
+		const data = await response.json();
+
+		setReadBooks(data)
+	}
+
 
 	return (
 		<div className='wrapper'>
@@ -71,10 +83,11 @@ function App() {
 					<Route path="/catalog/:bookId" element={
 						<BookDetails
 							loggedInUser={loggedInUser}
-							setLoggedInUser={setLoggedInUser}
-							postedBooks={postedBooks}
-							ratedBooks={ratedBooks}
-							readBooks={readBooks}
+							updateMyReadBooks={updateMyReadBooks}
+						// setLoggedInUser={setLoggedInUser}
+						// postedBooks={postedBooks}
+						// ratedBooks={ratedBooks}
+						// readBooks={readBooks}
 						/>}
 					/>
 					<Route path="/add-new-book" element={<PublishPage />} />

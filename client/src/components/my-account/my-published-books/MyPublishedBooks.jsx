@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { baseUrl } from "../../../../utils/variables";
 import { Navigate } from "react-router-dom";
-import TileBook from "../../../tile-book/TileBook";
+import { baseUrl } from "../../../utils/variables";
+
+import TileBook from "../../tile-book/TileBook";
 
 export default function MyPublishedBooks({
 	loggedInUser

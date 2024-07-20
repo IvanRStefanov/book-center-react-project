@@ -6,23 +6,23 @@ import { baseUrl } from '../../../utils/variables.js';
 import 'swiper/css';
 
 
-export default function SliderTopRated() {
-    const [topRatedBooks, setTopRatedBooks] = useState([]);
+export default function SliderNewestFive() {
+    const [newestFiveBooks, setNewestFive] = useState([]);
 
     useEffect(() => {
-        async function getTopRatedBooks() {
+        async function getNewestFiveBooks() {
             try {
-                const response = await fetch(`${baseUrl}/books?sortBy=averageRating%20desc&pageSize=5`);
-                const resultTopFiveRatedBooks = await response.json();
-                const topFiveRatedBooks = Object.values(resultTopFiveRatedBooks);
+                const response = await fetch(`${baseUrl}/books?sortBy=_createdOn%20desc&pageSize=5`);
+                const data = await response.json();
+                const newestFiveBooks = Object.values(data);
 
-                setTopRatedBooks(topFiveRatedBooks)
+                setNewestFive(newestFiveBooks)
             } catch (error) {
                 console.error(error);
             }
         }
 
-        getTopRatedBooks()
+        getNewestFiveBooks()
     }, [])
 
     return (
@@ -30,9 +30,9 @@ export default function SliderTopRated() {
         <Swiper
 				spaceBetween={30}
 				slidesPerView={3}
-				className='slider-top-rated'
+				className='slider-newest-five'
 			>
-				{topRatedBooks.map(book =>
+				{newestFiveBooks.map(book =>
 					<SwiperSlide key={book._id}>
 						<TileBook book={book} />
 					</SwiperSlide>

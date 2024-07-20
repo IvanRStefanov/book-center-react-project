@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { baseUrl } from "../../../../../utils/variables";
+import { baseUrl } from "../../../../utils/variables";
 
 export default function SingleBookReviewListItem({
 	review,
@@ -49,10 +49,6 @@ export default function SingleBookReviewListItem({
 			<p className="list__item-comment">
 				{review.comment}
 			</p>
-
-			<div className="list__item-rating-outer">
-				<div className="list__item-rating-inner" style={{ "--rating": review.rated }}></div>
-			</div>
 
 			<p className="list__item-author">
 				- {review.firstName} {review.lastName}

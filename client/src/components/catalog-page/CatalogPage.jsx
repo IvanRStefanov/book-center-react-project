@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import TileBook from "../../tile-book/TileBook";
-import { baseUrl } from "../../../utils/variables";
+import TileBook from "../tile-book/TileBook";
+import { baseUrl } from "../../utils/variables";
 
 export default function CatalogPage() {
 

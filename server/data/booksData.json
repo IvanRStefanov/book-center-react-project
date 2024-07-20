@@ -1,234 +1,200 @@
 {
-    "users": {
-        "35c62d76-8152-4626-8712-eeb96381bea8": {
-            "email": "peter@abv.bg",
-            "firstName": "Peter",
-            "lastName": "Peterson",
-            "imageUrl": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=ais_user",
-            "hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-            "_id": "35c62d76-8152-4626-8712-eeb96381bea8"
-        },
-        "847ec027-f659-4086-8032-5173e2f9c93a": {
-            "email": "george@abv.bg",
-            "firstName": "George",
-            "lastName": "Smith",
-            "imageUrl": "https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg",
-            "hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-            "_id": "847ec027-f659-4086-8032-5173e2f9c93a"
-        },
-        "634aaee2-9dd3-4b9e-b48c-df2c960d7fd4": {
-            "email": "maria@abv.bg",
-            "firstName": "Maria",
-            "lastName": "Peterson",
-            "imageUrl": "https://imgcdn.stablediffusionweb.com/2024/4/21/536cb98c-a33d-48eb-a490-4f82aee0ffce.jpg",
-            "hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-            "_id": "634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"
-        },
-        "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
-            "email": "admin@abv.bg",
-            "username": "Admin",
-            "imageUrl": "https://as2.ftcdn.net/v2/jpg/00/98/59/19/1000_F_98591907_rv0Ta95LggBWGzPlahed0RSClgy6jReR.jpg",
-            "hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
-            "_id": "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
-        }
-    },
-    "books": {
-        "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "name": "The Wheel of Time #1 The Eye of the World",
-            "series": "The Wheel of Time",
-            "author": "Robert Jordan",
-            "readBy": ["35c62d76-8152-4626-8712-eeb96381bea8", "847ec027-f659-4086-8032-5173e2f9c93a"],
-            "ratedBy":["847ec027-f659-4086-8032-5173e2f9c93a"],
-            "genre": [
-                "Fantasy",
-                "Fiction"
-            ],
-            "imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
-            "description": "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
-            "price": "25.00",
-            "timesRead": 1,
-            "timesRated": 15,
-            "ratings": {
-                "1": 0,
-                "2": 0,
-                "3": 0,
-                "4": 5,
-                "5": 10
-            },
-            "averageRating": 4.66,
-            "_createdOn": 1719792000000,
-            "_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
-        },
-        "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "name": "The Wheel of Time #2 The Great Hunt",
-            "series": "The Wheel of Time",
-            "author": "Robert Jordan",
-            "readBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
-            "ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
-            "genre": [
-                "Fantasy",
-                "Fiction"
-            ],
-            "imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
-            "description": "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
-            "price": "15.00",
-            "timesRead": 1,
-            "timesRated": 32,
-            "ratings": {
-                "1": 0,
-                "2": 0,
-                "3": 2,
-                "4": 10,
-                "5": 20
-            },
-            "averageRating": 4.56,
-            "_createdOn": 1719792000000,
-            "_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
-        },
-        "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "name": "The Wheel of Time #3 The Dragon Reborn",
-            "series": "The Wheel of Time",
-            "author": "Robert Jordan",
-            "readBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
-            "ratedBy": ["35c62d76-8152-4626-8712-eeb96381bea8"],
-            "genre": [
-                "Fantasy",
-                "Fiction"
-            ],
-            "imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
-            "description": "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
-            "price": "20.00",
-            "timesRead": 1,
-            "timesRated": 5,
-            "ratings": {
-                "1": 0,
-                "2": 0,
-                "3": 0,
-                "4": 2,
-                "5": 3
-            },
-            "averageRating": 4.6,
-            "_createdOn": 1719792000000,
-            "_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
-        },
-        "0a272c58-b7ea-4e09-a000-7ec988248f66": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "name": "The Way of Kings (The Stormlight Archive, #1)",
-            "series": "The Stormlight Archive",
-            "author": "Brandon Sanderson",
-            "readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-            "ratedBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-            "genre": [
-                "Fantasy",
-                "Fiction"
-            ],
-            "imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
-            "description": "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
-            "price": "30.00",
-            "timesRead": 1,
-            "timesRated": 25,
-            "ratings": {
-                "1": 0,
-                "2": 0,
-                "3": 0,
-                "4": 5,
-                "5": 20
-            },
-            "averageRating": 4.8,
-            "_createdOn": 1719792000000,
-            "_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
-        },
-        "07f260f4-466c-4607-9a33-f7273b24f1b4": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "name": "Words of Radiance (The Stormlight Archive, #2)",
-            "series": "The Stormlight Archive",
-            "author": "Brandon Sanderson",
-            "readBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-            "ratedBy": ["847ec027-f659-4086-8032-5173e2f9c93a"],
-            "genre": [
-                "Fantasy",
-                "Fiction"
-            ],
-            "imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
-            "description": "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
-            "price": "35.00",
-            "timesRead": 1,
-            "timesRated": 30,
-            "ratings": {
-                "1": 0,
-                "2": 0,
-                "3": 0,
-                "4": 5,
-                "5": 25
-            },
-            "averageRating": 4.83,
-            "_createdOn": 1719792000000,
-            "_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
-        }
-    },
-    "bookReviews": {
-        "0a272c58-b7ea-4e09-a000-7ec988248f66": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "firstName": "Peter",
-            "lastName": "Peterson",
-            "comment": "Fantastic book! One of my favorites",
-            "rated": 5,
-            "bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-            "_createdOn": 1720002801,
-            "_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
-        },
-        "d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "comment": "Loved it! Strongly recommend!",
-            "rated": 4,
-            "bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-            "firstName": "George",
-            "lastName": "Smith",
-            "_createdOn": 1721139907926,
-            "_id": "d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec"
-        },
-        "0453b38a-9fc2-4010-98f3-b08d3c65a97a": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "firstName": "Peter",
-            "lastName": "Peterson",
-            "comment": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, nam.",
-            "rated": 5,
-            "bookId": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
-            "_createdOn": 1721145383461,
-            "_id": "0453b38a-9fc2-4010-98f3-b08d3c65a97a"
-        },
-        "9c754a2c-4cca-415b-a42d-7cca3c081c10": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "comment": "Lorem ipsum dolor sit",
-            "rated": 5,
-            "bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
-            "firstName": "Peter",
-            "lastName": "Peterson",
-            "_createdOn": 1721145675405,
-            "_id": "9c754a2c-4cca-415b-a42d-7cca3c081c10"
-        },
-        "cb3328bf-de81-4f13-96f7-6b07358470c7": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "comment": "Lorem ipsum dolor sit",
-            "rated": 5,
-            "bookId": "0a272c58-b7ea-4e09-a000-7ec988248f66",
-            "firstName": "George",
-            "lastName": "Smith",
-            "_createdOn": 1721146181098,
-            "_id": "cb3328bf-de81-4f13-96f7-6b07358470c7"
-        },
-        "04706f81-bb67-4a74-8d8c-75df7fd385d8": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "comment": "George's comment",
-            "rated": 4,
-            "bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
-            "firstName": "George",
-            "lastName": "Smith",
-            "_createdOn": 1721205490698,
-            "_id": "04706f81-bb67-4a74-8d8c-75df7fd385d8"
-        }
-    }
+	"users": {
+		"35c62d76-8152-4626-8712-eeb96381bea8": {
+			"email": "peter@abv.bg",
+			"firstName": "Peter",
+			"lastName": "Peterson",
+			"imageUrl": "https://cdn.vectorstock.com/i/500p/87/24/man-profile-vector-31988724.jpg",
+			"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+			"_id": "35c62d76-8152-4626-8712-eeb96381bea8"
+		},
+		"847ec027-f659-4086-8032-5173e2f9c93a": {
+			"email": "george@abv.bg",
+			"firstName": "George",
+			"lastName": "Smith",
+			"imageUrl": "https://tovanidesign.com/wp-content/uploads/2019/02/C-_Users_Chrystina_Dropbox_tovani-design_size-examples-of-portraits_for-web_1-1-aspect-ratio-prints-at-square-for-social-media-for-web-photo-by-chrysti-tovani.jpg",
+			"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+			"_id": "847ec027-f659-4086-8032-5173e2f9c93a"
+		},
+		"634aaee2-9dd3-4b9e-b48c-df2c960d7fd4": {
+			"email": "maria@abv.bg",
+			"firstName": "Maria",
+			"lastName": "Peterson",
+			"imageUrl": "https://imgcdn.stablediffusionweb.com/2024/4/21/536cb98c-a33d-48eb-a490-4f82aee0ffce.jpg",
+			"hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+			"_id": "634aaee2-9dd3-4b9e-b48c-df2c960d7fd4"
+		},
+		"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
+			"email": "admin@abv.bg",
+			"username": "Admin",
+			"imageUrl": "https://as2.ftcdn.net/v2/jpg/00/98/59/19/1000_F_98591907_rv0Ta95LggBWGzPlahed0RSClgy6jReR.jpg",
+			"hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
+			"_id": "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
+		}
+	},
+	"books": {
+		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"name": "The Wheel of Time #1 The Eye of the World",
+			"series": "The Wheel of Time",
+			"author": "Robert Jordan",
+			"genre": [
+				"Fantasy",
+				"Fiction"
+			],
+			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
+			"description": "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
+			"price": "25.00",
+			"_createdOn": 1719792000000,
+			"_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
+		},
+		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"name": "The Wheel of Time #2 The Great Hunt",
+			"series": "The Wheel of Time",
+			"author": "Robert Jordan",
+			"genre": [
+				"Fantasy",
+				"Fiction"
+			],
+			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
+			"description": "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
+			"price": "15.00",
+			"_createdOn": 1719792000000,
+			"_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+		},
+		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"name": "The Wheel of Time #3 The Dragon Reborn",
+			"series": "The Wheel of Time",
+			"author": "Robert Jordan",
+			"genre": [
+				"Fantasy",
+				"Fiction"
+			],
+			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
+			"description": "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
+			"price": "20.00",
+			"_createdOn": 1719792000000,
+			"_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
+		},
+		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"name": "The Way of Kings (The Stormlight Archive, #1)",
+			"series": "The Stormlight Archive",
+			"author": "Brandon Sanderson",
+			"genre": [
+				"Fantasy",
+				"Fiction"
+			],
+			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
+			"description": "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
+			"price": "30.00",
+			"_createdOn": 1719792000000,
+			"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
+		},
+		"07f260f4-466c-4607-9a33-f7273b24f1b4": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"name": "Words of Radiance (The Stormlight Archive, #2)",
+			"series": "The Stormlight Archive",
+			"author": "Brandon Sanderson",
+			"genre": [
+				"Fantasy",
+				"Fiction"
+			],
+			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
+			"description": "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
+			"price": "35.00",
+			"_createdOn": 1719792000000,
+			"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
+		}
+	},
+	"bookReviews": {
+		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"firstName": "Peter",
+			"lastName": "Peterson",
+			"comment": "Fantastic book! One of my favorites",
+			"bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+			"_createdOn": 1720002801,
+			"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
+		},
+		"d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"comment": "Loved it! Strongly recommend!",
+			"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+			"firstName": "George",
+			"lastName": "Smith",
+			"_createdOn": 1721139907926,
+			"_id": "d5141802-eaf2-4bd5-b8cb-ca8c4b8441ec"
+		},
+		"0453b38a-9fc2-4010-98f3-b08d3c65a97a": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"firstName": "Peter",
+			"lastName": "Peterson",
+			"comment": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, nam.",
+			"bookId": "985d9eab-ad2e-4622-a5c8-116261fb1fd2",
+			"_createdOn": 1721145383461,
+			"_id": "0453b38a-9fc2-4010-98f3-b08d3c65a97a"
+		},
+		"9c754a2c-4cca-415b-a42d-7cca3c081c10": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"comment": "Lorem ipsum dolor sit",
+			"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+			"firstName": "Peter",
+			"lastName": "Peterson",
+			"_createdOn": 1721145675405,
+			"_id": "9c754a2c-4cca-415b-a42d-7cca3c081c10"
+		},
+		"cb3328bf-de81-4f13-96f7-6b07358470c7": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"comment": "Lorem ipsum dolor sit",
+			"bookId": "0a272c58-b7ea-4e09-a000-7ec988248f66",
+			"firstName": "George",
+			"lastName": "Smith",
+			"_createdOn": 1721146181098,
+			"_id": "cb3328bf-de81-4f13-96f7-6b07358470c7"
+		},
+		"04706f81-bb67-4a74-8d8c-75df7fd385d8": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"comment": "George's comment",
+			"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+			"firstName": "George",
+			"lastName": "Smith",
+			"_createdOn": 1721205490698,
+			"_id": "04706f81-bb67-4a74-8d8c-75df7fd385d8"
+		}
+	},
+	"booksRead": {
+		"8268087d-1ab7-49cd-b41d-2718aefaed4c": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+			"_createdOn": 1721306776029,
+			"_id": "8268087d-1ab7-49cd-b41d-2718aefaed4c"
+		},
+		"50ac2bda-1ce4-4600-9e44-fdd0b767d4fa": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+			"_createdOn": 1721306818062,
+			"_id": "50ac2bda-1ce4-4600-9e44-fdd0b767d4fa"
+		},
+		"16589d16-783a-4a3e-b4fe-5eb270630bfd": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+			"_createdOn": 1721306887227,
+			"_id": "16589d16-783a-4a3e-b4fe-5eb270630bfd"
+		},
+		"7cec1ac8-149e-43c8-92eb-8f1e2985478f": {
+			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"bookId": "0a272c58-b7ea-4e09-a000-7ec988248f66",
+			"_createdOn": 1721306911952,
+			"_id": "7cec1ac8-149e-43c8-92eb-8f1e2985478f"
+		},
+		"da20fa71-8e21-4874-b9e2-888224f7d60a": {
+			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+			"_createdOn": 1721375321964,
+			"_id": "da20fa71-8e21-4874-b9e2-888224f7d60a"
+		}
+	}
 }

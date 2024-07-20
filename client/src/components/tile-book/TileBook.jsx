@@ -9,12 +9,12 @@ export default function TileBook({
 
 	if (pathname == '/catalog') {
 		classes = classes + ' tile-book--catalog';
-	} else if(pathname == '/my-account/my-published-books') {
+	} else if (pathname == '/my-account/my-published-books') {
 		classes = classes + ' tile-book--xtra-small';
 	}
 
 	return (
-		<div className= {classes}>
+		<div className={classes}>
 			<div className="tile__img image-fit">
 				<img src={book.imgUrl} alt={`${book.name} cover`}></img>
 
@@ -27,22 +27,12 @@ export default function TileBook({
 						<Link to={`/catalog/${book._id}`}>{book.name}</Link>
 					</h5>
 
-					<p className="tile__author">by <span><a href="#">{book.author}</a></span></p>
+					<p className="tile__author">Author: {book.author}</p>
 				</div>
-
-
 			</div>
 
-			<div className="tile__bar">
-				<div className="tile__rating">
-					<div className="tile__stars-outer">
-						<div className="tile__stars-inner" style={{ "--average": book.averageRating }} title={`Readers rating: ${book.averageRating}`}></div>
-					</div>
-				</div>
-
-				<div className="tile__price">
-					<p><sup>&#36;</sup>{book.price}</p>
-				</div>
+			<div className="tile__price">
+				<p><sup>&#36;</sup>{book.price}</p>
 			</div>
 		</div>
 	);

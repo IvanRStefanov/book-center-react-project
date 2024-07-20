@@ -1,16 +1,16 @@
-import SliderTopRated from "./slider-top-rated/SliderTopRated";
+import SliderNewestFive from "./slider-newest-five/SliderNewestFive";
 
 
-export default function SectionTopRated() {
+export default function SectionNewestFive() {
     return (
         <section className="section-top-rated">
             <div className="shell">
                 <header className="section__head">
-                    <h2>Top rated books</h2>
+                    <h2>Reacently added</h2>
                 </header>
 
                 <div className="section__slider">
-                    <SliderTopRated />
+                    <SliderNewestFive />
                 </div>
 
                 <div className="section__actions">

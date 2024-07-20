@@ -358,6 +358,12 @@ main {
 		}
 	}
 
+	/*  Btn--red  */
+	
+	&.btn--red {
+		background-color: red;
+	}
+
 }
 
 /* ------------------------------------------------------------ *\
@@ -388,10 +394,10 @@ main {
 }
 
 /* ------------------------------------------------------------ *\
-	Slider-top-rated
+	Slider-newest-five
 \* ------------------------------------------------------------ */
 
-.slider-top-rated {
+.slider-newest-five {
 	overflow: visible;
 }
 
@@ -462,44 +468,6 @@ main {
 
 		&:hover {
 			color: $c-light-green;
-		}
-	}
-
-	.tile__bar {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: 10px 20px;
-	}
-
-	.tile__stars-outer,
-	.tile__stars-inner {
-		font-size: 28px;
-	}
-
-	.tile__stars-outer {
-		position: relative;
-		display: inline-block;
-
-		&:before {
-			content: "\2606 \2606 \2606 \2606 \2606";
-			color: gold;
-		}
-	}
-
-	.tile__stars-inner {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 3;
-		color: black;
-		width: calc((var(--average) / 5) * 100%);
-		overflow: hidden;
-
-		&:before {
-			content: "\2605 \2605 \2605 \2605 \2605";
-			color: gold;
 		}
 	}
 
@@ -1040,7 +1008,7 @@ main {
 
 	.section__inner {
 		display: grid;
-		grid-template-columns: .5fr .5fr;
+		grid-template-columns: .45fr .55fr;
 		gap: 40px 50px;
 	}
 
@@ -1073,36 +1041,6 @@ main {
 
 	.section__head {
 		font-size: 60px;
-	}
-
-	.section__rating-outer,
-	.section__rating-inner {
-		font-size: 35px;
-	}
-
-	.section__rating-outer {
-		position: relative;
-		display: inline-block;
-
-		&:before {
-			content: "\2606 \2606 \2606 \2606 \2606";
-			color: gold;
-		}
-	}
-
-	.section__rating-inner {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 3;
-		color: black;
-		width: calc((var(--average) / 5) * 100%);
-		overflow: hidden;
-
-		&:before {
-			content: "\2605 \2605 \2605 \2605 \2605";
-			color: gold;
-		}
 	}
 
 	.section__actions {
@@ -1158,36 +1096,6 @@ main {
 
 	.list__item-comment {
 		font-size: 20px;
-	}
-
-	.list__item-rating-outer,
-	.list__item-rating-inner {
-		font-size: 20px;
-	}
-
-	.list__item-rating-outer {
-		position: relative;
-		display: inline-block;
-
-		&:before {
-			content: "\2606 \2606 \2606 \2606 \2606";
-			color: gold;
-		}
-	}
-
-	.list__item-rating-inner {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 3;
-		color: black;
-		width: calc((var(--rating) / 5) * 100%);
-		overflow: hidden;
-
-		&:before {
-			content: "\2605 \2605 \2605 \2605 \2605";
-			color: gold;
-		}
 	}
 
 	.list__item-owner-delete-btn {

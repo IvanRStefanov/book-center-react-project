@@ -37,7 +37,7 @@ export default function UserDetails({
 							</li>
 
 							<li>
-								<span>Books Rated:</span> {ratedBooks.length}
+								<span>Books Reviewed:</span> {ratedBooks.length}
 							</li>
 
 							<li>
