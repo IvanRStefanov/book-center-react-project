@@ -15,15 +15,33 @@ export default function BookDetails({
 	const [totaltimesBookRead, setTotalTimesBookRead] = useState(0);
 	const [bookIsRead, setBookIsRead] = useState(false);
 	const [readBookCollectionId, setReadBookCollectionId] = useState('');
+	const [owner, setOwner] = useState(false);
+
+
 
 	useEffect(() => {
-		async function getBook() {
-			const response = await fetch(`${baseUrl}/books/${bookId}`)
-			const data = await response.json();
+		async function setBookAndOwner() {
+			try {
+				const response = await fetch(`${baseUrl}/books/${bookId}`)
+				
+				if(response.ok != true) {
+					const err = await response.json();
+					throw new Error(err.message)
+				}
 
-			setBook(data);
+				const bookData = await response.json();
+	
+				if (loggedInUser._id == bookData._ownerId) {
+					setOwner(oldState => !oldState);
+				}
+	
+				setBook(bookData);
+				
+			} catch (err) {
+				console.log(err.message)
+			}
 		}
-		getBook();
+		setBookAndOwner();
 	}, []);
 
 	useEffect(() => {
@@ -45,8 +63,6 @@ export default function BookDetails({
 		}
 		getUserReadBookStatus();
 	}, []);
-
-
 
 	async function addBookToMyReadList() {
 		try {
@@ -70,7 +86,7 @@ export default function BookDetails({
 
 			setTotalTimesBookRead(oldCount => oldCount + 1);
 			updateMyReadBooks();
-			setBookIsRead( oldState => !oldState);
+			setBookIsRead(oldState => !oldState);
 		} catch (error) {
 			console.log(error)
 		}
@@ -100,7 +116,6 @@ export default function BookDetails({
 		}
 	}
 
-
 	useEffect(() => {
 		async function getBookReadCollectionId() {
 			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22`);
@@ -109,7 +124,7 @@ export default function BookDetails({
 			setReadBookCollectionId(data[0]._id);
 		}
 		getBookReadCollectionId()
-	}, [])
+	}, []);
 
 	return (
 		<section className="section-details">
@@ -152,17 +167,14 @@ export default function BookDetails({
 						</div>
 					</div>
 
-					{/* {loggedInUser && isBookOwner
-						? <div className="section__actions">
-							{isBookOwner &&
-								<div className="section__owner-actions">
-									<a href="#" className="btn btn--edit">EDIT</a>
-									<a href="#" className="btn btn--delete">DELETE</a>
-								</div>
-							}
-						</div>
-						: ''
-					} */}
+					{(loggedInUser && owner) &&
+						(<div className="section__actions">
+							<div className="section__owner-actions">
+								<button className="btn btn--edit">EDIT</button>
+								<button href="#" className="btn btn--delete">DELETE</button>
+							</div>
+						</div>)
+					}
 
 
 					{/* <div className="section__comments"> */}
