@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { getUserData, removeUserData, setUserData, showBodyScroll } from "../../utils/utils";
+import { useState } from "react";
+import { setUserData, showBodyScroll } from "../../utils/utils";
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 import UserDetails from "./user-details/UserDetails";
+import { login, logout, register } from "../../services/authService";
 
 
 export default function Header({
@@ -16,6 +17,8 @@ export default function Header({
 }) {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
+	const [submitError, setSubmitError] = useState('');
+	const [registerSubmitError, setRegisterSubmitError] = useState('');
 	const navigate = useNavigate();
 	
 	function showLoginRegisterMmodal() {
@@ -26,6 +29,8 @@ export default function Header({
 	function hideLoginRegisterModal() {
 		setShowLoginRegisterModal(false);
 		showBodyScroll(true);
+		setSubmitError('');
+		setRegisterSubmitError('');
 	}
 
 	async function loginSubmitHandler(event) {
@@ -36,26 +41,12 @@ export default function Header({
 		const password = formData.get('password').trim();
 
 		try {
-			const response = await fetch('http://localhost:3030/users/login', {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json'
-				},
-				body: JSON.stringify({ email, password })
-			});
-			if (response.ok != true) {
-				const error = await response.json();
-				throw new Error(error.message);
-			}
-
-			const userData = await response.json();
-
+			const userData = await login(email, password);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData);
-			navigate('/');
+			setLoggedInUser(userData)			
 		} catch (error) {
-			console.log('User login error', error.message);
+			setSubmitError(error.message);
 		}
 	}
 
@@ -63,42 +54,24 @@ export default function Header({
 		event.preventDefault();
 		
 		const formData = new FormData(event.currentTarget);
-		const firstName = formData.get('firstName').trim();
-		const lastName = formData.get('lastName').trim();
-		const email = formData.get('email').trim();
-		const password = formData.get('password').trim();
-		const imageUrl = formData.get('imageUrl').trim();
 
 		const bodytoSend = {
-			email,
-			firstName,
-			lastName,
-			imageUrl,
-			password,
+			firstName: formData.get('firstName').trim(),
+			lastName: formData.get('lastName').trim(),
+			imageUrl: formData.get('imageUrl').trim(),
+			firstPassword: formData.get('firstPassword').trim(),
+			confPass: formData.get('confPass').trim(),
+			registerEmail: formData.get('registerEmail').trim()
 		}
+		console.log(bodytoSend)
 
 		try {
-			const response = await fetch('http://localhost:3030/users/register', {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(bodytoSend)
-			});
-
-			if (response.ok != true) {
-				const error = await response.json();
-				throw new Error(error.message);
-			}
-
-			const userData = await response.json();
-
+			const userData = await register(bodytoSend);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData);
-			navigate('/')
+			setLoggedInUser(userData);		
 		} catch (error) {
-			console.log('register error', error.message);
+			setRegisterSubmitError(error.message);
 		}
 	}
 
@@ -113,7 +86,7 @@ export default function Header({
 	}
 
 	function logOut() {
-		removeUserData();
+		logout(loggedInUser.accessToken);
 		setShowUserDetails(false);
 		showBodyScroll(true);
 		setLoggedInUser('');
@@ -177,6 +150,8 @@ export default function Header({
 				onCLose={hideLoginRegisterModal}
 				loginSubmitHandler={loginSubmitHandler}
 				registerUserSubmitHandler={registerUserSubmitHandler}
+				submitError={submitError}
+				registerSubmitError={registerSubmitError}
 			/>}
 
 			{showUserDetails && <UserDetails

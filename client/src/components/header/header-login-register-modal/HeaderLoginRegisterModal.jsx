@@ -2,6 +2,8 @@ export default function HeaderLoginRegisterModal({
 	onCLose,
 	loginSubmitHandler,
 	registerUserSubmitHandler,
+	submitError,
+	registerSubmitError
 }) {
 
 	return (
@@ -22,6 +24,12 @@ export default function HeaderLoginRegisterModal({
 										</div>
 
 										<div className="form__body">
+											{submitError &&
+												<div className="form__error">
+													<p>{submitError}</p>
+												</div>
+											}
+
 											<div className="form__row">
 												<label hmtlfor="email"
 													className="form__label">Email</label>
@@ -54,7 +62,7 @@ export default function HeaderLoginRegisterModal({
 
 							<div className="modal__item">
 								<div className="form">
-									<form onSubmit={registerUserSubmitHandler}>
+									<form onSubmit={registerUserSubmitHandler} id="register-form">
 										<div className="form__head">
 											<h5>
 												Register
@@ -62,6 +70,12 @@ export default function HeaderLoginRegisterModal({
 										</div>
 
 										<div className="form__body">
+											{registerSubmitError &&
+												<div className="form__error">
+													<p>{registerSubmitError}</p>
+												</div>
+											}
+											
 											<div className="form__cols">
 												<div className="form__col">
 													<div className="form__row">
@@ -87,30 +101,30 @@ export default function HeaderLoginRegisterModal({
 
 												<div className="form__col form__col--full-width">
 													<div className="form__row">
-														<label hmtlfor="email" id="email" className="form__label" autoComplete="off">Email</label>
+														<label hmtlfor="registerEmail" className="form__label" autoComplete="off">Email</label>
 
 														<div className="form__controls">
-															<input type="email" id="email" className="field" name="email"></input>
+															<input type="text" id="registerEmail" className="field" name="registerEmail"></input>
 														</div>
 													</div>
 												</div>
 
 												<div className="form__col ">
 													<div className="form__row">
-														<label hmtlfor="password" className="form__label">Password</label>
+														<label hmtlfor="firstPassword" className="form__label">Password</label>
 
 														<div className="form__controls">
-															<input type="password" className="field" id="password" name="password"></input>
+															<input type="password" className="field" id="firstPassword" name="firstPassword"></input>
 														</div>
 													</div>
 												</div>
 
 												<div className="form__col">
 													<div className="form__row">
-														<label hmtlfor="confpass" className="form__label">Repeat Password</label>
+														<label hmtlfor="confPass" className="form__label">Repeat Password</label>
 
 														<div className="form__controls">
-															<input type="password" className="field" id="confpass" name="confpass"></input>
+															<input type="password" className="field" id="confPass" name="confPass"></input>
 														</div>
 													</div>
 												</div>
@@ -128,7 +142,7 @@ export default function HeaderLoginRegisterModal({
 										</div>
 
 										<div className="form__actions">
-											<input type="submit" value="Submit" className="form__btn"></input>
+											<input type="submit" value="Submit" className="form__btn" form="register-form"></input>
 										</div>
 									</form>
 								</div>

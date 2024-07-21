@@ -664,6 +664,13 @@ main {
 		margin-top: 30px;
 	}
 
+	.form__error {
+		margin-bottom: 20px;
+		text-align: center;
+		color: red;
+		font-weight: 700;
+	}
+
 	.form__cols {
 		display: flex;
 		margin: 0 -14px;
