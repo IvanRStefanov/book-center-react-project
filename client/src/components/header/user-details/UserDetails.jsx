@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
+
 import styles from './UserDetails.module.scss'
-import { baseUrl } from "../../../utils/variables";
-import { useEffect, useState } from "react";
 
 export default function UserDetails({
 	loggedInUser,

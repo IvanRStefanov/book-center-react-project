@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { readByUserStatus } from "../../services/readBooksService";
 import { deleteBook, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
+import ModalDelete from "./modal-delete/ModalDelete";
 
 export default function BookDetails({
 	loggedInUser,
@@ -122,32 +123,11 @@ export default function BookDetails({
 	return (
 		<>
 			{alertDeleteBook &&
-				<div className="modal-delete">
-					<div className="modal__bg" onClick={hideAlertDeleteBook}></div>
-
-					<div className="shell modal__shell">
-						<div className="modal__content">
-							<div className="modal__body">
-								<div className="modal__title">
-									<h6>You are about to <strong>delete</strong><br></br>{book.name}</h6>
-								</div>
-
-								<div className="modal__img image-fit">
-									<img src={book.imgUrl} alt="" />
-								</div>
-
-								<div className="modal__footer">
-									<h6>Are you sure?</h6>
-
-									<div className="modal__actions">
-										<button className="modal__btn" onClick={deleteBookHandler}>Yes</button>
-										<button className="modal__btn modal__btn--close" onClick={hideAlertDeleteBook}>No</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<ModalDelete
+					book={book}
+					deleteBookHandler={deleteBookHandler}
+					hideAlertDeleteBook={hideAlertDeleteBook}
+				/>
 			}
 
 			<section className="section-details">
