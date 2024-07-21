@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TileBook from '../../tile-book/TileBook.jsx';
-import { baseUrl } from '../../../utils/variables.js';
+// import { baseUrl } from '../../../utils/variables.js';
+
+import { getLatestFiveBooks } from '../../../services/booksService.js';
 
 import 'swiper/css';
 
@@ -12,9 +14,8 @@ export default function SliderNewestFive() {
     useEffect(() => {
         async function getNewestFiveBooks() {
             try {
-                const response = await fetch(`${baseUrl}/books?sortBy=_createdOn%20desc&pageSize=5`);
-                const data = await response.json();
-                const newestFiveBooks = Object.values(data);
+                const newestFiveBooksData = await getLatestFiveBooks();
+                const newestFiveBooks = Object.values(newestFiveBooksData);
 
                 setNewestFive(newestFiveBooks)
             } catch (error) {

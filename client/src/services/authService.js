@@ -1,4 +1,4 @@
-import { removeUserData, setUserData } from '../utils/utils';
+import { removeUserData } from '../utils/utils';
 
 const baseUrl = 'http://localhost:3030/users';
 
