@@ -44,7 +44,8 @@ export default function Header({
 			const userData = await login(email, password);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData)			
+			setLoggedInUser(userData);
+			navigate('/');
 		} catch (error) {
 			setSubmitError(error.message);
 		}
@@ -63,13 +64,13 @@ export default function Header({
 			confPass: formData.get('confPass').trim(),
 			registerEmail: formData.get('registerEmail').trim()
 		}
-		console.log(bodytoSend)
 
 		try {
 			const userData = await register(bodytoSend);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData);		
+			setLoggedInUser(userData);
+			navigate('/');
 		} catch (error) {
 			setRegisterSubmitError(error.message);
 		}
@@ -90,7 +91,7 @@ export default function Header({
 		setShowUserDetails(false);
 		showBodyScroll(true);
 		setLoggedInUser('');
-		navigate('/')
+		navigate('/');
 	}
 
 	return (

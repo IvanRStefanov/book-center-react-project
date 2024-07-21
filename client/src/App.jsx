@@ -19,6 +19,7 @@ function App() {
 	const [readBooks, setReadBooks] = useState([]);
 	const [postedBooks, setPostedBooks] = useState([]);
 
+
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
 
@@ -63,6 +64,12 @@ function App() {
 		setReadBooks(data)
 	}
 
+	async function updateMyPostedBooks() {
+		const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
+		const data = await response.json();
+
+		setPostedBooks(data);
+	}
 
 	return (
 		<div className='wrapper'>
@@ -72,6 +79,7 @@ function App() {
 				postedBooks={postedBooks}
 				readBooks={readBooks}
 				reviewedBooks={reviewedBooks}
+				updateMyPostedBooks={updateMyPostedBooks}
 			/>
 
 			<main>
@@ -82,6 +90,7 @@ function App() {
 						<BookDetails
 							loggedInUser={loggedInUser}
 							updateMyReadBooks={updateMyReadBooks}
+							updateMyPostedBooks={updateMyPostedBooks}
 							reviewedBooks={reviewedBooks}
 						// setLoggedInUser={setLoggedInUser}
 						// postedBooks={postedBooks}
