@@ -23,3 +23,9 @@ export async function getLatestFiveBooks() {
 export async function deleteBook(bookId) {
    await requester.del(baseUrl + `/${bookId}`);
 }
+
+export async function createNewBook(bookData) {
+    const result = await requester.post(baseUrl, bookData);
+
+    return result;
+}

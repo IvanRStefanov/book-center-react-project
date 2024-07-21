@@ -97,7 +97,11 @@ function App() {
 						// readBooks={readBooks}
 						/>}
 					/>
-					<Route path="/add-new-book" element={<PublishPage />} />
+					<Route
+						path="/add-new-book"
+						element={<PublishPage updateMyPostedBooks={updateMyPostedBooks}/>}
+						
+					/>
 					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
 						<Route path="my-published-books" element={
 							<MyPublishedBooks

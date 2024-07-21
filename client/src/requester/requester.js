@@ -8,11 +8,13 @@ function optionsBuilder(data) {
         };
     }
 
-    const token = JSON.parse(sessionStorage.getItem('userData')).accessToken;
-    // console.log(JSON.parse(userData))
-    console.log(token)
+    const user = sessionStorage.getItem('userData');
+    let token;
+    // console.log(user)
 
-    if(token) {
+    if (user) {
+        token = JSON.parse(user).accessToken;
+
         options.headers = {
             'Content-type': 'application/json',
             'X-Authorization': token
@@ -28,16 +30,16 @@ async function request(method, url, data) {
         ...optionsBuilder(data),
     });
 
-    if(response.status === 204) {
+    if (response.status === 204) {
         return {};
     }
-
-    const result = await response.json();
-
-    if(response.ok !== true) {
+    
+    if (response.ok !== true) {
         throw result;
     }
     
+    const result = await response.json();
+
     return result;
 }
 

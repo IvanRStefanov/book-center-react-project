@@ -19,7 +19,7 @@ export default function SliderNewestFive() {
 
                 setNewestFive(newestFiveBooks)
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
         }
 

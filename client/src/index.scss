@@ -594,6 +594,7 @@ main {
 		background-color: $c-beige;
 		border-radius: 20px;
 		padding: 50px;
+		box-shadow: 0px 0px 36px 0px rgba(0,0,0,0.75);
 	}
 
 	.modal__items {
@@ -790,6 +791,11 @@ main {
 	}
 
 	fieldset legend {
+		padding: 0 5px;
+		background-color: #fff;
+		border: 1px solid rgba($color: #000000, $alpha: .2);
+		border-radius: 999em;
+		margin: 0 0 10px 11px;
 		font-size: 12px;
 	}
 
@@ -843,6 +849,63 @@ main {
 			opacity: 0;
 			visibility: hidden;
 		}
+	}
+
+	.radios {
+		list-style-type: none;
+		display: grid;
+		grid-template-columns: repeat(6, .16667fr);
+		gap: 10px 20px;
+		font-size: 18px;
+	}
+
+	.radios input[type=radio] {
+		display: none;
+	}
+
+	.radios label {
+		position: relative;
+		padding-left: 25px;
+		cursor: pointer;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 11px;
+			left: 10px;
+			width: 15px;
+			aspect-ratio: 1;
+			transform: translate(-50%, -50%);
+			background-color: #fff;
+			border: 1px solid rgba($color: #000000, $alpha: .2);
+			border-radius: 50%;
+			z-index: 1;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: 11px;
+			transform: translate(-50%, -50%) scale(0);
+			width: 10px;
+			aspect-ratio: 1;
+			z-index: 2;
+			background-color: #000;
+			border-radius: 50%;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity, visibility, transform;
+			transition-duration: .2s;
+			transition-timing-function: ease;
+
+		}
+	}
+
+	.radios input[type=radio]:checked + label:after{
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -50%) scale(1);
 	}
 
 }
@@ -1179,50 +1242,6 @@ main {
 }
 
 /* ------------------------------------------------------------ *\
-	Star-rating
-\* ------------------------------------------------------------ */
-
-.star-rating {
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: flex-end;
-	max-width: 185px;
-	width: 100%;
-	margin-right: auto;
-
-	input {
-		display: none
-	}
-
-	label {
-		cursor: pointer;
-		color: gold;
-		font-size: 45px;
-		line-height: .75;
-		position: relative
-	}
-
-	label:before {
-		content: '\2605';
-		position: absolute;
-		// font-size: 45px;
-		font-size: inherit;
-		line-height: inherit;
-		opacity: 0;
-		visibility: hidden;
-		transition: all .3s;
-	}
-
-	label:hover:before,
-	label:hover~label:before,
-	input:checked~label:before {
-		opacity: 1;
-		visibility: visible;
-		color: gold
-	}
-}
-
-/* ------------------------------------------------------------ *\
 	Section-publish-new-book
 \* ------------------------------------------------------------ */
 
@@ -1236,6 +1255,37 @@ main {
 	.section__form {
 		position: relative;
 		z-index: 3;
+	}
+
+	.section__form-loading-outer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($color: #000000, $alpha: .7);
+		z-index: 4;
+	}
+
+	.section__form-loading-spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: block;
+		width: 25px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border: 5px solid #ddd;
+		border-top-color: orange;
+		animation: loading 1s linear infinite;
+		z-index: 5;
+	}
+
+	.section__form-error {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 }
 
