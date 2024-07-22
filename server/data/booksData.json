@@ -35,6 +35,10 @@
 	"books": {
 		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
 			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"publisherEmail": "peter@abv.bg",
+			"publisherFirstName": "Peter",
+			"publisherLastName": "Peterson",
+			"imageUrl": "https://cdn.vectorstock.com/i/500p/87/24/man-profile-vector-31988724.jpg",
 			"name": "The Wheel of Time #1 The Eye of the World",
 			"series": "The Wheel of Time",
 			"author": "Robert Jordan",
@@ -50,6 +54,9 @@
 		},
 		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
 			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+			"publisherEmail": "peter@abv.bg",
+			"publisherFirstName": "Peter",
+			"publisherLastName": "Peterson",
 			"name": "The Wheel of Time #2 The Great Hunt",
 			"series": "The Wheel of Time",
 			"author": "Robert Jordan",
@@ -65,6 +72,9 @@
 		},
 		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
 			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"publisherEmail": "george@abv.bg",
+			"publisherFirstName": "George",
+			"publisherLastName": "Smith",
 			"name": "The Wheel of Time #3 The Dragon Reborn",
 			"series": "The Wheel of Time",
 			"author": "Robert Jordan",
@@ -80,6 +90,9 @@
 		},
 		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
 			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"publisherEmail": "george@abv.bg",
+			"publisherFirstName": "George",
+			"publisherLastName": "Smith",
 			"name": "The Way of Kings (The Stormlight Archive, #1)",
 			"series": "The Stormlight Archive",
 			"author": "Brandon Sanderson",
@@ -95,6 +108,9 @@
 		},
 		"07f260f4-466c-4607-9a33-f7273b24f1b4": {
 			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+			"publisherEmail": "george@abv.bg",
+			"publisherFirstName": "George",
+			"publisherLastName": "Smith",
 			"name": "Words of Radiance (The Stormlight Archive, #2)",
 			"series": "The Stormlight Archive",
 			"author": "Brandon Sanderson",
