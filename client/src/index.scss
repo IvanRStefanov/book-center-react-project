@@ -1111,7 +1111,43 @@ main {
 	}
 
 	.section__head {
-		font-size: 60px;
+		font-size: 50px;
+	}
+
+	.section__body p + p {
+		margin-top: 5px;
+	}
+
+	.section__main-actions {
+		margin-top: 15px;
+		display: grid;
+		gap: 10px;
+		justify-content: left;
+	}
+
+	.section__main-actions + .section__main-publisher-info {
+		margin-top: 20px;
+	}
+
+	.section__main-publisher-info h6 + ul {
+		margin-top: 10px;
+	}
+
+	.section__main-publisher-info ul {
+		list-style-type: none;
+		line-height: 1;
+	}
+
+	.section__main-publisher-info li {
+		display: grid;
+		grid-template-columns: 18px auto;
+		gap: 5px;
+		align-items: center;
+
+	}
+
+	.section__main-publisher-info li + li {
+		margin-top: 5px;
 	}
 
 	.section__actions {

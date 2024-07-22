@@ -8,6 +8,7 @@ import { readByUserStatus } from "../../services/readBooksService";
 import { deleteBook, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
 import ModalDelete from "./modal-delete/ModalDelete";
+import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo";
 
 export default function BookDetails({
 	loggedInUser,
@@ -144,21 +145,28 @@ export default function BookDetails({
 						<div className="section__main">
 							<header className="section__title">
 								<h1 className="section__head">{book.name}</h1>
-
 							</header>
 
 							<div className="section__body">
-								<p><strong>Author:</strong></p>
+								<p>
+									<strong>Author:</strong>
 
-								<p>&nbsp;&nbsp;&nbsp;{book.author}</p>
+									<br></br>
 
-								<p><strong>Book description: </strong></p>
+									&nbsp;&nbsp;&nbsp;{book.author}
+								</p>
 
-								<p>&nbsp;&nbsp;&nbsp;{book.description}</p>
+								<p>
+									<strong>Book description: </strong>
+
+									<br></br>
+
+									&nbsp;&nbsp;&nbsp;{book.description}
+								</p>
 							</div>
 
 							<div className="section__main-actions">
-								<p><strong>This book has been read by:</strong> {totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
+								<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
 
 
 
@@ -168,6 +176,8 @@ export default function BookDetails({
 									</button>
 								}
 							</div>
+
+							<BookDetailsOwnerInfo book={book} />
 						</div>
 
 						{(loggedInUser && owner) &&
