@@ -1,101 +1,78 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { baseUrl } from "../../utils/variables";
 
-import FormReview from "./list-reviews/form-review/FormReview";
-import ListReviews from "./list-reviews/ListReviews";
 import { useEffect, useState } from "react";
-import { readByUserStatus } from "../../services/readBooksService";
+import { addBookToUserReadList, getTotalCountBookHasBeenRead } from "../../services/readBooksService";
 import { deleteBook, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
+import { deleteUserReview, getBookReviewsById } from "../../services/reviewBookSService";
+
+import ListReviews from "./list-reviews/ListReviews";
+import FormReview from "./list-reviews/form-review/FormReview";
 import ModalDelete from "./modal-delete/ModalDelete";
 import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo";
 
 export default function BookDetails({
 	loggedInUser,
-	updateMyReadBooks,
-	updateMyPostedBooks
+	updateUserReadBooks,
+	userReadBooks,
+	updateUserPostedBooks,
+	userPostedBooks,
+	updateUserReviewedBooks,
+	userReviewedBooks,
 }) {
+	const navigate = useNavigate();
+
 	const { bookId } = useParams();
 
 	const [book, setBook] = useState({});
 	const [totaltimesBookRead, setTotalTimesBookRead] = useState(0);
 	const [bookIsRead, setBookIsRead] = useState(false);
-	const [readBookCollectionId, setReadBookCollectionId] = useState('');
-	const [owner, setOwner] = useState(false);
 	const [alertDeleteBook, setAlertDeleteBook] = useState(false);
+	const [bookReviews, setBookReviews] = useState([]);
 
-	const navigate = useNavigate();
+	const hasRead = userReadBooks.findIndex(book => (book.bookId == bookId)) >= 0;
+	const isOwner = userPostedBooks.findIndex(book => (book._id === bookId)) >= 0;
+	const hasReviewed = userReviewedBooks.findIndex(book => (book.bookId === bookId)) >= 0;
+
 
 	useEffect(() => {
-
-		async function getBookAndCheckOwner() {
-
+		async function getBook() {
 			const bookData = await getSingleBook(bookId);
 
 			setBook(bookData);
+		}
+		getBook();
 
-			if (loggedInUser._id == bookData._ownerId) {
-				setOwner(oldState => !oldState);
+		async function bookReviews() {
+			try {
+				const response = await getBookReviewsById(bookId);
+				setBookReviews(response);
+			} catch (error) {
+				console.log(error)
 			}
 		}
-		getBookAndCheckOwner();
-
-		async function getUserReadBookStatus() {
-			if (loggedInUser) {
-				const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22&count`);
-				const data = await response.json();
-				console.log(await readByUserStatus(book._id, loggedInUser._id));
-
-				setBookIsRead(data)
-			}
-		}
-		getUserReadBookStatus();
-
-
-		async function getBookReadCollectionId() {
-			if (loggedInUser) {
-
-				const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${loggedInUser._id}%22`);
-				const data = await response.json();
-
-				setReadBookCollectionId(data[0]._id);
-			}
-		}
-		getBookReadCollectionId()
+		bookReviews();
 	}, []);
 
 	useEffect(() => {
 		async function getTotalCountBookRead() {
-			const response = await fetch(`${baseUrl}/booksRead?where=bookId%3D%22${bookId}%22&count`);
-			const data = await response.json();
+			try {
+				const response = await getTotalCountBookHasBeenRead(bookId);
 
-			setTotalTimesBookRead(data);
+				setTotalTimesBookRead(response);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 		getTotalCountBookRead();
 	}, [bookIsRead]);
 
-	async function addBookToMyReadList() {
+	async function addBookToMyReadListClickHandler() {
 		try {
-			const response = await fetch(`${baseUrl}/booksRead`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-Authorization': loggedInUser.accessToken
-				},
-				body: JSON.stringify({ bookId })
-			});
-
-			if (response.ok != true) {
-				const err = await response.json();
-				const message = err.message;
-
-				throw new Error(message);
-			}
-
-			const data = await response.json();
+			await addBookToUserReadList(bookId);
 
 			setTotalTimesBookRead(oldCount => oldCount + 1);
-			updateMyReadBooks();
+			updateUserReadBooks();
 			setBookIsRead(oldState => !oldState);
 		} catch (error) {
 			console.log(error)
@@ -107,7 +84,6 @@ export default function BookDetails({
 		showBodyScroll(false);
 	}
 
-
 	function hideAlertDeleteBook() {
 		setAlertDeleteBook(oldState => !oldState);
 		showBodyScroll(true);
@@ -116,10 +92,21 @@ export default function BookDetails({
 	async function deleteBookHandler() {
 		await deleteBook(bookId);
 		showBodyScroll(true);
-		updateMyPostedBooks();
+		updateUserPostedBooks();
 
-		navigate('/catalog');
+		navigate('/my-account/my-published-books');
 	}
+
+	async function updateBookReviewList() {
+		try {
+			const response = await getBookReviewsById(bookId);
+			setBookReviews(response);
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	console.log(hasReviewed)
 
 	return (
 		<>
@@ -168,10 +155,8 @@ export default function BookDetails({
 							<div className="section__main-actions">
 								<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
 
-
-
-								{(!owner && !bookIsRead) &&
-									< button className="btn" onClick={addBookToMyReadList}>
+								{(loggedInUser && !isOwner && !hasRead) &&
+									< button className="btn" onClick={addBookToMyReadListClickHandler}>
 										Add to my read list
 									</button>
 								}
@@ -180,7 +165,7 @@ export default function BookDetails({
 							<BookDetailsOwnerInfo book={book} />
 						</div>
 
-						{(loggedInUser && owner) &&
+						{isOwner &&
 							<div className="section__actions">
 								<div className="section__owner-actions">
 									<button className="btn btn--edit">EDIT</button>
@@ -190,37 +175,41 @@ export default function BookDetails({
 						}
 
 
-						{/* <div className="section__comments"> */}
-						{/* <div className="section__comments-head">
-							<p>Users reviews</p>
-						</div>
+						<div className="section__comments">
+							<div className="section__comments-head">
+								<p><u>Users reviews: </u></p>
+							</div>
 
-						<div className="section__comments-list">
-							{reviews.length > 0
-								?
-								<ListReviews
-									reviews={reviews}
-									setReviews={setReviews}
-									loggedInUser={loggedInUser}
-									setLoggedInUser={setLoggedInUser}
-									deleteReviewStateHandler={deleteReviewStateHandler}
-								/>
-								: <p>no reviews yet be the first!</p>
+							<div className="section__comments-list">
+								{bookReviews.length > 0
+									?
+									<ListReviews
+										bookReviews={bookReviews}
+										userReviewedBooks={userReviewedBooks}
+										// setReviews={setReviews}
+										loggedInUser={loggedInUser}
+										updateUserReviewedBooks={updateUserReviewedBooks}
+										updateBookReviewList={updateBookReviewList}
+									// setLoggedInUser={setLoggedInUser}
+									// deleteReviewStateHandler={deleteReviewStateHandler}
+									/>
+									: <p>no reviews yet be the first!</p>
+								}
+							</div>
+							{(!hasReviewed && loggedInUser)
+								? <div className="section__comment-form">
+									<header className="section__comment-form-head">
+										<h6>Write a review</h6>
+									</header>
+									<div className="section__comment-form-body">
+										<FormReview
+											updateBookReviewList={updateBookReviewList}
+										/>
+									</div>
+								</div>
+								: ''
 							}
-						</div> */}
-						{/* {!hasReviewed && isUser */}
-						{/* ? <div className="section__comment-form"> */}
-						{/* <header className="section__comment-form-head"> */}
-						{/* <h6>Write a review</h6> */}
-						{/* </header> */}
-						{/* {console.log(isVisiblePostReviewForm)} */}
-						{/* <div className="section__comment-form-body"> */}
-						{/* <FormReview /> */}
-						{/* </div> */}
-						{/* </div> */}
-						{/* : '' */}
-						{/* } */}
-						{/* </div> */}
+						</div>
 					</div>
 				</div>
 			</section >

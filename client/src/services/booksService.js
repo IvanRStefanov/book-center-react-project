@@ -14,6 +14,12 @@ export async function getSingleBook(bookId) {
     return result;
 }
 
+export async function getUserPostedBooks(userId) {
+    const response = await requester.get(baseUrl + `/?where=_ownerId%3D%22${userId}%22`);
+
+    return response;
+}
+
 export async function getLatestFiveBooks() {
     const result = await requester.get(baseUrl + '?sortBy=_createdOn%20desc&pageSize=5');
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { baseUrl } from './utils/variables';
 
+import * as requester from './requester/requester'
+
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import HomePage from './components/home-page/HomePage';
@@ -12,13 +14,16 @@ import MyAccount from './components/my-account/MyAccout';
 import MyPublishedBooks from './components/my-account/my-published-books/MyPublishedBooks';
 import MyReviewsAndRates from './components/my-account/my-reviews-and-rates/MyReviewsAndRates';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
+import { getUserReviewedBooks } from './services/reviewBookSService';
+import { getUserReadBooks } from './services/readBooksService';
+import { getUserPostedBooks } from './services/booksService';
 
 function App() {
-	const [loggedInUser, setLoggedInUser] = useState('');
-	const [reviewedBooks, setReviewedBooks] = useState([]);
-	const [readBooks, setReadBooks] = useState([]);
-	const [postedBooks, setPostedBooks] = useState([]);
 
+	const [loggedInUser, setLoggedInUser] = useState('');
+	const [userReviewedBooks, setUserReviewedBooks] = useState([]);
+	const [userReadBooks, setUserReadBooks] = useState([]);
+	const [userPostedBooks, setUserPostedBooks] = useState([]);
 
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
@@ -27,59 +32,60 @@ function App() {
 			const userFound = JSON.parse(hasLogedInUser);
 
 			setLoggedInUser(userFound);
-			console.log('app refresh');
 		}
 	}, []);
 
 	useEffect(() => {
-		async function getMyRatedBooks() {
-			const response = await fetch(`${baseUrl}/bookReviews?where=_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
+		async function getMyReviewedBooks() {
+			const response = await getUserReviewedBooks(loggedInUser._id);
 
-			setReviewedBooks(data);
+			setUserReviewedBooks(response);
 		}
-		getMyRatedBooks()
+		getMyReviewedBooks()
 
 		async function getMyReadBooks() {
-			const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
+			const response = await getUserReadBooks(loggedInUser._id);
 
-			setReadBooks(data)
+			setUserReadBooks(response)
 		}
 		getMyReadBooks()
 
 		async function getMyPostedBooks() {
-			const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
-			const data = await response.json();
+			const response = await getUserPostedBooks(loggedInUser._id);
 
-			setPostedBooks(data);
+			setUserPostedBooks(response);
 		}
 		getMyPostedBooks()
 	}, [loggedInUser]);
 
-	async function updateMyReadBooks() {
-		const response = await fetch(`${baseUrl}/booksRead?where=_ownerId%3D%22${loggedInUser._id}%22`);
-		const data = await response.json();
+	async function updateUserReadBooks() {
+		const response = await getUserReadBooks(loggedInUser._id);
 
-		setReadBooks(data)
+		setUserReadBooks(response)
 	}
 
-	async function updateMyPostedBooks() {
-		const response = await fetch(`${baseUrl}/books?where=_ownerId%3D%22${loggedInUser._id}%22`);
-		const data = await response.json();
+	async function updateUserPostedBooks() {
+		const response = await getUserPostedBooks(loggedInUser._id);
 
-		setPostedBooks(data);
+		setUserPostedBooks(response);
 	}
+
+	async function updateUserReviewedBooks() {
+		const response = await getUserReviewedBooks(loggedInUser._id);
+
+		setUserReviewedBooks(response);
+	}
+
+	// console.log(userReviewedBooks)
 
 	return (
 		<div className='wrapper'>
 			<Header
 				loggedInUser={loggedInUser}
 				setLoggedInUser={setLoggedInUser}
-				postedBooks={postedBooks}
-				readBooks={readBooks}
-				reviewedBooks={reviewedBooks}
-				updateMyPostedBooks={updateMyPostedBooks}
+				userPostedBooks={userPostedBooks}
+				userReadBooks={userReadBooks}
+				userReviewedBooks={userReviewedBooks}
 			/>
 
 			<main>
@@ -89,18 +95,18 @@ function App() {
 					<Route path="/catalog/:bookId" element={
 						<BookDetails
 							loggedInUser={loggedInUser}
-							updateMyReadBooks={updateMyReadBooks}
-							updateMyPostedBooks={updateMyPostedBooks}
-							reviewedBooks={reviewedBooks}
-						// setLoggedInUser={setLoggedInUser}
-						// postedBooks={postedBooks}
-						// readBooks={readBooks}
+							updateUserReadBooks={updateUserReadBooks}
+							userReadBooks={userReadBooks}
+							updateUserPostedBooks={updateUserPostedBooks}
+							userPostedBooks={userPostedBooks}
+							updateUserReviewedBooks={updateUserReviewedBooks}
+							userReviewedBooks={userReviewedBooks}
 						/>}
 					/>
 					<Route
 						path="/add-new-book"
-						element={<PublishPage updateMyPostedBooks={updateMyPostedBooks}/>}
-						
+						element={<PublishPage updateUserPostedBooks={updateUserPostedBooks} />}
+
 					/>
 					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
 						<Route path="my-published-books" element={

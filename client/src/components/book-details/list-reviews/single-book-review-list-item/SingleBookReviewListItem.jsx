@@ -1,48 +1,33 @@
 import { useState } from "react";
 import { baseUrl } from "../../../../utils/variables";
+import { deleteUserReview } from "../../../../services/reviewBookSService";
 
 export default function SingleBookReviewListItem({
 	review,
-	setReviews,
 	loggedInUser,
-	deleteReviewStateHandler
+	//TODO:START IMPLEMENTING USECONTEXT, TOO MUCH PROP DRILLING!!!!
+	updateUserReviewedBooks,
+	updateBookReviewList
 }) {
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	function showDeleteCommentWarning() {
-		setIsDeleting(true);
+		setIsDeleting(oldState => !oldState);
 	}
 
 	function removeDeleteCommentWarning() {
-		setIsDeleting(false);
+		setIsDeleting(oldState => !oldState);
 	}
 
-	async function deleteComment() {
+	async function deleteCommentHandler() {
 		const reviewId = review._id;
-		const accessToken = loggedInUser.accessToken;
-		
-		try {
-			const response = await fetch(`${baseUrl}/bookReviews/${reviewId}`, {
-				method: 'delete',
-				headers: {
-					'X-Authorization': accessToken,
-				}
-			});
+		const response = await deleteUserReview(reviewId);
 
-			if (response.ok != true) {
-				const error = await response.json();
-				throw new Error(error.message);
-			}
-
-			setReviews(reviews => reviews.filter(review => review._id !== reviewId));
-			deleteReviewStateHandler(false)
-			
-		} catch (error) {
-			console.log('Delete error', error.message);
-		}
+		removeDeleteCommentWarning();
+		updateUserReviewedBooks();
+		updateBookReviewList();
+		console.log(response);
 	}
-	
-
 
 	return (
 		<li>
@@ -51,7 +36,7 @@ export default function SingleBookReviewListItem({
 			</p>
 
 			<p className="list__item-author">
-				- {review.firstName} {review.lastName}
+				- {review.userFirstName} {review.userLastName}
 			</p>
 
 			{loggedInUser._id == review._ownerId
@@ -68,7 +53,7 @@ export default function SingleBookReviewListItem({
 					</div>
 
 					<div className="list__item-owner-actions">
-						<button className="list__item-warning-btn" onClick={deleteComment}>
+						<button className="list__item-warning-btn" onClick={deleteCommentHandler}>
 							Yes, I want to delete the comment.
 						</button>
 

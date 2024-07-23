@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import TileBook from '../../tile-book/TileBook.jsx';
-// import { baseUrl } from '../../../utils/variables.js';
 
 import { getLatestFiveBooks } from '../../../services/booksService.js';
 
@@ -19,7 +18,7 @@ export default function SliderNewestFive() {
 
                 setNewestFive(newestFiveBooks)
             } catch (error) {
-                console.log(error);
+                console.log(error.message);
             }
         }
 

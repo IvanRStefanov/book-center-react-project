@@ -11,16 +11,17 @@ import { login, logout, register } from "../../services/authService";
 export default function Header({
 	loggedInUser,
 	setLoggedInUser,
-	postedBooks,
-	readBooks,
-	reviewedBooks
+	userPostedBooks,
+	userReadBooks,
+	userReviewedBooks
 }) {
+	// console.log(userPostedBooks)
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
 	const [submitError, setSubmitError] = useState('');
 	const [registerSubmitError, setRegisterSubmitError] = useState('');
 	const navigate = useNavigate();
-	
+		
 	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(true);
 		showBodyScroll(false);
@@ -159,9 +160,9 @@ export default function Header({
 				loggedInUser={loggedInUser}
 				onClose={hideUserInfo}
 				onLogout={logOut}
-				postedBooks={postedBooks}
-				reviewedBooks={reviewedBooks}
-				readBooks={readBooks}
+				userPostedBooks={userPostedBooks}
+				userReviewedBooks={userReviewedBooks}
+				userReadBooks={userReadBooks}
 			/>}
 		</header>
 

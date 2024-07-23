@@ -1,4 +1,5 @@
 import { removeUserData } from '../utils/utils';
+import * as requester from '../requester/requester';
 
 const baseUrl = 'http://localhost:3030/users';
 
@@ -9,14 +10,14 @@ export async function login(email, password) {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({ email, password })
         });
 
         if (response.ok !== true) {
             const err = await response.json();
             throw new Error(err.message)
         }
-        
+
         const userData = await response.json();
         return userData;
 
@@ -26,16 +27,21 @@ export async function login(email, password) {
 }
 
 export async function register(bodyToSend) {
-    console.log(bodyToSend)
-    const { firstName, lastName, registerEmail, imageUrl, firstPassword, confPass} = bodyToSend;
-    console.log(firstName)
+    const {
+        firstName,
+        lastName,
+        registerEmail,
+        imageUrl,
+        firstPassword,
+        confPass
+    } = bodyToSend;
 
     try {
         if (firstPassword !== confPass) {
             throw new Error("Passwords don't match");
         }
 
-        if(validateEmail(registerEmail) === false) {
+        if (validateEmail(registerEmail) === false) {
             throw new Error('Invalid email addres')
         }
 
@@ -63,28 +69,30 @@ export async function register(bodyToSend) {
         if (response.ok != true) {
             const err = await response.json();
             console.log(err.message)
-            throw new Error(err.message) 
+            throw new Error(err.message)
         }
 
         const data = await response.json();
         return data;
     } catch (err) {
         throw new Error(err.message)
-        
+
     }
 }
 
 export async function logout(token) {
+    removeUserData();
+
     await fetch(`${baseUrl}/logout`, {
         headers: {
             'X-Authorization': token
         }
     });
-    removeUserData();
+    // await requester.get(baseUrl + '/logout');
 }
 
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     return regex.test(email);
 }

@@ -1,0 +1,27 @@
+import * as requester from '../requester/requester';
+
+const baseUrl = 'http://localhost:3030/data/bookReviews'
+
+export async function getBookReviewsById(bookId) {
+    const result = await requester.get(baseUrl + `?where=bookId%3D%22${bookId}%22`)
+
+    return result;
+}
+
+export async function deleteUserReview(reviewId) {
+    const result = await requester.del(baseUrl + `/${reviewId}`);
+
+    return result;
+}
+
+export async function createUserReview(comment, bookId, userFirstName, userLastName) {
+    const result = await requester.post(baseUrl, {comment, bookId, userFirstName, userLastName});
+
+    return result;
+}
+
+export async function getUserReviewedBooks(userId) {
+    const result = await requester.get(baseUrl + `?where=_ownerId%3D%22${userId}%22`);
+
+    return result;
+}

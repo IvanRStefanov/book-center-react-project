@@ -4,12 +4,16 @@ import styles from './UserDetails.module.scss'
 
 export default function UserDetails({
 	loggedInUser,
-	postedBooks,
-	reviewedBooks,
-	readBooks,
+	userPostedBooks,
+	userReviewedBooks,
+	userReadBooks,
 	onClose,
 	onLogout
 }) {
+
+	// console.log(userPostedBooks.length)
+	// console.log(userReviewedBooks.length)
+	// console.log(userReadBooks.length)
 	return (
 		<div className={styles['modal-user-details']}>
 			<div className={styles.modal__bg} onClick={onClose}></div>
@@ -32,15 +36,15 @@ export default function UserDetails({
 								<span>Email:</span> {loggedInUser.email}
 							</li>
 							<li>
-								<span>Books Added:</span> {postedBooks.length}
+								<span>Books Added:</span> {userPostedBooks.length}
 							</li>
 
 							<li>
-								<span>Books Reviewed:</span> {reviewedBooks.length}
+								<span>Books Reviewed:</span> {userReviewedBooks.length}
 							</li>
 
 							<li>
-								<span>Books Read:</span> {readBooks.length}
+								<span>Books Read:</span> {userReadBooks.length}
 							</li>
 						</ul>
 					</div>

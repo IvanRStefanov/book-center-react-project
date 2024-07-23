@@ -1,24 +1,25 @@
 import SingleBookReviewListItem from "./single-book-review-list-item/SingleBookReviewListItem";
 
 export default function ListReviews({
-	reviews,
-	setReviews,
+	bookReviews,
+	// setReviews,
 	loggedInUser,
-	setLoggedInUser,
-	deleteReviewStateHandler
+	updateUserReviewedBooks,
+	deleteReviewStateHandler,
+	updateBookReviewList
 }) {
 	return (
 
 		<ul className="list-reviews">
-			{reviews.map(review =>
+			{bookReviews.map(review =>
 				<SingleBookReviewListItem
 					key={review._id}
-					reviews={reviews}
+					// bookReviews={bookReviews}
 					review={review}
-					setReviews={setReviews}
+					// setReviews={setReviews}
 					loggedInUser={loggedInUser}
-					setLoggedInUser={setLoggedInUser}
-					deleteReviewStateHandler={deleteReviewStateHandler}
+					updateUserReviewedBooks={updateUserReviewedBooks}
+					updateBookReviewList={updateBookReviewList}
 				/>
 			)}
 		</ul>
