@@ -7,7 +7,7 @@ import { showBodyScroll } from "../../utils/utils";
 import { deleteUserReview, getBookReviewsById } from "../../services/reviewBookSService";
 
 import ListReviews from "./list-reviews/ListReviews";
-import FormReview from "./list-reviews/form-review/FormReview";
+import FormReview from "./form-review/FormReview";
 import ModalDelete from "./modal-delete/ModalDelete";
 import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo";
 
@@ -148,6 +148,10 @@ export default function BookDetails({
 
 									&nbsp;&nbsp;&nbsp;{book.description}
 								</p>
+
+								<p className="section__price">
+									<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{book.price}
+								</p>
 							</div>
 
 							<div className="section__main-actions">
@@ -199,6 +203,7 @@ export default function BookDetails({
 									<div className="section__comment-form-body">
 										<FormReview
 											bookId={bookId}
+											book={book}
 											loggedInUser={loggedInUser}
 											updateUserReviewedBooks={updateUserReviewedBooks}
 											updateBookReviewList={updateBookReviewList}

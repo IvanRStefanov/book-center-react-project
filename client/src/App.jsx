@@ -12,7 +12,7 @@ import BookDetails from './components/book-details/BookDetails';
 import PublishPage from './components/publish-page/PublishPage';
 import MyAccount from './components/my-account/MyAccout';
 import MyPublishedBooks from './components/my-account/my-published-books/MyPublishedBooks';
-import MyReviewsAndRates from './components/my-account/my-reviews-and-rates/MyReviewsAndRates';
+import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 import { getUserReviewedBooks } from './services/reviewBookSService';
 import { getUserReadBooks } from './services/readBooksService';
@@ -109,15 +109,24 @@ function App() {
 
 					/>
 					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
-						<Route path="my-published-books" element={
-							<MyPublishedBooks
-								loggedInUser={loggedInUser}
-							/>}
+						<Route
+							path="my-published-books"
+							element={
+								<MyPublishedBooks
+									loggedInUser={loggedInUser}
+									userPostedBooks={userPostedBooks}
+								/>
+							}
 						/>
-						<Route path="my-reviews-and-rates" element={
-							<MyReviewsAndRates
-								loggedInUser={loggedInUser}
-							/>}
+						<Route
+							path="my-reviews-and-rates"
+							element={
+								<MyReviews
+									loggedInUser={loggedInUser}
+									userReviewedBooks={userReviewedBooks}
+									updateUserReviewedBooks={updateUserReviewedBooks}
+								/>
+							}
 						/>
 						<Route path="my-read-books" element={<MyReadBooks />} />
 					</Route>

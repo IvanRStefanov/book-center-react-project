@@ -1143,8 +1143,13 @@ main {
 		font-size: 50px;
 	}
 
-	.section__body p+p {
+	.section__body p + p {
 		margin-top: 5px;
+	}
+
+	.section__price {
+		font-size: 20px;
+		color: rgb(255, 38, 0)
 	}
 
 	.section__main-actions {
@@ -1363,6 +1368,10 @@ main {
 
 	.section__intro {
 		font-size: 20px;
+		text-align: center;
+		max-width: 800px;
+		width: 100%;
+		margin: 0 auto 20px;
 	}
 
 	.section__inner {
@@ -1437,4 +1446,100 @@ main {
 	display: grid;
 	grid-template-columns: repeat(5, .25fr);
 	gap: 20px;
+}
+
+/* ------------------------------------------------------------ *\
+	List-user-reviewed-books
+\* ------------------------------------------------------------ */
+
+.list-user-reviewed-books {
+	list-style-type: none;
+	font-size: 16px;
+
+	.list__item {
+		position: relative;
+		padding: 30px;
+		border-radius: 10px;
+		overflow: hidden;
+		min-height: 105px;
+	}
+	
+	.list__item:nth-child(odd) {
+		background: #65A903;
+		color: #fff;
+	}
+
+	.list__item-warning {
+		color: #fff;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+		background-color: rgba($color: #000000, $alpha: .8);
+		z-index: 5;
+	}
+
+	.list__item-warning-actions {
+		display: flex;
+		gap: 20px;
+	}
+
+	.list__item-btn {
+		padding: 5px 10px;
+		background-color: red;
+		border-radius: 999em;
+		border: none;
+		cursor: pointer;
+		color: #fff;
+		transition: background-color .3s;
+
+		&:hover {
+			background-color: rgba($color: red, $alpha: .8);
+		}
+	}
+
+	.list__item-btn--reject {
+		background-color: #65A903;
+
+		&:hover {
+			background-color: #208040;
+		}
+	}
+
+	.list__item-delete-btn {
+		position: absolute;
+		top: 7px;
+		right: 7px;
+		width: 20px;
+		aspect-ratio: 1;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		border-radius: 50%;
+		opacity: .8;
+		transition: transform, opacity;
+		transition-duration: .2s;
+		transition-timing-function: ease-in-out;
+		z-index: 4;
+
+		&:hover {
+			transform: scale(1.1);
+			opacity: 1;
+		}
+	}
+
+	.list__item-delete-btn img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		height: 100%;
+	}
 }

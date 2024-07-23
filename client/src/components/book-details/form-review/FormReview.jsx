@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { createUserReview } from "../../../../services/reviewBookSService";
+import { createUserReview } from "../../../services/reviewBookSService";
 
 export default function FormReview({
 	bookId,
+	book,
 	loggedInUser,
 	updateUserReviewedBooks,
 	updateBookReviewList
@@ -18,7 +19,6 @@ export default function FormReview({
 
 	async function onPostReviewSubmitHandler(event) {
 		event.preventDefault();
-		console.log(reviewText)
 
 		try {
 			setInvalidMsg('');
@@ -27,7 +27,6 @@ export default function FormReview({
 			const message = reviewText.comment;
 			console.log(message)
 			if (message === undefined) {
-				console.log(message)
 				setInvalidMsg('Your message is empty!');
 				setSubmitting(oldState => !oldState);
 
@@ -37,16 +36,17 @@ export default function FormReview({
 			const reviewBody = {
 				comment: reviewText.comment,
 				bookId,
+				bookName: book.name,
 				userFirstName: loggedInUser.firstName,
 				userLastName: loggedInUser.lastName
 			}
-			const data = await createUserReview(reviewBody);
+			
+			await createUserReview(reviewBody);
 
 			updateUserReviewedBooks();
 			updateBookReviewList();
 
 		} catch (err) {
-			console.log(err);
 			setError('Something went wrong. Please try again later');
 		}
 	}
@@ -54,7 +54,7 @@ export default function FormReview({
 		<div className="form form--review">
 			<form onSubmit={onPostReviewSubmitHandler}>
 				<div className="form__body">
-					{invalidMsg || error &&
+					{(invalidMsg || error) &&
 						<div className="form__error">
 							{invalidMsg && <p>{invalidMsg}</p>}
 							

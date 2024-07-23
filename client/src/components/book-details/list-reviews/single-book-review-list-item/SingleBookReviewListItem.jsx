@@ -5,7 +5,6 @@ import { deleteUserReview } from "../../../../services/reviewBookSService";
 export default function SingleBookReviewListItem({
 	review,
 	loggedInUser,
-	//TODO:START IMPLEMENTING USECONTEXT, TOO MUCH PROP DRILLING!!!!
 	updateUserReviewedBooks,
 	updateBookReviewList
 }) {

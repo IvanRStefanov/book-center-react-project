@@ -2,10 +2,8 @@ import SingleBookReviewListItem from "./single-book-review-list-item/SingleBookR
 
 export default function ListReviews({
 	bookReviews,
-	// setReviews,
 	loggedInUser,
 	updateUserReviewedBooks,
-	deleteReviewStateHandler,
 	updateBookReviewList
 }) {
 	return (
