@@ -14,8 +14,8 @@ export async function deleteUserReview(reviewId) {
     return result;
 }
 
-export async function createUserReview(comment, bookId, userFirstName, userLastName) {
-    const result = await requester.post(baseUrl, {comment, bookId, userFirstName, userLastName});
+export async function createUserReview(reviewBody) {
+    const result = await requester.post(baseUrl, reviewBody);
 
     return result;
 }

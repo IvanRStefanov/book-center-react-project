@@ -14,9 +14,7 @@ export default function ListReviews({
 			{bookReviews.map(review =>
 				<SingleBookReviewListItem
 					key={review._id}
-					// bookReviews={bookReviews}
 					review={review}
-					// setReviews={setReviews}
 					loggedInUser={loggedInUser}
 					updateUserReviewedBooks={updateUserReviewedBooks}
 					updateBookReviewList={updateBookReviewList}

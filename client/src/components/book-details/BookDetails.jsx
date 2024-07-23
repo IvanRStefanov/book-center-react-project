@@ -106,8 +106,6 @@ export default function BookDetails({
 		}
 	}
 
-	console.log(hasReviewed)
-
 	return (
 		<>
 			{alertDeleteBook &&
@@ -186,12 +184,9 @@ export default function BookDetails({
 									<ListReviews
 										bookReviews={bookReviews}
 										userReviewedBooks={userReviewedBooks}
-										// setReviews={setReviews}
 										loggedInUser={loggedInUser}
 										updateUserReviewedBooks={updateUserReviewedBooks}
 										updateBookReviewList={updateBookReviewList}
-									// setLoggedInUser={setLoggedInUser}
-									// deleteReviewStateHandler={deleteReviewStateHandler}
 									/>
 									: <p>no reviews yet be the first!</p>
 								}
@@ -203,6 +198,9 @@ export default function BookDetails({
 									</header>
 									<div className="section__comment-form-body">
 										<FormReview
+											bookId={bookId}
+											loggedInUser={loggedInUser}
+											updateUserReviewedBooks={updateUserReviewedBooks}
 											updateBookReviewList={updateBookReviewList}
 										/>
 									</div>
