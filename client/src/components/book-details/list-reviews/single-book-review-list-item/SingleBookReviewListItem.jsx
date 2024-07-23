@@ -21,12 +21,11 @@ export default function SingleBookReviewListItem({
 
 	async function deleteCommentHandler() {
 		const reviewId = review._id;
-		const response = await deleteUserReview(reviewId);
+		await deleteUserReview(reviewId);
 
 		removeDeleteCommentWarning();
 		updateUserReviewedBooks();
 		updateBookReviewList();
-		console.log(response);
 	}
 
 	return (

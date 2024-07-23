@@ -9,31 +9,42 @@ export default function FormReview({
 }) {
 	const [reviewText, setReviewText] = useState('');
 	const [submitting, setSubmitting] = useState(false);
-	const [validMsg, setValidMsg] = useState(true);
+	const [invalidMsg, setInvalidMsg] = useState('');
 	const [error, setError] = useState('');
 
 	function formTextChangeHandler(e) {
-		setReviewText({ [e.target.name]: e.target.value });
+		setReviewText({ [e.target.name]: e.target.value.trim() });
 	}
 
 	async function onPostReviewSubmitHandler(event) {
 		event.preventDefault();
+		console.log(reviewText)
 
 		try {
-			setSubmitting(odlState => !odlState);
-	
+			setInvalidMsg('');
+			setSubmitting(oldState => !oldState);
+
+			const message = reviewText.comment;
+			console.log(message)
+			if (message === undefined) {
+				console.log(message)
+				setInvalidMsg('Your message is empty!');
+				setSubmitting(oldState => !oldState);
+
+				return;
+			}
+
 			const reviewBody = {
 				comment: reviewText.comment,
 				bookId,
 				userFirstName: loggedInUser.firstName,
 				userLastName: loggedInUser.lastName
 			}
-			await createUserReview(reviewBody);
+			const data = await createUserReview(reviewBody);
 
-			setSubmitting(odlState => !odlState);
 			updateUserReviewedBooks();
 			updateBookReviewList();
-			
+
 		} catch (err) {
 			console.log(err);
 			setError('Something went wrong. Please try again later');
@@ -43,6 +54,14 @@ export default function FormReview({
 		<div className="form form--review">
 			<form onSubmit={onPostReviewSubmitHandler}>
 				<div className="form__body">
+					{invalidMsg || error &&
+						<div className="form__error">
+							{invalidMsg && <p>{invalidMsg}</p>}
+							
+							{error && <p>{error}</p>}
+						</div>
+					}
+
 					<div className="form__row">
 						<label htmlFor="comment" className="form__label">Describe your reading experience</label>
 						<div className="form__controls">
@@ -52,7 +71,12 @@ export default function FormReview({
 				</div>
 
 				<div className="form__actions">
-					<input type="submit" value="submit" className="form__btn" disabled={submitting} />
+					<button
+						className={submitting ? "form__btn form__btn--spinner" : "form__btn"}
+						disabled={submitting}
+					>
+						Submit
+					</button>
 				</div>
 			</form>
 		</div>
