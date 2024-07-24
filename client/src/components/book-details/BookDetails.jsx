@@ -178,8 +178,8 @@ export default function BookDetails({
 						{isOwner &&
 							<div className="section__actions">
 								<div className="section__owner-actions">
-									<button className="btn btn--edit">EDIT</button>
-									<button href="#" className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
+									<Link to={`/catalog/${bookId}/edit`}><button className="btn btn--edit">EDIT</button></Link>
+									<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
 								</div>
 							</div>
 						}

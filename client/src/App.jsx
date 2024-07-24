@@ -11,6 +11,7 @@ import MyAccount from './components/my-account/MyAccout';
 import MyPublishedBooks from './components/my-account/my-published-books/MyPublishedBooks';
 import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
+import BookEdit from './components/book-edit/BookEdit';
 
 import { getUserReviewedBooks } from './services/reviewBookSService';
 import { getUserReadBooks } from './services/readBooksService';
@@ -99,6 +100,7 @@ function App() {
 							userReviewedBooks={userReviewedBooks}
 						/>}
 					/>
+					<Route path="/catalog/:bookId/edit" element={<BookEdit userPostedBooks={userPostedBooks}/>} />
 					<Route
 						path="/add-new-book"
 						element={
