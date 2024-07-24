@@ -16,22 +16,31 @@ export default function CatalogPage() {
 	}, [])
 
 	return (
-		<section className="section-catalog">
+		<section className={books.length > 0 ? "section-catalog" : "section-catalog section-catalog--empty"}>
 			<div className="shell">
 				<div className="section__inner">
-					<div className="section__aside">
+					{books.length > 0
+						?
+						<>
+							<div className="section__aside">
 
-					</div>
+							</div>
 
-					<div className="section__main">
-						<div className="section__items">
-							{books.map(book =>
-								<div className="section__item" key={book._id}>
-									<TileBook book={book} className="tile-book tile-book--catalog" />
+							<div className="section__main">
+								<div className="section__items">
+									{books.map(book =>
+										<div className="section__item" key={book._id}>
+											<TileBook book={book} className="tile-book tile-book--catalog" />
+										</div>
+									)}
 								</div>
-							)}
+							</div>
+						</>
+						:
+						<div className="section__empty">
+							<p>There are no books currently.</p>
 						</div>
-					</div>
+					}
 				</div>
 			</div>
 		</section>

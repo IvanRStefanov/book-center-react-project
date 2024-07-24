@@ -1,7 +1,8 @@
-import styles from'./ModalDelete.module.scss'
+import styles from './ModalDelete.module.scss'
 
 export default function ModalDelete({
     book,
+    isDeleting,
     hideAlertDeleteBook,
     deleteBookHandler
 }) {
@@ -12,7 +13,7 @@ export default function ModalDelete({
             <div className={styles.modal__shell}>
                 <div className={styles.modal__content}>
                     <span className={styles['modal__close-btn']} onClick={hideAlertDeleteBook}></span>
-                    
+
                     <div className={styles.modal__body}>
                         <div className={styles.modal__title}>
                             <h6>You are about to <strong>delete</strong><br></br>{book.name}</h6>
@@ -32,6 +33,10 @@ export default function ModalDelete({
                             </div>
                         </div>
                     </div>
+
+                    {isDeleting &&
+                        <div className={styles['modal__delete-loading']}></div>
+                    } 
                 </div>
             </div>
         </div>

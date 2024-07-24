@@ -25,6 +25,7 @@ export default function BookDetails({
 	const { bookId } = useParams();
 
 	const [book, setBook] = useState({});
+	const [isDeleting, setIsDeleting] = useState(false);
 	const [totaltimesBookRead, setTotalTimesBookRead] = useState(0);
 	const [bookIsRead, setBookIsRead] = useState(false);
 	const [alertDeleteBook, setAlertDeleteBook] = useState(false);
@@ -91,8 +92,10 @@ export default function BookDetails({
 	}
 
 	async function deleteBookHandler() {
+		setIsDeleting(oldState => !oldState);
 		await deleteBookFromOtherCollectionsAsAdmin(bookId);
 		await deleteBook(bookId);
+		setIsDeleting(oldState => !oldState);
 		showBodyScroll(true);
 		updateUserReviewedBooks();
 		updateUserPostedBooks();
@@ -115,6 +118,7 @@ export default function BookDetails({
 			{alertDeleteBook &&
 				<ModalDelete
 					book={book}
+					isDeleting={isDeleting}
 					deleteBookHandler={deleteBookHandler}
 					hideAlertDeleteBook={hideAlertDeleteBook}
 				/>
