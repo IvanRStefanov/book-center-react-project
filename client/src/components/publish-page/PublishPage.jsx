@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import PublishForm from "./publish-form/PublishForm";
 
 export default function PublishPage({
-	updateMyPostedBooks
+	loggedInUser,
+	updateUserPostedBooks
 }) {
 	const [formValues, setFormValues] = useState({});
 	const [processing, setProcessing] = useState(false);
@@ -27,8 +28,13 @@ export default function PublishPage({
 
 		try {
 			setProcessing(oldState => !oldState);
-			const response = await createNewBook(formValues);
-			updateMyPostedBooks();
+			const response = await createNewBook({
+				...formValues,
+				publisherEmail: loggedInUser.email,
+				publisherFirstName: loggedInUser.firstName,
+				publisherLastName: loggedInUser.lastName,
+			});
+			updateUserPostedBooks();
 			navigate('/catalog/' + response._id);
 
 		} catch (error) {

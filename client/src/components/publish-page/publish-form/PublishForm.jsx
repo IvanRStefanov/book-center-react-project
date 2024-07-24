@@ -105,7 +105,7 @@ export default function PublishForm({
                         <label htmlFor="price" className="form__label">Price</label>
 
                         <div className="form__controls">
-                            <input type="text" className="field" name="price" id="price" onChange={changeHandler} />
+                            <input type="number" className="field" name="price" id="price" step={.01} min={0} onChange={changeHandler} />
                         </div>
                     </div>
                 </div>
