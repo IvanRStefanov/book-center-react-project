@@ -836,7 +836,7 @@ main {
 	.checkboxes {
 		list-style: none;
 		display: grid;
-		grid-template-columns: repeat(6, .16667fr);
+		grid-template-columns: repeat(6, .16667 fr);
 		gap: 20px;
 		font-size: 18px;
 	}
