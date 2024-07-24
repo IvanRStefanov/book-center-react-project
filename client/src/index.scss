@@ -183,6 +183,8 @@ img {
 \* ------------------------------------------------------------ */
 
 main {
+	display: flex;
+	flex-direction: column;
 	flex-grow: 1;
 }
 
@@ -432,8 +434,6 @@ main {
 
 	.tile__img-loading-spinner {
 		position: absolute;
-		top: 50%;
-		left: 50%;
 		display: block;
 		width: 25px;
 		aspect-ratio: 1;
@@ -1080,7 +1080,25 @@ main {
 		flex: 0 0 25%;
 		padding: 0 10px;
 	}
+
+	.section__empty {
+		grid-column: 1 / span 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 30px;
+	}
 }
+
+/*  Section-catalog--empty  */
+.section-catalog--empty {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+
 
 /* ------------------------------------------------------------ *\
 	Loading animation
