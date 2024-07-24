@@ -27,7 +27,63 @@ export async function getLatestFiveBooks() {
 }
 
 export async function deleteBook(bookId) {
-   await requester.del(baseUrl + `/${bookId}`);
+    await requester.del(baseUrl + `/${bookId}`);
+}
+
+export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
+    try {
+        const readCollectionUrl = 'http://localhost:3030/data/booksRead';
+        const reviewsCollectionUrl = 'http://localhost:3030/data/bookReviews';
+
+        const bookReadCollectionsByBookIdResponse = await fetch(`${readCollectionUrl}?where=bookId%3D%22${bookId}%22`);
+        if(bookReadCollectionsByBookIdResponse.ok != true) {
+            const err = await bookReadCollectionsByBookIdResponse.json();
+            throw new Error(err.message);
+        }
+        const bookReadCollectionsByBookIdData = await bookReadCollectionsByBookIdResponse.json();
+
+        const bookReviewCollectionsByBookIdResponse = await fetch(`${reviewsCollectionUrl}?where=bookId%3D%22${bookId}%22`);
+        if(bookReviewCollectionsByBookIdResponse.ok != true) {
+            const err = await bookReviewCollectionsByBookIdResponse.json();
+            throw new Error(err.message)
+        }
+        const bookReviewCollectionsByBookIdData = await bookReviewCollectionsByBookIdResponse.json();
+
+        console.log('bookReadCollectionsByBookId DATA: ', bookReadCollectionsByBookIdData)
+        console.log('bookReviewCollectionsByBookId DATA: ', bookReviewCollectionsByBookIdData)
+
+        bookReadCollectionsByBookIdData.forEach(async (collection) => {
+            const delResponseReadCollection = await fetch(`${readCollectionUrl}/${collection._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-Admin': ''
+                }
+            });
+
+            if(delResponseReadCollection.ok != true) {
+                const err = await delResponseReadCollection.json();
+                throw new Error(err.message)
+            }
+        })
+
+        bookReviewCollectionsByBookIdData.forEach(async (collection) => {
+            const delResponseReviewCollection = await fetch(`${reviewsCollectionUrl}/${collection._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-Admin': ''
+                }
+            });
+
+            if(delResponseReviewCollection.ok != true) {
+                const err = await delResponseReviewCollection.json();
+                throw new Error(err.message)
+            }
+        })
+
+    } catch (error) {
+        console.log(error.message);
+    }
+
 }
 
 export async function createNewBook(bookData) {

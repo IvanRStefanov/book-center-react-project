@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { addBookToUserReadList, getTotalCountBookHasBeenRead } from "../../services/readBooksService";
-import { deleteBook, getSingleBook } from "../../services/booksService";
+import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
 import { deleteUserReview, getBookReviewsById } from "../../services/reviewBookSService";
 
@@ -91,9 +91,12 @@ export default function BookDetails({
 	}
 
 	async function deleteBookHandler() {
+		await deleteBookFromOtherCollectionsAsAdmin(bookId);
 		await deleteBook(bookId);
 		showBodyScroll(true);
+		updateUserReviewedBooks();
 		updateUserPostedBooks();
+		updateUserReadBooks();
 
 		navigate('/my-account/my-published-books');
 	}
