@@ -15,7 +15,7 @@ export default function MyPublishedBooks({
 
 	return (
 		<>
-			<ul className="list-published-books">
+			<ul className="list-books">
 				{userPostedBooks.map(book => 
 					<li key={book._id}>
 						<TileBook book={book} />

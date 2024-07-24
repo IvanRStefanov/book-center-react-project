@@ -17,6 +17,7 @@ export default function MyReviews({
 		<ul className="list-user-reviewed-books">
 			{userReviewedBooks.map(review =>
 				<SIngleUserReviewItem
+				key={review._id}
 				review={review}
 				updateUserReviewedBooks={updateUserReviewedBooks}
 				userReviewedBooks={userReviewedBooks}

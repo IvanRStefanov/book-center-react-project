@@ -23,7 +23,7 @@ export default function SIngleUserReviewItem({
     }
 
     return (
-        <li className="list__item" key={review._id}>
+        <li className="list__item">
             {isDeleting &&
                 <div className="list__item-warning">
                     <p>Are you sure you want to delete this review?</p>

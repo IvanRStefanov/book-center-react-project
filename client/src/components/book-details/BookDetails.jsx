@@ -68,8 +68,9 @@ export default function BookDetails({
 	}, [bookIsRead]);
 
 	async function addBookToMyReadListClickHandler() {
+		console.log(book)
 		try {
-			await addBookToUserReadList(bookId);
+			await addBookToUserReadList(bookId, book.imgUrl);
 
 			setTotalTimesBookRead(oldCount => oldCount + 1);
 			updateUserReadBooks();

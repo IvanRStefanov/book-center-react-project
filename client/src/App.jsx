@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { baseUrl } from './utils/variables';
-
-import * as requester from './requester/requester'
 
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
@@ -14,6 +11,7 @@ import MyAccount from './components/my-account/MyAccout';
 import MyPublishedBooks from './components/my-account/my-published-books/MyPublishedBooks';
 import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
+
 import { getUserReviewedBooks } from './services/reviewBookSService';
 import { getUserReadBooks } from './services/readBooksService';
 import { getUserPostedBooks } from './services/booksService';
@@ -76,8 +74,6 @@ function App() {
 		setUserReviewedBooks(response);
 	}
 
-	// console.log(userReviewedBooks)
-
 	return (
 		<div className='wrapper'>
 			<Header
@@ -128,7 +124,14 @@ function App() {
 								/>
 							}
 						/>
-						<Route path="my-read-books" element={<MyReadBooks />} />
+						<Route path="my-read-books" element={
+							<MyReadBooks
+								loggedInUser={loggedInUser}
+								userReadBooks={userReadBooks}
+								updateUserReadBooks={updateUserReadBooks}
+							/>
+						}
+						/>
 					</Route>
 				</Routes>
 			</main>

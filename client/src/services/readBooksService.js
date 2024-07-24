@@ -7,8 +7,8 @@ export async function getTotalCountBookHasBeenRead(bookId) {
 
     return response;
 }
-export async function addBookToUserReadList(bookId) {
-    const response = await requester.post(baseUrl, {bookId});
+export async function addBookToUserReadList(bookId, bookImgUrl) {
+    const response = await requester.post(baseUrl, {bookId, bookImgUrl});
 
     return response;
 }
