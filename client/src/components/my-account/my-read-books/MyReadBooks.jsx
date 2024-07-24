@@ -8,7 +8,6 @@ export default function MyReadBooks({
 	userReadBooks,
 	updateUserReadBooks
 }) {
-	console.log(userReadBooks)
 	const navigate = useNavigate();
 
 	if (!loggedInUser) {
@@ -19,7 +18,7 @@ export default function MyReadBooks({
 	return (
 		<ul className="list-books">
 			{userReadBooks.map(readBook =>
-				<li>
+				<li key={readBook._id}>
 					<TileReadBook
 						key={readBook._id}
 						readBook={readBook}

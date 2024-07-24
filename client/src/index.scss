@@ -1143,7 +1143,7 @@ main {
 		font-size: 50px;
 	}
 
-	.section__body p + p {
+	.section__body p+p {
 		margin-top: 5px;
 	}
 
@@ -1235,12 +1235,7 @@ main {
 
 	li:nth-child(odd) {
 		box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
-		
-	}
 
-	li+li {
-		// padding-top: 30px;
-		// border-top: 2px solid rgba($color: #000000, $alpha: .3);
 	}
 
 	.list__item-comment {
@@ -1471,7 +1466,7 @@ main {
 		overflow: hidden;
 		min-height: 105px;
 	}
-	
+
 	.list__item:nth-child(odd) {
 		box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
 
