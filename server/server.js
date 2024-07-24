@@ -1505,30 +1505,35 @@
 			"8268087d-1ab7-49cd-b41d-2718aefaed4c": {
 				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
 				"bookId": "3987279d-0ad4-4afb-8ca9-5b256ae3b298",
+				"bookImgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
 				"_createdOn": 1721306776029,
 				"_id": "8268087d-1ab7-49cd-b41d-2718aefaed4c"
 			},
 			"50ac2bda-1ce4-4600-9e44-fdd0b767d4fa": {
 				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
 				"bookId": "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
+				"bookImgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
 				"_createdOn": 1721306818062,
 				"_id": "50ac2bda-1ce4-4600-9e44-fdd0b767d4fa"
 			},
 			"16589d16-783a-4a3e-b4fe-5eb270630bfd": {
 				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
 				"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+				"bookImgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
 				"_createdOn": 1721306887227,
 				"_id": "16589d16-783a-4a3e-b4fe-5eb270630bfd"
 			},
 			"7cec1ac8-149e-43c8-92eb-8f1e2985478f": {
 				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
 				"bookId": "0a272c58-b7ea-4e09-a000-7ec988248f66",
+				"bookImgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
 				"_createdOn": 1721306911952,
 				"_id": "7cec1ac8-149e-43c8-92eb-8f1e2985478f"
 			},
 			"da20fa71-8e21-4874-b9e2-888224f7d60a": {
 				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
 				"bookId": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+				"bookImgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
 				"_createdOn": 1721375321964,
 				"_id": "da20fa71-8e21-4874-b9e2-888224f7d60a"
 			}
