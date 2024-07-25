@@ -63,7 +63,6 @@ export default function BookDetails() {
 	}, [bookIsRead]);
 
 	async function addBookToMyReadListClickHandler() {
-		console.log(book)
 		try {
 			await addBookToUserReadList(bookId, book.imgUrl);
 

@@ -1,13 +1,21 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import UserContext from "../../contexts/UserContext";
 
 export default function BookEdit() {
   const { bookId } = useParams();
   const UserCTX = useContext(UserContext)
-
+  
+  if(!UserCTX.user) {
+    return <Navigate to={'/'} />
+  }
+  
   const book = UserCTX.postedBooks.find(postedBook => postedBook._id === bookId);
+  
+  if(!book) {
+    return <Navigate to={'/'} />
+  }
 
   return (
     <section className="section-edit-book">
