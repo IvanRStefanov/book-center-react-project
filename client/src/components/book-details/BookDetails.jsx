@@ -1,26 +1,21 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { addBookToUserReadList, getTotalCountBookHasBeenRead } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
-import { deleteUserReview, getBookReviewsById } from "../../services/reviewBookSService";
+import { getBookReviewsById } from "../../services/reviewBookSService";
+
+import UserContext from "../../contexts/UserContext";
 
 import ListReviews from "./list-reviews/ListReviews";
 import FormReview from "./form-review/FormReview";
 import ModalDelete from "./modal-delete/ModalDelete";
 import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo";
 
-export default function BookDetails({
-	loggedInUser,
-	updateUserReadBooks,
-	userReadBooks,
-	updateUserPostedBooks,
-	userPostedBooks,
-	updateUserReviewedBooks,
-	userReviewedBooks,
-}) {
+export default function BookDetails() {
 	const navigate = useNavigate();
+	const UserCTX = useContext(UserContext)
 
 	const { bookId } = useParams();
 
@@ -31,10 +26,9 @@ export default function BookDetails({
 	const [alertDeleteBook, setAlertDeleteBook] = useState(false);
 	const [bookReviews, setBookReviews] = useState([]);
 
-	const hasRead = userReadBooks.findIndex(book => (book.bookId == bookId)) >= 0;
-	const isOwner = userPostedBooks.findIndex(book => (book._id === bookId)) >= 0;
-	const hasReviewed = userReviewedBooks.findIndex(book => (book.bookId === bookId)) >= 0;
-
+	const hasRead = UserCTX.readBooks.findIndex(book => (book.bookId == bookId)) >= 0;
+	const isOwner = UserCTX.postedBooks.findIndex(book => (book._id === bookId)) >= 0;
+	const hasReviewed = UserCTX.reviewedBooks.findIndex(book => (book.bookId === bookId)) >= 0;
 
 	useEffect(() => {
 		async function getBook() {
@@ -74,7 +68,7 @@ export default function BookDetails({
 			await addBookToUserReadList(bookId, book.imgUrl);
 
 			setTotalTimesBookRead(oldCount => oldCount + 1);
-			updateUserReadBooks();
+			UserCTX.updateReadBooks();
 			setBookIsRead(oldState => !oldState);
 		} catch (error) {
 			console.log(error)
@@ -97,9 +91,9 @@ export default function BookDetails({
 		await deleteBook(bookId);
 		setIsDeleting(oldState => !oldState);
 		showBodyScroll(true);
-		updateUserReviewedBooks();
-		updateUserPostedBooks();
-		updateUserReadBooks();
+		UserCTX.updatePostedBooks();
+		UserCTX.updateReadBooks();
+		UserCTX.updateReviews();
 
 		navigate('/my-account/my-published-books');
 	}
@@ -165,7 +159,7 @@ export default function BookDetails({
 							<div className="section__main-actions">
 								<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
 
-								{(loggedInUser && !isOwner && !hasRead) &&
+								{(UserCTX.user && !isOwner && !hasRead) &&
 									< button className="btn" onClick={addBookToMyReadListClickHandler}>
 										Add to my read list
 									</button>
@@ -178,7 +172,7 @@ export default function BookDetails({
 						{isOwner &&
 							<div className="section__actions">
 								<div className="section__owner-actions">
-									<Link to={`/catalog/${bookId}/edit`}><button className="btn btn--edit">EDIT</button></Link>
+									<Link to={`/catalog/${bookId}/edit`} className="btn btn--edit">EDIT</Link>
 									<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
 								</div>
 							</div>
@@ -195,25 +189,21 @@ export default function BookDetails({
 									?
 									<ListReviews
 										bookReviews={bookReviews}
-										userReviewedBooks={userReviewedBooks}
-										loggedInUser={loggedInUser}
-										updateUserReviewedBooks={updateUserReviewedBooks}
 										updateBookReviewList={updateBookReviewList}
 									/>
 									: <p>no reviews yet be the first!</p>
 								}
 							</div>
-							{(!hasReviewed && loggedInUser)
+							{(!hasReviewed && UserCTX.user)
 								? <div className="section__comment-form">
-									<header className="section__comment-form-head">
+									<div className="section__comment-form-head">
 										<h6>Write a review</h6>
-									</header>
+									</div>
+									
 									<div className="section__comment-form-body">
 										<FormReview
 											bookId={bookId}
 											book={book}
-											loggedInUser={loggedInUser}
-											updateUserReviewedBooks={updateUserReviewedBooks}
 											updateBookReviewList={updateBookReviewList}
 										/>
 									</div>

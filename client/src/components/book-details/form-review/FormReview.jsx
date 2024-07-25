@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createUserReview } from "../../../services/reviewBookSService";
+
+import UserContext from "../../../contexts/UserContext";
 
 export default function FormReview({
 	bookId,
 	book,
-	loggedInUser,
-	updateUserReviewedBooks,
 	updateBookReviewList
 }) {
 	const [reviewText, setReviewText] = useState('');
 	const [submitting, setSubmitting] = useState(false);
 	const [invalidMsg, setInvalidMsg] = useState('');
 	const [error, setError] = useState('');
+
+	const UserCTX = useContext(UserContext);
 
 	function formTextChangeHandler(e) {
 		setReviewText({ [e.target.name]: e.target.value.trim() });
@@ -25,7 +27,7 @@ export default function FormReview({
 			setSubmitting(oldState => !oldState);
 
 			const message = reviewText.comment;
-			console.log(message)
+
 			if (message === undefined) {
 				setInvalidMsg('Your message is empty!');
 				setSubmitting(oldState => !oldState);
@@ -37,13 +39,13 @@ export default function FormReview({
 				comment: reviewText.comment,
 				bookId,
 				bookName: book.name,
-				userFirstName: loggedInUser.firstName,
-				userLastName: loggedInUser.lastName
+				userFirstName: UserCTX.user.firstName,
+				userLastName: UserCTX.user.lastName
 			}
 			
 			await createUserReview(reviewBody);
 
-			updateUserReviewedBooks();
+			UserCTX.updateReviews();
 			updateBookReviewList();
 
 		} catch (err) {

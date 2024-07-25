@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import UserContext from './contexts/UserContext';
+
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import HomePage from './components/home-page/HomePage';
@@ -17,12 +19,25 @@ import { getUserReviewedBooks } from './services/reviewBookSService';
 import { getUserReadBooks } from './services/readBooksService';
 import { getUserPostedBooks } from './services/booksService';
 
+
 function App() {
 
 	const [loggedInUser, setLoggedInUser] = useState('');
 	const [userReviewedBooks, setUserReviewedBooks] = useState([]);
 	const [userReadBooks, setUserReadBooks] = useState([]);
 	const [userPostedBooks, setUserPostedBooks] = useState([]);
+
+	const user = {
+		user: loggedInUser || '',
+		updateUser: setLoggedInUser || function () { },
+		postedBooks: userPostedBooks || [],
+		updatePostedBooks: updateUserPostedBooks || function () { },
+		reviewedBooks: userReviewedBooks || [],
+		updateReviews: updateUserReviewedBooks || function () { },
+		readBooks: userReadBooks || [],
+		updateReadBooks: updateUserReadBooks || function () { },
+	}
+	// console.log(user)
 
 	useEffect(() => {
 		const hasLogedInUser = sessionStorage.getItem('userData');
@@ -76,74 +91,28 @@ function App() {
 	}
 
 	return (
-		<div className='wrapper'>
-			<Header
-				loggedInUser={loggedInUser}
-				setLoggedInUser={setLoggedInUser}
-				userPostedBooks={userPostedBooks}
-				userReadBooks={userReadBooks}
-				userReviewedBooks={userReviewedBooks}
-			/>
+		<UserContext.Provider value={user}>
+			<div className='wrapper'>
+				<Header />
 
-			<main>
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/catalog" element={<CatalogPage />} />
-					<Route path="/catalog/:bookId" element={
-						<BookDetails
-							loggedInUser={loggedInUser}
-							updateUserReadBooks={updateUserReadBooks}
-							userReadBooks={userReadBooks}
-							updateUserPostedBooks={updateUserPostedBooks}
-							userPostedBooks={userPostedBooks}
-							updateUserReviewedBooks={updateUserReviewedBooks}
-							userReviewedBooks={userReviewedBooks}
-						/>}
-					/>
-					<Route path="/catalog/:bookId/edit" element={<BookEdit userPostedBooks={userPostedBooks}/>} />
-					<Route
-						path="/add-new-book"
-						element={
-							<PublishPage
-								loggedInUser={loggedInUser}
-								updateUserPostedBooks={updateUserPostedBooks}
-							/>
-						}
-					/>
-					<Route path="/my-account" element={<MyAccount loggedInUser={loggedInUser} />}>
-						<Route
-							path="my-published-books"
-							element={
-								<MyPublishedBooks
-									loggedInUser={loggedInUser}
-									userPostedBooks={userPostedBooks}
-								/>
-							}
-						/>
-						<Route
-							path="my-reviews-and-rates"
-							element={
-								<MyReviews
-									loggedInUser={loggedInUser}
-									userReviewedBooks={userReviewedBooks}
-									updateUserReviewedBooks={updateUserReviewedBooks}
-								/>
-							}
-						/>
-						<Route path="my-read-books" element={
-							<MyReadBooks
-								loggedInUser={loggedInUser}
-								userReadBooks={userReadBooks}
-								updateUserReadBooks={updateUserReadBooks}
-							/>
-						}
-						/>
-					</Route>
-				</Routes>
-			</main>
+				<main>
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/catalog" element={<CatalogPage />} />
+						<Route path="/catalog/:bookId" element={<BookDetails />} />
+						<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
+						<Route path="/add-new-book" element={<PublishPage />} />
+						<Route path="/my-account" element={<MyAccount />}>
+							<Route path="my-published-books" element={<MyPublishedBooks />} />
+							<Route path="my-reviews-and-rates" element={<MyReviews />} />
+							<Route path="my-read-books" element={<MyReadBooks />} />
+						</Route>
+					</Routes>
+				</main>
 
-			<Footer />
-		</div>
+				<Footer />
+			</div>
+		</UserContext.Provider>
 	)
 }
 

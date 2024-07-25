@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, Navigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
 
-export default function MyAccount({
-	loggedInUser
-}) {
-	if (!loggedInUser) {
-		return <Navigate to="/" />
+export default function MyAccount() {
+	const navigate = useNavigate();
+	const UserCTX = useContext(UserContext);
+
+	if(!UserCTX.user) {
+		navigate('/');
+
+		return;
 	}
-
+	
 	return (
 		<section className="section-my-acc">
 			<div className="shell">
 				<div className="section__intro">
-					<p>Hello {loggedInUser.firstName} {loggedInUser.lastName}, here you can find usefull information and utilities about your posts, rated and read books.</p>
+					<p>Hello {UserCTX.user.firstName} {UserCTX.user.lastName}, here you can find usefull information and utilities about your reviews, posted and read books.</p>
 				</div>
 
 				<div className="section__inner">
@@ -28,7 +32,7 @@ export default function MyAccount({
 
 									<li>
 										<NavLink to="my-reviews-and-rates">
-											Reviews & Rates
+											Reviews
 										</NavLink>
 									</li>
 

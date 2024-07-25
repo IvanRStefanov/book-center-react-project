@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { baseUrl } from "../../../../utils/variables";
+import { useContext, useState } from "react";
 import { deleteUserReview } from "../../../../services/reviewBookSService";
+
+import UserContext from "../../../../contexts/UserContext";
 
 export default function SingleBookReviewListItem({
 	review,
-	loggedInUser,
-	updateUserReviewedBooks,
 	updateBookReviewList
 }) {
+	const UserCTX = useContext(UserContext);
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	function showDeleteCommentWarning() {
@@ -23,8 +23,8 @@ export default function SingleBookReviewListItem({
 		await deleteUserReview(reviewId);
 
 		removeDeleteCommentWarning();
-		updateUserReviewedBooks();
 		updateBookReviewList();
+		UserCTX.updateReviews();
 	}
 
 	return (
@@ -37,7 +37,7 @@ export default function SingleBookReviewListItem({
 				- {review.userFirstName} {review.userLastName}
 			</p>
 
-			{loggedInUser._id == review._ownerId
+			{UserCTX.user._id == review._ownerId
 				? <button className="list__item-owner-delete-btn" onClick={showDeleteCommentWarning}>
 					<img src="../../src/assets/images/delete-icon.png" alt="" />
 				</button>

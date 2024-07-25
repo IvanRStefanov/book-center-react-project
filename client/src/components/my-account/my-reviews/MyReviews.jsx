@@ -1,26 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import UserContext from "../../../contexts/UserContext";
 import SIngleUserReviewItem from "./single-user-review-item/SingleUserReviewItem";
 
-export default function MyReviews({
-	loggedInUser,
-	userReviewedBooks,
-	updateUserReviewedBooks
-}) {
-	
+export default function MyReviews() {
+
+	const UserCTX = useContext(UserContext);
 	const navigate = useNavigate();
 
-	if (!loggedInUser) {
+	if (!UserCTX.user) {
 		navigate('/');
 	}
 
 	return (
 		<ul className="list-user-reviewed-books">
-			{userReviewedBooks.map(review =>
+			{UserCTX.reviewedBooks.map(review =>
 				<SIngleUserReviewItem
-				key={review._id}
-				review={review}
-				updateUserReviewedBooks={updateUserReviewedBooks}
-				userReviewedBooks={userReviewedBooks}
+					key={review._id}
+					review={review}
 				/>
 			)}
 		</ul>

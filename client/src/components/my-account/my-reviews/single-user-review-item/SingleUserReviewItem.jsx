@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteUserReview } from "../../../../services/reviewBookSService";
 
+import UserContext from "../../../../contexts/UserContext";
+
 export default function SIngleUserReviewItem({
     review,
-    updateUserReviewedBooks
 }) {
+    const UserCTX = useContext(UserContext)
     const [isDeleting, setIsDeleting] = useState(false)
 
     async function displayWarning() {
@@ -18,8 +20,8 @@ export default function SIngleUserReviewItem({
 
     async function handleDeleteReview() {
         await deleteUserReview(review._id);
-        updateUserReviewedBooks();
-        hideWarning()
+        UserCTX.updateReviews();
+        hideWarning();
     }
 
     return (

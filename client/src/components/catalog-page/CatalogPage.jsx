@@ -15,8 +15,6 @@ export default function CatalogPage() {
 		getAllBooks();
 	}, [])
 
-	console.log(books)
-
 	return (
 		<section className={books.length > 0 ? "section-catalog" : "section-catalog section-catalog--empty"}>
 			<div className="shell">

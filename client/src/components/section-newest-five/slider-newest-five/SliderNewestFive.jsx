@@ -6,7 +6,6 @@ import { getLatestFiveBooks } from '../../../services/booksService.js';
 
 import 'swiper/css';
 
-
 export default function SliderNewestFive() {
     const [newestFiveBooks, setNewestFive] = useState([]);
 

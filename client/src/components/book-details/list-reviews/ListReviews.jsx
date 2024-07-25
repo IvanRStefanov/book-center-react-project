@@ -2,8 +2,6 @@ import SingleBookReviewListItem from "./single-book-review-list-item/SingleBookR
 
 export default function ListReviews({
 	bookReviews,
-	loggedInUser,
-	updateUserReviewedBooks,
 	updateBookReviewList
 }) {
 	return (
@@ -13,8 +11,6 @@ export default function ListReviews({
 				<SingleBookReviewListItem
 					key={review._id}
 					review={review}
-					loggedInUser={loggedInUser}
-					updateUserReviewedBooks={updateUserReviewedBooks}
 					updateBookReviewList={updateBookReviewList}
 				/>
 			)}

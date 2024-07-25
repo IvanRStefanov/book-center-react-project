@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import UserContext from "../../contexts/UserContext";
+
 import { setUserData, showBodyScroll } from "../../utils/utils";
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
@@ -7,20 +10,14 @@ import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 import UserDetails from "./user-details/UserDetails";
 import { login, logout, register } from "../../services/authService";
 
-
-export default function Header({
-	loggedInUser,
-	setLoggedInUser,
-	userPostedBooks,
-	userReadBooks,
-	userReviewedBooks
-}) {
-	// console.log(userPostedBooks)
+export default function Header() {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
 	const [submitError, setSubmitError] = useState('');
 	const [registerSubmitError, setRegisterSubmitError] = useState('');
+	
 	const navigate = useNavigate();
+	const UserCTX = useContext(UserContext)
 		
 	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(true);
@@ -45,7 +42,7 @@ export default function Header({
 			const userData = await login(email, password);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData);
+			UserCTX.updateUser(userData);
 			navigate('/');
 		} catch (error) {
 			setSubmitError(error.message);
@@ -70,7 +67,7 @@ export default function Header({
 			const userData = await register(bodytoSend);
 			setUserData(userData);
 			hideLoginRegisterModal();
-			setLoggedInUser(userData);
+			UserCTX.updateUser(userData)
 			navigate('/');
 		} catch (error) {
 			setRegisterSubmitError(error.message);
@@ -88,10 +85,10 @@ export default function Header({
 	}
 
 	function logOut() {
-		logout(loggedInUser.accessToken);
+		logout(UserCTX.user.accessToken)
 		setShowUserDetails(false);
 		showBodyScroll(true);
-		setLoggedInUser('');
+		UserCTX.updateUser('')
 		navigate('/');
 	}
 
@@ -125,7 +122,7 @@ export default function Header({
 										<NavLink to="/about">About</NavLink>
 									</li>
 
-									{loggedInUser &&
+									{UserCTX.user &&
 										<li>
 											<NavLink to="/add-new-book">Publish</NavLink>
 										</li>
@@ -135,9 +132,8 @@ export default function Header({
 						</div>
 
 
-						{loggedInUser ? <HeaderUserUtils
+						{UserCTX.user ? <HeaderUserUtils
 							showUserInfo={showUserInfo}
-							loggedInUser={loggedInUser}
 							showUserDetails={showUserDetails}
 						/>
 							:
@@ -157,12 +153,8 @@ export default function Header({
 			/>}
 
 			{showUserDetails && <UserDetails
-				loggedInUser={loggedInUser}
 				onClose={hideUserInfo}
 				onLogout={logOut}
-				userPostedBooks={userPostedBooks}
-				userReviewedBooks={userReviewedBooks}
-				userReadBooks={userReadBooks}
 			/>}
 		</header>
 

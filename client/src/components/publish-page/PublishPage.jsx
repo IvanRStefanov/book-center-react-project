@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createNewBook } from "../../services/booksService";
 import { useNavigate } from "react-router-dom";
+
+import UserContext from "../../contexts/UserContext";
 import PublishForm from "./publish-form/PublishForm";
 
-export default function PublishPage({
-	loggedInUser,
-	updateUserPostedBooks
-}) {
+export default function PublishPage() {
 	const [formValues, setFormValues] = useState({});
 	const [processing, setProcessing] = useState(false);
 	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
+	const UserCTX = useContext(UserContext);
 
 	function changeHandler(e) {
 		setFormValues(oldValues => ({
@@ -30,11 +30,12 @@ export default function PublishPage({
 			setProcessing(oldState => !oldState);
 			const response = await createNewBook({
 				...formValues,
-				publisherEmail: loggedInUser.email,
-				publisherFirstName: loggedInUser.firstName,
-				publisherLastName: loggedInUser.lastName,
+				publisherEmail: UserCTX.user.email,
+				publisherFirstName: UserCTX.user.firstName,
+				publisherLastName: UserCTX.user.lastName,
 			});
-			updateUserPostedBooks();
+			
+			UserCTX.updatePostedBooks();
 			navigate('/catalog/' + response._id);
 
 		} catch (error) {

@@ -47,7 +47,6 @@ export async function register(bodyToSend) {
 
         const email = registerEmail;
         const password = firstPassword;
-        console.log(email, password)
 
         const registerUserData = {
             firstName,
@@ -56,7 +55,6 @@ export async function register(bodyToSend) {
             imageUrl,
             password
         }
-        console.log(registerUserData)
 
         const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
@@ -68,10 +66,10 @@ export async function register(bodyToSend) {
 
         if (response.ok != true) {
             const err = await response.json();
-            console.log(err.message)
+
             throw new Error(err.message)
         }
-
+        
         const data = await response.json();
         return data;
     } catch (err) {
