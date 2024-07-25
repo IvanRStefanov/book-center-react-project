@@ -31,49 +31,6 @@ export default function Header() {
 		setRegisterSubmitError('');
 	}
 
-	// async function loginSubmitHandler(event) {
-	// 	event.preventDefault();
-		
-	// 	const formData = new FormData(event.currentTarget);
-	// 	const email = formData.get('email').trim();
-	// 	const password = formData.get('password').trim();
-
-	// 	try {
-	// 		const userData = await login(email, password);
-	// 		setUserData(userData);
-	// 		hideLoginRegisterModal();
-	// 		UserCTX.updateUser(userData);
-	// 		navigate('/');
-	// 	} catch (error) {
-	// 		setSubmitError(error.message);
-	// 	}
-	// }
-
-	// async function registerUserSubmitHandler(event) {
-	// 	event.preventDefault();
-		
-	// 	const formData = new FormData(event.currentTarget);
-
-	// 	const bodytoSend = {
-	// 		firstName: formData.get('firstName').trim(),
-	// 		lastName: formData.get('lastName').trim(),
-	// 		imageUrl: formData.get('imageUrl').trim(),
-	// 		firstPassword: formData.get('firstPassword').trim(),
-	// 		confPass: formData.get('confPass').trim(),
-	// 		registerEmail: formData.get('registerEmail').trim()
-	// 	}
-
-	// 	try {
-	// 		const userData = await register(bodytoSend);
-	// 		setUserData(userData);
-	// 		hideLoginRegisterModal();
-	// 		UserCTX.updateUser(userData)
-	// 		navigate('/');
-	// 	} catch (error) {
-	// 		setRegisterSubmitError(error.message);
-	// 	}
-	// }
-
 	function showUserInfo() {
 		setShowUserDetails(true);
 		showBodyScroll(false);
@@ -85,10 +42,10 @@ export default function Header() {
 	}
 
 	function logOut() {
+		UserCTX.updateUser('');
 		logout();
 		setShowUserDetails(false);
 		showBodyScroll(true);
-		UserCTX.updateUser('')
 		navigate('/');
 	}
 
@@ -146,10 +103,6 @@ export default function Header() {
 
 			{showLoginRegisterModal && <HeaderLoginRegisterModal
 				hideLoginRegisterModal={hideLoginRegisterModal}
-				// loginSubmitHandler={loginSubmitHandler}
-				// registerUserSubmitHandler={registerUserSubmitHandler}
-				// submitError={submitError}
-				// registerSubmitError={registerSubmitError}
 			/>}
 
 			{showUserDetails && <UserDetails
