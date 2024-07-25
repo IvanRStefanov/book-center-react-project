@@ -26,7 +26,7 @@ export async function login(email, password) {
     }
 }
 
-export async function register(bodyToSend) {
+export async function register(dataObj) {
     const {
         firstName,
         lastName,
@@ -34,26 +34,29 @@ export async function register(bodyToSend) {
         imageUrl,
         firstPassword,
         confPass
-    } = bodyToSend;
+    } = dataObj;
 
     try {
+        Object.values(dataObj).forEach(value => {
+            if (value == '') {
+                throw new Error('No empty fields allowed!')
+            }
+        })
+
         if (firstPassword !== confPass) {
             throw new Error("Passwords don't match");
         }
 
         if (validateEmail(registerEmail) === false) {
-            throw new Error('Invalid email addres')
+            throw new Error('Invalid email address')
         }
-
-        const email = registerEmail;
-        const password = firstPassword;
 
         const registerUserData = {
             firstName,
             lastName,
-            email,
+            email: registerEmail,
             imageUrl,
-            password
+            password: firstPassword
         }
 
         const response = await fetch(`${baseUrl}/register`, {
@@ -69,7 +72,7 @@ export async function register(bodyToSend) {
 
             throw new Error(err.message)
         }
-        
+
         const data = await response.json();
         return data;
     } catch (err) {
@@ -78,15 +81,10 @@ export async function register(bodyToSend) {
     }
 }
 
-export async function logout(token) {
+export async function logout() {
+    
+    await requester.get(baseUrl + '/logout');
     removeUserData();
-
-    await fetch(`${baseUrl}/logout`, {
-        headers: {
-            'X-Authorization': token
-        }
-    });
-    // await requester.get(baseUrl + '/logout');
 }
 
 function validateEmail(email) {

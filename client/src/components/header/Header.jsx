@@ -31,48 +31,48 @@ export default function Header() {
 		setRegisterSubmitError('');
 	}
 
-	async function loginSubmitHandler(event) {
-		event.preventDefault();
+	// async function loginSubmitHandler(event) {
+	// 	event.preventDefault();
 		
-		const formData = new FormData(event.currentTarget);
-		const email = formData.get('email').trim();
-		const password = formData.get('password').trim();
+	// 	const formData = new FormData(event.currentTarget);
+	// 	const email = formData.get('email').trim();
+	// 	const password = formData.get('password').trim();
 
-		try {
-			const userData = await login(email, password);
-			setUserData(userData);
-			hideLoginRegisterModal();
-			UserCTX.updateUser(userData);
-			navigate('/');
-		} catch (error) {
-			setSubmitError(error.message);
-		}
-	}
+	// 	try {
+	// 		const userData = await login(email, password);
+	// 		setUserData(userData);
+	// 		hideLoginRegisterModal();
+	// 		UserCTX.updateUser(userData);
+	// 		navigate('/');
+	// 	} catch (error) {
+	// 		setSubmitError(error.message);
+	// 	}
+	// }
 
-	async function registerUserSubmitHandler(event) {
-		event.preventDefault();
+	// async function registerUserSubmitHandler(event) {
+	// 	event.preventDefault();
 		
-		const formData = new FormData(event.currentTarget);
+	// 	const formData = new FormData(event.currentTarget);
 
-		const bodytoSend = {
-			firstName: formData.get('firstName').trim(),
-			lastName: formData.get('lastName').trim(),
-			imageUrl: formData.get('imageUrl').trim(),
-			firstPassword: formData.get('firstPassword').trim(),
-			confPass: formData.get('confPass').trim(),
-			registerEmail: formData.get('registerEmail').trim()
-		}
+	// 	const bodytoSend = {
+	// 		firstName: formData.get('firstName').trim(),
+	// 		lastName: formData.get('lastName').trim(),
+	// 		imageUrl: formData.get('imageUrl').trim(),
+	// 		firstPassword: formData.get('firstPassword').trim(),
+	// 		confPass: formData.get('confPass').trim(),
+	// 		registerEmail: formData.get('registerEmail').trim()
+	// 	}
 
-		try {
-			const userData = await register(bodytoSend);
-			setUserData(userData);
-			hideLoginRegisterModal();
-			UserCTX.updateUser(userData)
-			navigate('/');
-		} catch (error) {
-			setRegisterSubmitError(error.message);
-		}
-	}
+	// 	try {
+	// 		const userData = await register(bodytoSend);
+	// 		setUserData(userData);
+	// 		hideLoginRegisterModal();
+	// 		UserCTX.updateUser(userData)
+	// 		navigate('/');
+	// 	} catch (error) {
+	// 		setRegisterSubmitError(error.message);
+	// 	}
+	// }
 
 	function showUserInfo() {
 		setShowUserDetails(true);
@@ -85,7 +85,7 @@ export default function Header() {
 	}
 
 	function logOut() {
-		logout(UserCTX.user.accessToken)
+		logout();
 		setShowUserDetails(false);
 		showBodyScroll(true);
 		UserCTX.updateUser('')
@@ -145,11 +145,11 @@ export default function Header() {
 			</div>
 
 			{showLoginRegisterModal && <HeaderLoginRegisterModal
-				onCLose={hideLoginRegisterModal}
-				loginSubmitHandler={loginSubmitHandler}
-				registerUserSubmitHandler={registerUserSubmitHandler}
-				submitError={submitError}
-				registerSubmitError={registerSubmitError}
+				hideLoginRegisterModal={hideLoginRegisterModal}
+				// loginSubmitHandler={loginSubmitHandler}
+				// registerUserSubmitHandler={registerUserSubmitHandler}
+				// submitError={submitError}
+				// registerSubmitError={registerSubmitError}
 			/>}
 
 			{showUserDetails && <UserDetails
