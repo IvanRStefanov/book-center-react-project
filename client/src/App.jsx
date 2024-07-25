@@ -50,26 +50,28 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		async function getMyReviewedBooks() {
-			const response = await getUserReviewedBooks(loggedInUser._id);
+		if (loggedInUser) {
+			async function getMyReviewedBooks() {
+				const response = await getUserReviewedBooks(loggedInUser._id);
 
-			setUserReviewedBooks(response);
+				setUserReviewedBooks(response);
+			}
+			getMyReviewedBooks()
+
+			async function getMyReadBooks() {
+				const response = await getUserReadBooks(loggedInUser._id);
+
+				setUserReadBooks(response)
+			}
+			getMyReadBooks()
+
+			async function getMyPostedBooks() {
+				const response = await getUserPostedBooks(loggedInUser._id);
+
+				setUserPostedBooks(response);
+			}
+			getMyPostedBooks()
 		}
-		getMyReviewedBooks()
-
-		async function getMyReadBooks() {
-			const response = await getUserReadBooks(loggedInUser._id);
-
-			setUserReadBooks(response)
-		}
-		getMyReadBooks()
-
-		async function getMyPostedBooks() {
-			const response = await getUserPostedBooks(loggedInUser._id);
-
-			setUserPostedBooks(response);
-		}
-		getMyPostedBooks()
 	}, [loggedInUser]);
 
 	async function updateUserReadBooks() {
