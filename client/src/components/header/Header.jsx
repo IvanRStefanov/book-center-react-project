@@ -42,10 +42,10 @@ export default function Header() {
 	}
 
 	function logOut() {
-		UserCTX.updateUser('');
 		logout();
 		setShowUserDetails(false);
 		showBodyScroll(true);
+		UserCTX.updateUser('');
 		navigate('/');
 	}
 
