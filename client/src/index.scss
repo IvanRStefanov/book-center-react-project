@@ -836,7 +836,7 @@ main {
 	.checkboxes {
 		list-style: none;
 		display: grid;
-		grid-template-columns: repeat(6, .16667 fr);
+		grid-template-columns: repeat(6, .16667fr);
 		gap: 20px;
 		font-size: 18px;
 	}
@@ -848,6 +848,10 @@ main {
 	.checkboxes input:checked~label:after {
 		opacity: 1;
 		visibility: visible;
+	}
+
+	.checkboxes input:disabled ~ label:before {
+		background-color: #efefef4d;
 	}
 
 	.checkboxes label {

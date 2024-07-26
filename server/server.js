@@ -1362,7 +1362,6 @@
 				"publisherEmail": "peter@abv.bg",
 				"publisherFirstName": "Peter",
 				"publisherLastName": "Peterson",
-				"imageUrl": "https://cdn.vectorstock.com/i/500p/87/24/man-profile-vector-31988724.jpg",
 				"name": "The Wheel of Time #1 The Eye of the World",
 				"series": "The Wheel of Time",
 				"author": "Robert Jordan",
