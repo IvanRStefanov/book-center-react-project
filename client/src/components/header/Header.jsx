@@ -8,42 +8,38 @@ import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginR
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 import UserDetails from "./user-details/UserDetails";
-import { login, logout, register } from "../../services/authService";
+import { logout } from "../../services/authService";
 
 export default function Header() {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
-	const [submitError, setSubmitError] = useState('');
-	const [registerSubmitError, setRegisterSubmitError] = useState('');
 	
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext)
 		
 	function showLoginRegisterMmodal() {
-		setShowLoginRegisterModal(true);
+		setShowLoginRegisterModal(oldState => !oldState);
 		showBodyScroll(false);
 	}
 
 	function hideLoginRegisterModal() {
-		setShowLoginRegisterModal(false);
+		setShowLoginRegisterModal(oldState => !oldState);
 		showBodyScroll(true);
-		setSubmitError('');
-		setRegisterSubmitError('');
 	}
 
 	function showUserInfo() {
-		setShowUserDetails(true);
+		setShowUserDetails(oldState => !oldState);
 		showBodyScroll(false);
 	}
 
 	function hideUserInfo() {
-		setShowUserDetails(false);
+		setShowUserDetails(oldState => !oldState);
 		showBodyScroll(true);
 	}
 
 	function logOut() {
 		logout();
-		setShowUserDetails(false);
+		setShowUserDetails(oldState => !oldState);
 		showBodyScroll(true);
 		UserCTX.updateUser('');
 		navigate('/');
