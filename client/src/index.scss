@@ -697,6 +697,17 @@ main {
 		margin-top: 20px;
 	}
 
+	.form__row.form__row--err {
+		label {
+			border:2px solid red;
+			color: red;
+		}
+
+		.field {
+			border: 2px solid red;
+		}
+	}
+
 	.form__label {
 		font-size: 12px;
 		position: absolute;
@@ -723,6 +734,10 @@ main {
 		&:focus {
 			border-color: #000;
 		}
+	}
+
+	input.field.field--error {
+		border: 2px solid red;
 	}
 
 	input[type=number] {
@@ -944,6 +959,11 @@ main {
 		opacity: 1;
 		visibility: visible;
 		transform: translate(-50%, -50%) scale(1);
+	}
+
+	.err-msg {
+		font-weight: 700;
+		color: red;
 	}
 
 }

@@ -25,3 +25,5 @@ export function formatDate(dateString) {
 
     return formattedDate;
 };
+
+export const EMAIL_RGX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

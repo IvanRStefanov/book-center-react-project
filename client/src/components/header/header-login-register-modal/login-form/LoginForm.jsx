@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { login } from '../../../../services/authService';
-import { setUserData } from '../../../../utils/utils';
+import { EMAIL_RGX, setUserData } from '../../../../utils/utils';
 import UserContext from '../../../../contexts/UserContext';
 
 export default function LoginForm({
@@ -18,7 +18,8 @@ export default function LoginForm({
         defaultValues: {
             'email': '',
             'password': ''
-        }
+        },
+        mode: 'onChange'
     });
     const UserCTX = useContext(UserContext)
 
@@ -74,7 +75,11 @@ export default function LoginForm({
                                 name="email"
                                 autoComplete="off"
                                 {...register('email', {
-                                    required: 'This field is required.'
+                                    required: 'This field is required.',
+                                    pattern: {
+                                        value: EMAIL_RGX,
+                                        message: 'Invalid email format'
+                                    }
                                 })}
                             ></input>
                             {errors.email &&
