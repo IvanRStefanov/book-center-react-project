@@ -19,7 +19,7 @@ export default function LoginForm({
             'email': '',
             'password': ''
         },
-        mode: 'onChange'
+        mode: 'onBlur'
     });
     const UserCTX = useContext(UserContext)
 
