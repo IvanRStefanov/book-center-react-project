@@ -1,157 +1,188 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form';
 
 import { createNewBook } from '../../../services/booksService';
 import { bookGenres } from '../../../utils/variables';
 
 import UserContext from '../../../contexts/UserContext';
-import Checkbox from './checkbox/Checkbox';
 
-export default function PublishForm({
-	setError
-}) {
-	const [formValues, setFormValues] = useState({});
-	const [hasEmptyField, setHasEmptyField] = useState(false);
-	const [isDisabled, setIsDisabled] = useState(false);
+export default function PublishForm() {
 
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
-	function isDisabledToggler() {
-		setIsDisabled(oldState => !oldState);
-	}
-
-	function changeHandler(e) {
-		setFormValues(oldValues => ({
-			...oldValues,
-			[e.target.name]: e.target.type === 'checkbox'
-				? e.target.checked
-				: e.target.value
-		}));
-	}
-
-	async function publishNewBookSubmitHandler(event) {
-		event.preventDefault();
-		setHasEmptyField(false);
-
-		let bookGenresToSend = [];
-
-		const newBookData = {
-			name: formValues.name || '',
-			author: formValues.author || '',
-			imgUrl: formValues.imgUrl || '',
-			description: formValues.description || '',
-			price: formValues.price || '',
-			genre: bookGenresToSend,
+	useEffect(() => {
+		if (!UserCTX.user) {
+			return navigate('/')
 		}
+	}, [])
 
-		for (const [key, value] of Object.entries(formValues)) {
-			if (bookGenres.includes(key) && value === true) {
-				bookGenresToSend.push(key);
-			}
+	const {
+		register,
+		handleSubmit,
+		setError,
+		clearErrors,
+		watch,
+		formState: { errors, isSubmitting }
+	} = useForm({
+		defaultValues: {
+			name: '',
+			author: '',
+			imgUrl: '',
+			description: '',
+			genre: [],
+			price: ''
 		}
+	})
 
-		for (const [key, value] of Object.entries(newBookData)) {
-			if (value == '' || value.length == 0) {
-				return setHasEmptyField(oldState => !oldState);
-			}
-		}
+	const [disableCheckbox, setDisableCheckbox] = useState(true)
+	useEffect(() => {
+		setDisableCheckbox(oldState => !oldState)
+	}, [isSubmitting])
 
+	async function publishNewBookSubmitHandler(data) {
 		try {
-			isDisabledToggler();
 			const response = await createNewBook({
-				...newBookData,
+				...data,
+				price: Number(parseFloat(data.price).toFixed(2)),
 				publisherEmail: UserCTX.user.email,
 				publisherFirstName: UserCTX.user.firstName,
 				publisherLastName: UserCTX.user.lastName
 			});
 
 			UserCTX.updatePostedBooks();
-			isDisabledToggler();
 
 			navigate('/catalog/' + response._id);
 		} catch (err) {
-			isDisabledToggler();
-			setError(oldState => !oldState);
 			console.error(err)
 		}
 	}
 	return (
 		<div className="form">
 
-			<form onSubmit={publishNewBookSubmitHandler}>
+			<form onSubmit={handleSubmit(publishNewBookSubmitHandler)}>
 				<div className="form__head">
 					<h1>Publish new book</h1>
 				</div>
 
-				{hasEmptyField &&
-					<div className="form__error">
-						<p>No empty fields allowed!</p>
-					</div>
-				}
-
 				<div className="form__body">
-					<div className="form__row">
-						<label htmlFor="name" className="form__label">Book name</label>
+					<div className={errors.name ? "form__row form__row--err" : 'form__row'}>
+						<label htmlFor="name" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book name</label>
 
 						<div className="form__controls">
-							<input type="text" className="field" name="name" id="name" disabled={isDisabled} onChange={changeHandler} autoComplete='off' />
+							<input
+								type="text"
+								className="field"
+								name="name"
+								id="name"
+								autoComplete='off'
+								disabled={isSubmitting}
+								{...register('name', {
+									required: true,
+								})}
+							/>
 						</div>
 					</div>
 
-					<div className="form__row">
-						<label htmlFor="author" className="form__label">Author</label>
+					<div className={errors.author ? "form__row form__row--err" : 'form__row'}>
+						<label htmlFor="author" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Author</label>
 
 						<div className="form__controls">
-							<input type="text" className="field" name="author" id="author" disabled={isDisabled} onChange={changeHandler} autoComplete='off' />
+							<input
+								type="text"
+								className="field"
+								name="author"
+								id="author"
+								autoComplete='off'
+								disabled={isSubmitting}
+								{...register('author', {
+									required: true,
+								})}
+							/>
 						</div>
 					</div>
 
-					<div className="form__row">
-						<label htmlFor="imgUrl" className="form__label">Book cover URL</label>
+					<div className={errors.imgUrl ? "form__row form__row--err" : 'form__row'}>
+						<label htmlFor="imgUrl" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book cover URL</label>
 
 						<div className="form__controls">
-							<input type="text" className="field" name="imgUrl" id="imgUrl" disabled={isDisabled} onChange={changeHandler} autoComplete='off' />
+							<input
+								type="text"
+								className="field"
+								name="imgUrl"
+								id="imgUrl"
+								disabled={isSubmitting}
+								{...register('imgUrl', {
+									required: true,
+								})}
+							/>
 						</div>
 					</div>
 
-					<div className="form__row">
-						<label htmlFor="description" className="form__label">Book description</label>
+					<div className={errors.description ? "form__row form__row--err" : 'form__row'}>
+						<label htmlFor="description" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book description</label>
 
 						<div className="form__controls">
-							<textarea className="textarea" name="description" id="description" disabled={isDisabled} onChange={changeHandler}></textarea>
+							<textarea
+								className="textarea"
+								name="description"
+								id="description"
+								disabled={isSubmitting}
+								{...register('description', {
+									required: true,
+								})}
+							></textarea>
 						</div>
 					</div>
 
-					<div className="form__row">
+					<div className={errors.genre ? "form__row form__row--err" : 'form__row'}>
 						<fieldset>
-							<legend>What genre is the book?</legend>
+							<legend>What genre is the book?{errors.genre && <strong> {errors.genre.message}</strong>}</legend>
 
 							<ul className="checkboxes">
-								{bookGenres.map(genre =>
-									<Checkbox
-										key={genre}
-										genre={genre}
-										isDisabled={isDisabled}
-										formValues={formValues}
-										changeHandler={changeHandler}
-									/>
+								{bookGenres.map(bookGenre =>
+									<li key={bookGenre}>
+										<input
+											type="checkbox"
+											id={bookGenre}
+											name={bookGenre}
+											value={bookGenre}
+											disabled={disableCheckbox}
+											{...register('genre', {
+												required: 'Please pick at least one',
+											})}
+										/>
+										<label htmlFor={bookGenre}>{bookGenre}</label>
+									</li>
 								)}
 							</ul>
 						</fieldset>
 					</div>
 
-					<div className="form__row">
-						<label htmlFor="price" className="form__label">Price</label>
+					<div className={errors.price ? "form__row form__row--err" : 'form__row'}>
+						<label htmlFor="price" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Price</label>
 
 						<div className="form__controls">
-							<input type="number" className="field" name="price" id="price" step={.01} min={0} disabled={isDisabled} onChange={changeHandler} autoComplete='off' />
+							<input
+								type="number"
+								className="field"
+								name="price"
+								id="price"
+								step={.01}
+								min={0}
+								autoComplete='off'
+								disabled={isSubmitting}
+								{...register('price', {
+									required: true,
+								})}
+							/>
 						</div>
 					</div>
 				</div>
 
 				<div className="form__actions">
-					<button type="submit" disabled={isDisabled} className={isDisabled ? 'form__btn form__btn--spinner' : 'form__btn'}>
+					<button type="submit" disabled={isSubmitting} className={isSubmitting ? 'form__btn form__btn--spinner' : 'form__btn'}>
 						Submit
 					</button>
 				</div>
