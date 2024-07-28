@@ -1,20 +1,63 @@
-import { useContext } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import { bookGenres } from "../../utils/variables";
 
 import UserContext from "../../contexts/UserContext";
+import { updateBook } from "../../services/booksService";
 
 export default function BookEdit() {
   const { bookId } = useParams();
   const UserCTX = useContext(UserContext)
-  
-  if(!UserCTX.user) {
+
+  const book = UserCTX.postedBooks.find(postedBook => postedBook._id === bookId);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting }
+  } = useForm({
+    defaultValues: {
+      name: book.name,
+      author: book.author,
+      imgUrl: book.imgUrl,
+      description: book.description,
+      genre: [...book.genre],
+      price: book.price
+    }
+  });
+
+  // console.log(watch())
+
+  if (!UserCTX.user) {
     return <Navigate to={'/'} />
   }
-  
-  const book = UserCTX.postedBooks.find(postedBook => postedBook._id === bookId);
-  
-  if(!book) {
+
+
+  if (!book) {
     return <Navigate to={'/'} />
+  }
+
+  const [disableCheckbox, setDisableCheckbox] = useState(isSubmitting)
+  useEffect(() => {
+    setDisableCheckbox(isSubmitting)
+  }, [isSubmitting])
+
+  async function submitEditedBookHandler(data) {
+    console.log({...data})
+    try {
+      const response = await updateBook(bookId, {
+        ...data,
+        price: Number(parseFloat(data.price).toFixed(2))
+      });
+      console.log(response);
+    } catch (error) {
+      
+    }
+
+    console.log(data)
   }
 
   return (
@@ -28,13 +71,22 @@ export default function BookEdit() {
 
         <div className="section__form">
           <div className="form">
-            <form>
+            <form onSubmit={handleSubmit(submitEditedBookHandler)}>
               <div className="form__body">
                 <div className="form__row">
                   <label htmlFor="name" className="form__label">Book name</label>
 
                   <div className="form__controls">
-                    <input type="text" className="field" name="name" id="name" defaultValue={book.name} />
+                    <input
+                      type="text"
+                      className="field"
+                      name="name"
+                      id="name"
+                      disabled={isSubmitting}
+                      {...register('name', {
+                        required: true
+                      })}
+                    />
                   </div>
                 </div>
 
@@ -42,7 +94,16 @@ export default function BookEdit() {
                   <label htmlFor="author" className="form__label">Author</label>
 
                   <div className="form__controls">
-                    <input type="text" className="field" name="author" id="author" defaultValue={book.author} />
+                    <input
+                      type="text"
+                      className="field"
+                      name="author"
+                      id="author"
+                      disabled={isSubmitting}
+                      {...register('author', {
+                        required: true
+                      })}
+                    />
                   </div>
                 </div>
 
@@ -50,7 +111,16 @@ export default function BookEdit() {
                   <label htmlFor="imgUrl" className="form__label">Book cover URL</label>
 
                   <div className="form__controls">
-                    <input type="text" className="field" name="imgUrl" id="imgUrl" defaultValue={book.imgUrl} />
+                    <input
+                      type="text"
+                      className="field"
+                      name="imgUrl"
+                      id="imgUrl"
+                      disabled={isSubmitting}
+                      {...register('imgUrl', {
+                        required: true
+                      })}
+                    />
                   </div>
                 </div>
 
@@ -58,7 +128,15 @@ export default function BookEdit() {
                   <label htmlFor="description" className="form__label">Book description</label>
 
                   <div className="form__controls">
-                    <textarea className="textarea" name="description" id="description" value={book.description}> </textarea>
+                    <textarea
+                      className="textarea"
+                      name="description"
+                      id="description"
+                      disabled={isSubmitting}
+                      {...register('description', {
+                        required: true
+                      })}
+                    />
                   </div>
                 </div>
 
@@ -66,56 +144,22 @@ export default function BookEdit() {
                   <fieldset>
                     <legend>What genre is the book?</legend>
 
-                    <ul className="radios">
-                      <li>
-                        <input type="radio" id="Fantasy" name="genre" value="Fantasy" />
-                        <label htmlFor="Fantasy">Fantasy</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Fiction" name="genre" value="Fiction" />
-                        <label htmlFor="Fiction">Fiction</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Adventure" name="genre" value="Adventure" />
-                        <label htmlFor="Adventure">Adventure</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Horror" name="genre" value="Horror" />
-                        <label htmlFor="Horror">Horror</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Sci-Fi" name="genre" value="Sci-Fi" />
-                        <label htmlFor="Sci-Fi">Sci-Fi</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Comedy" name="genre" value="Comedy" />
-                        <label htmlFor="Comedy">Comedy</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Thriller" name="genre" value="Thriller" />
-                        <label htmlFor="Thriller">Thriller</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="History" name="genre" value="History" />
-                        <label htmlFor="History">History</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Teen" name="genre" value="Teen" />
-                        <label htmlFor="Teen">Teen</label>
-                      </li>
-
-                      <li>
-                        <input type="radio" id="Mistery" name="genre" value="Mistery" />
-                        <label htmlFor="Mistery">Mistery</label>
-                      </li>
+                    <ul className="checkboxes">
+                      {bookGenres.map(genre =>
+                        <li key={genre}>
+                          <input
+                            type="checkbox"
+                            id={genre}
+                            name={genre}
+                            value={genre}
+                            disabled={disableCheckbox}
+                            {...register('genre', {
+                              required: true
+                            })}
+                          />
+                          <label htmlFor={genre}>{genre}</label>
+                        </li>
+                      )}
                     </ul>
                   </fieldset>
                 </div>
@@ -124,13 +168,24 @@ export default function BookEdit() {
                   <label htmlFor="price" className="form__label">Price</label>
 
                   <div className="form__controls">
-                    <input type="number" className="field" name="price" id="price" step={.01} min={0} defaultValue={book.price} />
+                    <input
+                      type="number"
+                      className="field"
+                      name="price"
+                      id="price"
+                      step={.01}
+                      min={0}
+                      disabled={isSubmitting}
+                      {...register('price', {
+                        required: true
+                      })}
+                    />
                   </div>
                 </div>
               </div>
 
               <div className="form__actions">
-                <input type="submit" className="form__btn" value="Submit" />
+                <button type="submit" className="form__btn" disabled={isSubmitting}>Submit changes</button>
               </div>
             </form>
           </div>

@@ -26,6 +26,13 @@ export async function getLatestFiveBooks() {
     return result;
 }
 
+export async function updateBook(bookId, bookData) {
+    console.log(bookData)
+    const result = await requester.patch(baseUrl + `/${bookId}`, bookData);
+
+    return result;
+}
+
 export async function deleteBook(bookId) {
     await requester.del(baseUrl + `/${bookId}`);
 }
