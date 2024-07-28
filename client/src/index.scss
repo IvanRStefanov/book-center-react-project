@@ -698,12 +698,23 @@ main {
 	}
 
 	.form__row.form__row--err {
-		label {
-			border:2px solid red;
+		label.form__label {
+			border: 2px solid red;
 			color: red;
 		}
 
-		.field {
+		.field,
+		.textarea,
+		fieldset {
+			border: 2px solid red;
+		}
+
+		fieldset {
+			padding: 0 1px;
+		}
+
+		fieldset legend {
+			color: red;
 			border: 2px solid red;
 		}
 	}
@@ -719,6 +730,12 @@ main {
 		border-radius: 999em;
 		border: 1px solid rgba($color: #000000, $alpha: .2)
 	}
+
+	/*  fomr__label--submiting  */
+	.form__label--submiting {
+		background-color: #ababab;
+	}
+	
 
 	input.field {
 		font-family: inherit;
@@ -836,6 +853,8 @@ main {
 	}
 
 	fieldset {
+		border-radius: 10px;
+		transition: padding .2s ease-in-out;
 		border: none;
 	}
 
@@ -846,6 +865,10 @@ main {
 		border-radius: 999em;
 		margin: 0 0 10px 11px;
 		font-size: 12px;
+	}
+
+	legend.is-submitting {
+		background-color:  #ababab;
 	}
 
 	.checkboxes {
@@ -865,7 +888,7 @@ main {
 		visibility: visible;
 	}
 
-	.checkboxes input:disabled ~ label:before {
+	.checkboxes input:disabled~label:before {
 		background-color: #efefef4d;
 	}
 
@@ -1230,7 +1253,7 @@ main {
 		grid-template-columns: 18px auto;
 		gap: 5px;
 		align-items: center;
-
+		justify-items: start;
 	}
 
 	.section__main-publisher-info li+li {
@@ -1646,12 +1669,12 @@ main {
 		margin: 0 auto;
 		text-align: center;
 	}
-	
+
 	.section__head h1 {
 		font-size: 50px;
 	}
 
-	.section__head + .section__form {
+	.section__head+.section__form {
 		margin-top: 50px;
 	}
 }
