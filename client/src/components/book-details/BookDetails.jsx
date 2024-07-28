@@ -151,7 +151,7 @@ export default function BookDetails() {
 								</p>
 
 								<p className="section__price">
-									<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{book.price}
+									<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(book.price).toFixed(2)}
 								</p>
 							</div>
 

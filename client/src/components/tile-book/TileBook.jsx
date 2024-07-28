@@ -32,7 +32,7 @@ export default function TileBook({
 			</div>
 
 			<div className="tile__price">
-				<p><sup>&#36;</sup>{book.price}</p>
+				<p><sup>&#36;</sup>{parseFloat(book.price).toFixed(2)}</p>
 			</div>
 		</div>
 	);
