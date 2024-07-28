@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import SliderNewestFive from "./slider-newest-five/SliderNewestFive";
-
 
 export default function SectionNewestFive() {
     return (
@@ -14,7 +14,7 @@ export default function SectionNewestFive() {
                 </div>
 
                 <div className="section__actions">
-                    <a href="#" className="btn btn--transparent">Show more</a>
+                    <Link to="/catalog" className="btn btn--transparent">Show more</Link>
                 </div>
             </div>
         </section>
