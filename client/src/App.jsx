@@ -106,7 +106,7 @@ function App() {
 						<Route path="/add-new-book" element={<PublishPage />} />
 						<Route path="/my-account" element={<MyAccount />}>
 							<Route path="my-published-books" element={<MyPublishedBooks />} />
-							<Route path="my-reviews-and-rates" element={<MyReviews />} />
+							<Route path="my-reviews" element={<MyReviews />} />
 							<Route path="my-read-books" element={<MyReadBooks />} />
 						</Route>
 					</Routes>
