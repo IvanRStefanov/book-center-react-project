@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 import UserContext from '../../../contexts/UserContext';
@@ -10,7 +10,7 @@ export default function UserDetails({
 	onLogout
 }) {
 	const UserCTX = useContext(UserContext);
-
+		
 	return (
 		<div className={styles['modal-user-details']}>
 			<div className={styles.modal__bg} onClick={onClose}></div>
@@ -20,33 +20,27 @@ export default function UserDetails({
 					<button className={styles['modal__close-btn']} onClick={onClose}></button>
 
 					<div className={styles['modal__user-img']}>
-						{/* <img src={loggedInUser.imageUrl} alt="Your photo" /> */}
 						<img src={UserCTX.user.imageUrl} alt="Your photo" />
 					</div>
 
 					<div className={styles['modal__user-body']}>
 						<ul>
 							<li>
-								{/* <span>Name:</span> {loggedInUser.firstName} {loggedInUser.lastName} */}
 								<span>Name:</span> {UserCTX.user.firstName} {UserCTX.user.lastName}
 							</li>
 
 							<li>
-								{/* <span>Email:</span> {loggedInUser.email} */}
 								<span>Email:</span> {UserCTX.user.email}
 							</li>
 							<li>
-								{/* <span>Books Added:</span> {userPostedBooks.length} */}
 								<span>Books Added:</span> {UserCTX.postedBooks.length}
 							</li>
 
 							<li>
-								{/* <span>Books Reviewed:</span> {userReviewedBooks.length} */}
 								<span>Books Reviewed:</span> {UserCTX.reviewedBooks.length}
 							</li>
 
 							<li>
-								{/* <span>Books Read:</span> {userReadBooks.length} */}
 								<span>Books Read:</span> {UserCTX.readBooks.length}
 							</li>
 						</ul>

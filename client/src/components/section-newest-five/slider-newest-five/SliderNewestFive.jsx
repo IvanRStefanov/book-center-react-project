@@ -15,9 +15,9 @@ export default function SliderNewestFive() {
                 const newestFiveBooksData = await getLatestFiveBooks();
                 const newestFiveBooks = Object.values(newestFiveBooksData);
 
-                setNewestFive(newestFiveBooks)
+                setNewestFive(newestFiveBooks);
             } catch (error) {
-                console.log(error.message);
+                console.error(error.message);
             }
         }
 
