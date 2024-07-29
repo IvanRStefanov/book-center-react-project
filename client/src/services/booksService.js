@@ -97,3 +97,9 @@ export async function createNewBook(bookData) {
 
     return result;
 }
+
+export async function searchBookByName(stringVal) {
+    const result = await requester.get(baseUrl + `?where=name LIKE %22${stringVal}%22` );
+
+    return result;
+}

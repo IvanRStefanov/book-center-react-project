@@ -48,7 +48,7 @@ export default function BookEdit() {
       UserCTX.updatePostedBooks();
       navigate(`/catalog/${bookId}`);
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
       setError('serverError', {
         type: 'serverErrMsg',
         message: error.message == 'Failed to fetch' ? 'Please try again later, there are some technical issues' : error.message,
