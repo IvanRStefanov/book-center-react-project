@@ -1424,6 +1424,15 @@ main {
 		max-width: 1000px;
 	}
 
+	&:has(div.section__error) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		flex-grow: 1;
+		font-size: 30px;
+	}
+
 	.section__form {
 		position: relative;
 		z-index: 3;
