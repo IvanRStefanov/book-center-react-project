@@ -133,6 +133,8 @@ export default function BookDetails() {
 								<h1 className="section__head">{book.name}</h1>
 							</header>
 
+
+
 							<div className="section__body">
 								<p>
 									<strong>Author:</strong>
@@ -154,6 +156,22 @@ export default function BookDetails() {
 									<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(book.price).toFixed(2)}
 								</p>
 							</div>
+
+							{book.genre &&
+								<div className="section__list">
+									<div className="section__list-head">
+										<p>Genres: </p>
+									</div>
+									
+									<ul>
+										{book.genre.map((genre, index) =>
+											<li key={genre}>
+												{genre}{(index == (book.genre.length - 1)) ? '' : ','}
+											</li>
+										)}
+									</ul>
+								</div>
+							}
 
 							<div className="section__main-actions">
 								<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
@@ -198,7 +216,7 @@ export default function BookDetails() {
 									<div className="section__comment-form-head">
 										<h6>Write a review</h6>
 									</div>
-									
+
 									<div className="section__comment-form-body">
 										<FormReview
 											bookId={bookId}
