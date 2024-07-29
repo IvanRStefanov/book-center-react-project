@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { registerNewUser } from '../../../../services/authService';
 import { EMAIL_RGX, setUserData } from '../../../../utils/utils';
-import UserContext from '../../../../contexts/UserContext';
+import { UserContext } from '../../../../contexts/UserContext';
 
 export default function RegisterForm({
 	hideLoginRegisterModal

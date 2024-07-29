@@ -1,17 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import UserContext from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function MyAccount() {
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
-	if(!UserCTX.user) {
-		navigate('/');
+	useEffect(() => {
+		if (!UserCTX.user) {
+			navigate('/');
 
-		return;
-	}
-	
+			return;
+		}
+	}, [])
+
 	return (
 		<section className="section-my-acc">
 			<div className="shell">
@@ -31,7 +33,7 @@ export default function MyAccount() {
 									</li>
 
 									<li>
-										<NavLink to="my-reviews-and-rates">
+										<NavLink to="my-reviews">
 											Reviews
 										</NavLink>
 									</li>

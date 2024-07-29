@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { deleteUserReview } from "../../../../services/reviewBookSService";
 
-import UserContext from "../../../../contexts/UserContext";
+import { UserContext } from "../../../../contexts/UserContext";
 
 export default function SingleBookReviewListItem({
 	review,

@@ -11,6 +11,7 @@ export const bookGenres = [
     "Thriller",
     "History",
     "Teen",
-    "Mistery"
+    "Mistery",
+    "Romance"
 ]
 

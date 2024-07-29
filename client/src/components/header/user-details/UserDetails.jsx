@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-import UserContext from '../../../contexts/UserContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 import styles from './UserDetails.module.scss'
 
@@ -10,7 +10,7 @@ export default function UserDetails({
 	onLogout
 }) {
 	const UserCTX = useContext(UserContext);
-		
+
 	return (
 		<div className={styles['modal-user-details']}>
 			<div className={styles.modal__bg} onClick={onClose}></div>

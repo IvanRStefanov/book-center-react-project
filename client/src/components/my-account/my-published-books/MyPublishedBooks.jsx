@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
-import UserContext from "../../../contexts/UserContext";
+import { UserContext } from "../../../contexts/UserContext";
 import TileBook from "../../tile-book/TileBook";
 
 export default function MyPublishedBooks() {
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
-	if (!UserCTX.user) {
-		navigate('/');
-	}
+	useEffect(() => {
+		if (!UserCTX.user) {
+			navigate('/');
+
+			return;
+		}
+	}, [])
+
 
 	return (
 		<ul className="list-books">

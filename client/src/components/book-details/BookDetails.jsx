@@ -6,7 +6,7 @@ import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from
 import { showBodyScroll } from "../../utils/utils";
 import { getBookReviewsById } from "../../services/reviewBookSService";
 
-import UserContext from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import ListReviews from "./list-reviews/ListReviews";
 import FormReview from "./form-review/FormReview";
@@ -162,7 +162,7 @@ export default function BookDetails() {
 									<div className="section__list-head">
 										<p>Genres: </p>
 									</div>
-									
+
 									<ul>
 										{book.genre.map((genre, index) =>
 											<li key={genre}>

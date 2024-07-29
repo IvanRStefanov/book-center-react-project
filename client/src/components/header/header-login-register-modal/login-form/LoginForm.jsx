@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { login } from '../../../../services/authService';
 import { EMAIL_RGX, setUserData } from '../../../../utils/utils';
-import UserContext from '../../../../contexts/UserContext';
+import { UserContext } from '../../../../contexts/UserContext';
 
 export default function LoginForm({
     hideLoginRegisterModal
@@ -43,7 +43,7 @@ export default function LoginForm({
     }
 
     function onError(errors) {
-        if(errors.serverError) {
+        if (errors.serverError) {
             clearErrors('serverError');
             handleSubmit(loginSubmitHandler)();
         }

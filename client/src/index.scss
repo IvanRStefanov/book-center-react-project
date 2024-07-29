@@ -1219,6 +1219,25 @@ main {
 		font-size: 50px;
 	}
 
+	.section__list {
+		display: flex;
+		gap: 10px;
+		flex-wrap: nowrap;
+		margin: 10px 0;
+	}
+
+	.section__list-head {
+		text-decoration: underline;
+		font-weight: 700;
+	}
+
+	.section__list ul {
+		list-style-type: none;
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
 	.section__body p+p {
 		margin-top: 5px;
 	}
@@ -1678,3 +1697,14 @@ main {
 		margin-top: 50px;
 	}
 }
+
+/*  Section-edit-book--error  */
+.section-edit-book--error {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 30px;
+}
+

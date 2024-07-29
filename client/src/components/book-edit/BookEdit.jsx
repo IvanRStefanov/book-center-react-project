@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { bookGenres } from "../../utils/variables";
 
-import UserContext from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { updateBook } from "../../services/booksService";
 
 export default function BookEdit() {
@@ -33,7 +33,7 @@ export default function BookEdit() {
   });
 
   const [disableCheckbox, setDisableCheckbox] = useState(isSubmitting)
-  
+
   useEffect(() => {
     setDisableCheckbox(isSubmitting)
   }, [isSubmitting])

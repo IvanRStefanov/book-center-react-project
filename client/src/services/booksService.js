@@ -27,7 +27,6 @@ export async function getLatestFiveBooks() {
 }
 
 export async function updateBook(bookId, bookData) {
-    console.log(bookData)
     const result = await requester.patch(baseUrl + `/${bookId}`, bookData);
 
     return result;

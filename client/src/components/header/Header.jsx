@@ -1,22 +1,23 @@
 import { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
-import UserContext from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
-import { setUserData, showBodyScroll } from "../../utils/utils";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { showBodyScroll } from "../../utils/utils";
+import { logout } from "../../services/authService";
+
 import HeaderLoginRegisterModal from "./header-login-register-modal/HeaderLoginRegisterModal";
 import HeaderUserUtils from "./header-user-utils/HeaderUserUtils";
 import HeaderLoginUtils from "./header-login-utils/HeaderLoginUtils";
 import UserDetails from "./user-details/UserDetails";
-import { logout } from "../../services/authService";
 
 export default function Header() {
 	const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
 	const [showUserDetails, setShowUserDetails] = useState(false);
-	
+
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext)
-		
+
 	function showLoginRegisterMmodal() {
 		setShowLoginRegisterModal(oldState => !oldState);
 		showBodyScroll(false);
@@ -37,11 +38,11 @@ export default function Header() {
 		showBodyScroll(true);
 	}
 
-	function logOut() {
-		logout();
+	async function logOut() {
+		await logout();
+		UserCTX.updateUser('');
 		setShowUserDetails(oldState => !oldState);
 		showBodyScroll(true);
-		UserCTX.updateUser('');
 		navigate('/');
 	}
 
@@ -59,21 +60,21 @@ export default function Header() {
 						<div className="header__menu">
 							<nav>
 								<ul className="menu">
-									<li>
+									{/* <li>
 										<NavLink to="/featured">Featured</NavLink>
-									</li>
+									</li> */}
 
 									<li>
 										<NavLink to="/catalog">Catalog</NavLink>
 									</li>
 
-									<li>
+									{/* <li>
 										<NavLink to="/contact">Contact</NavLink>
-									</li>
+									</li> */}
 
-									<li>
+									{/* <li>
 										<NavLink to="/about">About</NavLink>
-									</li>
+									</li> */}
 
 									{UserCTX.user &&
 										<li>
@@ -85,26 +86,33 @@ export default function Header() {
 						</div>
 
 
-						{UserCTX.user ? <HeaderUserUtils
-							showUserInfo={showUserInfo}
-							showUserDetails={showUserDetails}
-						/>
+						{UserCTX.user
+							?
+							<HeaderUserUtils
+								showUserInfo={showUserInfo}
+								showUserDetails={showUserDetails}
+							/>
 							:
 							<HeaderLoginUtils
 								showLoginRegisterMmodal={showLoginRegisterMmodal}
-							/>}
+							/>
+						}
 					</div>
 				</div>
 			</div>
 
-			{showLoginRegisterModal && <HeaderLoginRegisterModal
-				hideLoginRegisterModal={hideLoginRegisterModal}
-			/>}
+			{showLoginRegisterModal &&
+				<HeaderLoginRegisterModal
+					hideLoginRegisterModal={hideLoginRegisterModal}
+				/>
+			}
 
-			{showUserDetails && <UserDetails
-				onClose={hideUserInfo}
-				onLogout={logOut}
-			/>}
+			{showUserDetails &&
+				<UserDetails
+					onClose={hideUserInfo}
+					onLogout={logOut}
+				/>
+			}
 		</header>
 
 	);

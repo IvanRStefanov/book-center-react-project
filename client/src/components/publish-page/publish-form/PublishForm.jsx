@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { createNewBook } from '../../../services/booksService';
 import { bookGenres } from '../../../utils/variables';
 
-import UserContext from '../../../contexts/UserContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 export default function PublishForm() {
 

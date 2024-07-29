@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { createUserReview } from "../../../services/reviewBookSService";
 
-import UserContext from "../../../contexts/UserContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 export default function FormReview({
 	bookId,
@@ -42,7 +42,7 @@ export default function FormReview({
 				userFirstName: UserCTX.user.firstName,
 				userLastName: UserCTX.user.lastName
 			}
-			
+
 			await createUserReview(reviewBody);
 
 			UserCTX.updateReviews();
@@ -59,7 +59,7 @@ export default function FormReview({
 					{(invalidMsg || error) &&
 						<div className="form__error">
 							{invalidMsg && <p>{invalidMsg}</p>}
-							
+
 							{error && <p>{error}</p>}
 						</div>
 					}
