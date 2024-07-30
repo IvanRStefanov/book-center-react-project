@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-// import { baseUrl } from "../../utils/variables";
 import { getAllBooks, searchBookByName } from "../../services/booksService";
 
 import TileBook from "../tile-book/TileBook";
 
 export default function CatalogPage() {
 
-	const [books, setBooksData] = useState([]);
+	const [books, setBooks] = useState([]);
 	const [searchString, setSearchString] = useState('');
-	const [noBooksBySearch, setNoBooksBySearch] = useState(false);
+	const [searchedFor, setSearchedFor] = useState('');
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -16,13 +15,12 @@ export default function CatalogPage() {
 			try {
 				const responseData = await getAllBooks();
 				setLoading(true);
-				setBooksData(responseData);
+				setBooks(responseData);
 				setLoading(false);
-
 
 			} catch (error) {
 				setLoading(false);
-				console.log(error.message)
+				console.error(error.message)
 			}
 		}
 
@@ -31,14 +29,14 @@ export default function CatalogPage() {
 
 	async function searchBookByNameHandler(e) {
 		e.preventDefault();
-		const bookResults = await searchBookByName(searchString);
+
+		setSearchedFor(searchString);
 		setLoading(true);
 
-		if (bookResults.length == 0) {
-			setNoBooksBySearch(oldState => !oldState);
-		}
+		const bookResults = await searchBookByName(searchString);
+		
+		setBooks(bookResults);
 		setLoading(false)
-		setBooksData(bookResults);
 	}
 
 	return (
@@ -72,8 +70,8 @@ export default function CatalogPage() {
 										</div>
 										:
 										<div className="section__empty">
-											{(books.length == 0 && noBooksBySearch) && <p>There are no books that match <em>'{searchString}'</em> search </p>}
-											{(books.length == 0 && !noBooksBySearch) && <p>There are no books currently.</p>}
+											{(books.length == 0 && searchedFor) && <p>There are no books that match <em>'{searchedFor}'</em> search </p>}
+											{(books.length == 0 && !searchedFor) && <p>There are no books currently.</p>}
 										</div>
 								}
 							</>
