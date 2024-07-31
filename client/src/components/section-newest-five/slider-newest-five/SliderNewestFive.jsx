@@ -9,7 +9,7 @@ import { getLatestFiveBooks } from '../../../services/booksService.js';
 import 'swiper/css';
 
 export default function SliderNewestFive() {
-    const { isPending, isError, data: books, error } = useQuery({
+    const { isPending, data: books, error } = useQuery({
         queryKey: ['latestFiveBooks'],
         queryFn: async () => {
             const result = await getLatestFiveBooks();
@@ -41,7 +41,6 @@ export default function SliderNewestFive() {
                             </SwiperSlide>
                         )}
                     </Swiper>
-
             }
         </>
     )

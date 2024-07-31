@@ -1,15 +1,41 @@
 import { useContext, useEffect } from 'react';
-import { Link } from "react-router-dom";
 
 import { UserContext } from '../../../contexts/UserContext';
 
 import styles from './UserDetails.module.scss'
+import { useQuery } from '@tanstack/react-query';
+import { getUserPostedBooks } from '../../../services/booksService';
+import { getUserReviewedBooks } from '../../../services/reviewBookSService';
+import { getUserReadBooks } from '../../../services/readBooksService';
 
 export default function UserDetails({
 	onClose,
 	onLogout
 }) {
 	const UserCTX = useContext(UserContext);
+	const userId = UserCTX.user._id;
+
+	const { data: userPostedBooks } = useQuery({
+		queryKey: ['userPostedBooks'],
+		queryFn: () => {
+			return getUserPostedBooks(userId)
+		}
+	});
+
+	const { data: userReviewedBooks } = useQuery({
+		queryKey: ['userReviewedBooks'],
+		queryFn: () => {
+			return getUserReviewedBooks(userId)
+		}
+	});
+
+	const { data: userReadBooks } = useQuery({
+		queryKey: ['userReadBooks'],
+
+		queryFn: () => {
+			return getUserReadBooks(userId);
+		}
+	});
 
 	return (
 		<div className={styles['modal-user-details']}>
@@ -33,15 +59,15 @@ export default function UserDetails({
 								<span>Email:</span> {UserCTX.user.email}
 							</li>
 							<li>
-								<span>Books Added:</span> {UserCTX.postedBooks.length}
+								<span>Books Added:</span> {userPostedBooks?.length}
 							</li>
 
 							<li>
-								<span>Books Reviewed:</span> {UserCTX.reviewedBooks.length}
+								<span>Books Reviewed:</span> {userReviewedBooks?.length}
 							</li>
 
 							<li>
-								<span>Books Read:</span> {UserCTX.readBooks.length}
+								<span>Books Read:</span> {userReadBooks?.length}
 							</li>
 						</ul>
 					</div>
