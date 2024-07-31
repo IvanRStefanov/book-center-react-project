@@ -1,29 +1,48 @@
-import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { useContext } from "react";
 
 import { UserContext } from "../../../contexts/UserContext";
 import TileBook from "../../tile-book/TileBook";
+import { useQuery } from "@tanstack/react-query";
+import { getUserPostedBooks } from "../../../services/booksService";
 
 export default function MyPublishedBooks() {
-	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
-	useEffect(() => {
-		if (!UserCTX.user) {
-			navigate('/');
+	if (!UserCTX.user) {
+		return <Navigate to={'/'} />
+	}
 
-			return;
-		}
-	}, [])
+	const userId = UserCTX.user._id;
+
+	const {
+		isPending,
+		error,
+		data
+	} = useQuery({
+		queryKey: ['userPostedBooks'],
+		queryFn: () => getUserPostedBooks(userId)
+	})
 
 
 	return (
-		<ul className="list-books">
-			{UserCTX.postedBooks.map(book =>
-				<li key={book._id}>
-					<TileBook book={book} />
-				</li>
-			)}
-		</ul>
+		<>
+			{error
+				?
+				<p>There are some technical issues, please try again later</p>
+				:
+				isPending
+					? <div className="loading-spinner"></div>
+					:
+					<ul className="list-books">
+
+						{data.map(book =>
+							<li key={book._id}>
+								<TileBook book={book} />
+							</li>
+						)}
+					</ul>
+			}
+		</>
 	);
 }
