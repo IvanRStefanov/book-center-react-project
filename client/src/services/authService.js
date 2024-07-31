@@ -72,7 +72,6 @@ export async function registerNewUser(dataObj) {
 }
 
 export async function logout() {
-
 	await requester.get(baseUrl + '/logout');
 	removeUserData();
 }

@@ -127,6 +127,8 @@
 		color: #fff;
 		background-color: #65A903;
 		border-radius: 999em;
+		border: none;
+		cursor: pointer;
 		transition: background-color .3s;
 		
 		&:hover {

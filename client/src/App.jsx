@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { UserContextProvider } from './contexts/UserContext';
 
@@ -15,31 +16,42 @@ import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 import BookEdit from './components/book-edit/BookEdit';
 
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+			retry: false,
+		}
+	}
+});
+
 function App() {
 
 	return (
-		<UserContextProvider>
-			<div className='wrapper'>
-				<Header />
+		<QueryClientProvider client={queryClient}>
+			<UserContextProvider>
+				<div className='wrapper'>
+					<Header />
 
-				<main>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/catalog" element={<CatalogPage />} />
-						<Route path="/catalog/:bookId" element={<BookDetails />} />
-						<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
-						<Route path="/add-new-book" element={<PublishPage />} />
-						<Route path="/my-account" element={<MyAccount />}>
-							<Route path="my-published-books" element={<MyPublishedBooks />} />
-							<Route path="my-reviews" element={<MyReviews />} />
-							<Route path="my-read-books" element={<MyReadBooks />} />
-						</Route>
-					</Routes>
-				</main>
+					<main>
+						<Routes>
+							<Route path="/" element={<HomePage />} />
+							<Route path="/catalog" element={<CatalogPage />} />
+							<Route path="/catalog/:bookId" element={<BookDetails />} />
+							<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
+							<Route path="/add-new-book" element={<PublishPage />} />
+							<Route path="/my-account" element={<MyAccount />}>
+								<Route path="my-published-books" element={<MyPublishedBooks />} />
+								<Route path="my-reviews" element={<MyReviews />} />
+								<Route path="my-read-books" element={<MyReadBooks />} />
+							</Route>
+						</Routes>
+					</main>
 
-				<Footer />
-			</div>
-		</UserContextProvider>
+					<Footer />
+				</div>
+			</UserContextProvider>
+		</QueryClientProvider>
 	)
 }
 

@@ -45,7 +45,7 @@ export function UserContextProvider(props) {
     }, []);
 
     useEffect(() => {
-        if (loggedInUser) {
+        // if (loggedInUser) {
             async function getMyReviewedBooks() {
                 const response = await getUserReviewedBooks(loggedInUser._id);
 
@@ -66,7 +66,7 @@ export function UserContextProvider(props) {
                 setUserPostedBooks(response);
             }
             getMyPostedBooks()
-        }
+        // }
     }, [loggedInUser]);
 
     async function updateUserReadBooks() {

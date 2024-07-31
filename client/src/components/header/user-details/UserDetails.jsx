@@ -47,8 +47,8 @@ export default function UserDetails({
 					</div>
 
 					<div className={styles['modal__user-actions']}>
-						<Link className={styles['modal__btn']} to="/" onClick={onLogout}>Logout</Link>
-						<Link className={styles['modal__btn']} to="/my-account" onClick={onClose}>Account details</Link>
+						<button className={styles['modal__btn']} onClick={onLogout}>Logout</button>
+						<button className={styles['modal__btn']} onClick={onClose}>Account details</button>
 					</div>
 				</div>
 			</div>

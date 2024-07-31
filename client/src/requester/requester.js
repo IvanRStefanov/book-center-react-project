@@ -9,10 +9,10 @@ function optionsBuilder(data) {
 	}
 
 	const user = sessionStorage.getItem('userData');
-	let token;
+
 
 	if (user) {
-		token = JSON.parse(user).accessToken;
+		let token = JSON.parse(user).accessToken;
 
 		options.headers = {
 			'Content-type': 'application/json',
@@ -33,9 +33,9 @@ async function request(method, url, data) {
 		return {};
 	}
 	
-	if (response.ok !== true) {
-		throw await response.json();
-	}
+	// if (response.ok !== true) {
+	// 	throw await response.json();
+	// }
 	
 	const result = await response.json();
 
