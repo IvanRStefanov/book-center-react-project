@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { UserContext } from '../../../contexts/UserContext';
 
@@ -74,7 +75,7 @@ export default function UserDetails({
 
 					<div className={styles['modal__user-actions']}>
 						<button className={styles['modal__btn']} onClick={onLogout}>Logout</button>
-						<button className={styles['modal__btn']} onClick={onClose}>Account details</button>
+						<Link className={styles['modal__btn']} to="/my-account" onClick={onClose}>Account details</Link>
 					</div>
 				</div>
 			</div>
