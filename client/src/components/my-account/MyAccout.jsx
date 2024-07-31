@@ -1,18 +1,13 @@
-import { useContext, useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate, NavLink, Outlet } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function MyAccount() {
-	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
-	useEffect(() => {
-		if (!UserCTX.user) {
-			navigate('/');
-
-			return;
-		}
-	}, [])
+	if (!UserCTX.user) {
+		return <Navigate to={"/"} />;
+	}
 
 	return (
 		<section className="section-my-acc">
