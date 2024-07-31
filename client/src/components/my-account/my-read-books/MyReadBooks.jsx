@@ -1,24 +1,45 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import TileReadBook from "./tile-read-book/TileReadBook";
 import { useContext } from "react";
 import { UserContext } from "../../../contexts/UserContext";
+import { useQuery } from "@tanstack/react-query";
+import { getUserReadBooks } from "../../../services/readBooksService";
 
 export default function MyReadBooks() {
-	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
 
 	if (!UserCTX.user) {
-		navigate('/');
+		return <Navigate to={'/'} />
 	}
 
+	const userId = UserCTX.user._id;
+	const {
+		isPending,
+		error,
+		data
+	} = useQuery({
+		queryKey: ['userReadBooks'],
+		queryFn: () => getUserReadBooks(userId)
+	})
+
 	return (
-		<ul className="list-books">
-			{UserCTX.readBooks.map(readBook =>
-				<li key={readBook._id}>
-					<TileReadBook readBook={readBook} />
-				</li>
-			)}
-		</ul>
+		<>
+			{error
+				?
+				<p>There are some technical issues, please try again later</p>
+				:
+				isPending
+					? <div className="loading-spinner"></div>
+					:
+					<ul className="list-books">
+						{data.map(readBook =>
+							<li key={readBook._id}>
+								<TileReadBook readBook={readBook} />
+							</li>
+						)}
+					</ul>
+			}
+		</>
 	);
 }
