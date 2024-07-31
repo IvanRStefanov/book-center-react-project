@@ -19,7 +19,7 @@ export default function MyReadBooks() {
 		error,
 		data
 	} = useQuery({
-		queryKey: ['userReadBooks'],
+		queryKey: ['userReadBooks', userId],
 		queryFn: () => getUserReadBooks(userId)
 	})
 

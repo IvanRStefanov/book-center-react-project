@@ -20,7 +20,7 @@ export default function MyPublishedBooks() {
 		error,
 		data
 	} = useQuery({
-		queryKey: ['userPostedBooks'],
+		queryKey: ['userPostedBooks', userId],
 		queryFn: () => getUserPostedBooks(userId)
 	})
 

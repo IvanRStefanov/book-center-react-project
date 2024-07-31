@@ -1,26 +1,47 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "../../../contexts/UserContext";
 import SIngleUserReviewItem from "./single-user-review-item/SingleUserReviewItem";
+import { getUserReviewedBooks } from "../../../services/reviewBookSService";
 
 export default function MyReviews() {
 
 	const UserCTX = useContext(UserContext);
-	const navigate = useNavigate();
 
 	if (!UserCTX.user) {
-		navigate('/');
+		return <Navigate to={'/'} />
 	}
 
+	const userId = UserCTX.user._id;
+	const {
+		isPending,
+		error,
+		data,
+		...restProps
+	} = useQuery({
+		queryKey: ['userReviewedBooks', userId],
+		queryFn: () => getUserReviewedBooks(userId)
+	})
+
 	return (
-		<ul className="list-user-reviewed-books">
-			{UserCTX.reviewedBooks.map(review =>
-				<SIngleUserReviewItem
-					key={review._id}
-					review={review}
-				/>
-			)}
-		</ul>
+		<>
+			{isPending
+				? <div className="loading-spinner"></div>
+				:
+				error
+					? <p>There are some technical issues, please try again later</p>
+
+					: <ul className="list-user-reviewed-books">
+						{data.map(review =>
+							<SIngleUserReviewItem
+								key={review._id}
+								review={review}
+							/>
+						)}
+					</ul>
+			}
+		</>
 	);
 }
