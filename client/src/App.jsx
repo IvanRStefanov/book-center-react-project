@@ -16,6 +16,7 @@ import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 import BookEdit from './components/book-edit/BookEdit';
 import AuthGuard from './components/guard/AuthGuard';
+import Page404 from './components/page-404/Page404';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -49,6 +50,9 @@ function App() {
 									<Route path="my-read-books" element={<MyReadBooks />} />
 								</Route>
 							</Route>
+
+							<Route path='/error-page' element={<Page404 />} />
+							<Route path='/*' element={<Page404 />} />
 						</Routes>
 					</main>
 

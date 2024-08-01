@@ -1815,3 +1815,23 @@ main {
 	animation: loading-centered-absolute 1s linear infinite;
 	z-index: 1;
 }
+
+/* ------------------------------------------------------------ *\
+	Section-404
+\* ------------------------------------------------------------ */
+
+.section-404 {
+	padding: 100px 0;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.section__content {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
+}
