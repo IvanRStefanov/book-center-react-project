@@ -1,11 +1,11 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { addBookToUserReadList, getTotalCountBookHasBeenRead } from "../../services/readBooksService";
+import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
-import { getBookReviewsById } from "../../services/reviewBookSService";
+import { getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -16,7 +16,8 @@ import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo
 
 export default function BookDetails() {
 	const navigate = useNavigate();
-	const UserCTX = useContext(UserContext)
+	const UserCTX = useContext(UserContext);
+	const userId = UserCTX.user._id;
 
 	const { bookId } = useParams();
 
@@ -27,50 +28,95 @@ export default function BookDetails() {
 	const [alertDeleteBook, setAlertDeleteBook] = useState(false);
 	const [bookReviews, setBookReviews] = useState([]);
 
-	const hasRead = UserCTX.readBooks.findIndex(book => (book.bookId == bookId)) >= 0;
-	const isOwner = UserCTX.postedBooks.findIndex(book => (book._id === bookId)) >= 0;
-	const hasReviewed = UserCTX.reviewedBooks.findIndex(book => (book.bookId === bookId)) >= 0;
-
 	const {
 		isFetching: isFetchingBookData,
 		data: bookData,
-		error: bookDataError
+		error: bookDataError,
 	} = useQuery({
 		queryKey: ['singleBook'],
-		queryFn: () => getSingleBook(bookId)
+		queryFn: async () => {
+			const bookObject = await getSingleBook(bookId);
+			if (bookObject.code === 404) {
+				console.error(bookDataError.message)
+				return Promise.reject('Resource not found!')
+			}
+			return bookObject;
+		}
+	});
+	// console.log(remainingProps);
+
+	let isOwner = false;
+	if (!isFetchingBookData) {
+		// console.log(bookDataError)
+		isOwner = bookData._ownerId == userId;
+	}
+
+	const {
+		isFetching: isFetchingHasUserReadData,
+		data: hasUserReadData,
+	} = useQuery({
+		queryKey: ['hasUserRead'],
+		queryFn: () => getUserReadBooks(userId)
+	})
+
+	let hasRead = false;
+	if (!isFetchingHasUserReadData) {
+		hasRead = hasUserReadData.findIndex(book => (book.bookId == bookId)) >= 0
+	}
+
+	const {
+		isFetching: isFetchingHasUserReviewedData,
+		data: hasUserReviewedData,
+	} = useQuery({
+		queryKey: ['hasUserReviewed'],
+		queryFn: () => getUserReviewedBooks(userId),
 	});
 
-	useEffect(() => {
-		async function getBook() {
-			const bookData = await getSingleBook(bookId);
+	let hasReviewed = false;
+	if (!isFetchingHasUserReviewedData) {
+		hasReviewed = hasUserReviewedData.findIndex(review => (review.bookId == bookId)) >= 0;
+	}
 
-			setBook(bookData);
-		}
-		getBook();
+	const {
+		isFetching: isFetchingBookReviewsData,
+		data: bookReviewsData
+	} = useQuery({
+		queryKey: ['bookReviews'],
+		queryFn: () => getBookReviewsById(bookId),
+	})
+	// console.log(hasReviewed)
 
-		async function bookReviews() {
-			try {
-				const response = await getBookReviewsById(bookId);
-				setBookReviews(response);
-			} catch (error) {
-				console.log(error)
-			}
-		}
-		bookReviews();
-	}, []);
+	// useEffect(() => {
+	// 	async function getBook() {
+	// 		const bookData = await getSingleBook(bookId);
 
-	useEffect(() => {
-		async function getTotalCountBookRead() {
-			try {
-				const response = await getTotalCountBookHasBeenRead(bookId);
+	// 		setBook(bookData);
+	// 	}
+	// 	getBook();
 
-				setTotalTimesBookRead(response);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getTotalCountBookRead();
-	}, [bookIsRead]);
+	// 	async function bookReviews() {
+	// 		try {
+	// 			const response = await getBookReviewsById(bookId);
+	// 			setBookReviews(response);
+	// 		} catch (error) {
+	// 			console.log(error)
+	// 		}
+	// 	}
+	// 	bookReviews();
+	// }, []);
+
+	// useEffect(() => {
+	// 	async function getTotalCountBookRead() {
+	// 		try {
+	// 			const response = await getTotalCountBookHasBeenRead(bookId);
+
+	// 			setTotalTimesBookRead(response);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
+	// 	getTotalCountBookRead();
+	// }, [bookIsRead]);
 
 	async function addBookToMyReadListClickHandler() {
 		try {
@@ -118,6 +164,7 @@ export default function BookDetails() {
 
 	return (
 		<>
+
 			{alertDeleteBook &&
 				<ModalDelete
 					book={bookId}
@@ -132,114 +179,120 @@ export default function BookDetails() {
 					<div className="section__inner">
 						{isFetchingBookData
 							? <div className="loading-spinner"></div>
-							:
-							<>
-								<div className="section__media">
-									<div className="section__img image-fit">
-										<img src={bookData.imgUrl} alt={`${bookData.name} cover`} />
+							: bookDataError
+								? <Navigate to={'/error-page'} />
+								: <>
+									<div className="section__media">
+										<div className="section__img image-fit">
+											<img src={bookData.imgUrl} alt={`${bookData.name} cover`} />
 
-										<span className="section__img-loading-spinner"></span>
-									</div>
-								</div>
-
-								<div className="section__main">
-									<header className="section__title">
-										<h1 className="section__head">{bookData.name}</h1>
-									</header>
-
-									<div className="section__body">
-										<p>
-											<strong>Author:</strong>
-
-											<br></br>
-
-											&nbsp;&nbsp;&nbsp;{bookData.author}
-										</p>
-
-										<p>
-											<strong>Book description: </strong>
-
-											<br></br>
-
-											&nbsp;&nbsp;&nbsp;{bookData.description}
-										</p>
-
-										<p className="section__price">
-											<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(bookData.price).toFixed(2)}
-										</p>
+											<span className="section__img-loading-spinner"></span>
+										</div>
 									</div>
 
-									{bookData.genre &&
-										<div className="section__list">
-											<div className="section__list-head">
-												<p>Genres: </p>
+									<div className="section__main">
+										<header className="section__title">
+											<h1 className="section__head">{bookData.name}</h1>
+										</header>
+
+										<div className="section__body">
+											<p>
+												<strong>Author:</strong>
+
+												<br></br>
+
+												&nbsp;&nbsp;&nbsp;{bookData.author}
+											</p>
+
+											<p>
+												<strong>Book description: </strong>
+
+												<br></br>
+
+												&nbsp;&nbsp;&nbsp;{bookData.description}
+											</p>
+
+											<p className="section__price">
+												<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(bookData.price).toFixed(2)}
+											</p>
+										</div>
+
+										{bookData.genre &&
+											<div className="section__list">
+												<div className="section__list-head">
+													<p>Genres: </p>
+												</div>
+
+												<ul>
+													{bookData.genre.map((genre, index) =>
+														<li key={genre}>
+															{genre}{(index == (bookData.genre.length - 1)) ? '' : ','}
+														</li>
+													)}
+												</ul>
 											</div>
+										}
 
-											<ul>
-												{bookData.genre.map((genre, index) =>
-													<li key={genre}>
-														{genre}{(index == (bookData.genre.length - 1)) ? '' : ','}
-													</li>
-												)}
-											</ul>
+										<div className="section__main-actions">
+											<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
+
+											{(UserCTX.user && !isOwner && !hasRead) &&
+												< button className="btn" onClick={addBookToMyReadListClickHandler}>
+													Add to my read list
+												</button>
+											}
+										</div>
+
+										<BookDetailsOwnerInfo book={bookData} />
+									</div>
+
+									{isOwner &&
+										<div className="section__actions">
+											<div className="section__owner-actions">
+												<Link to={`/catalog/${bookId}/edit`} className="btn btn--edit">EDIT</Link>
+												<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
+											</div>
 										</div>
 									}
 
-									<div className="section__main-actions">
-										<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
+									<div className="section__comments">
+										<div className="section__comments-head">
+											<p><u>Users reviews: </u></p>
+										</div>
 
-										{(UserCTX.user && !isOwner && !hasRead) &&
-											< button className="btn" onClick={addBookToMyReadListClickHandler}>
-												Add to my read list
-											</button>
+										<div className="section__comments-list">
+											{
+												isFetchingBookReviewsData
+													? <div className="loading-text"></div>
+													:
+													bookReviewsData.length > 0
+														?
+														<ListReviews
+															bookReviews={bookReviewsData}
+															updateBookReviewList={updateBookReviewList}
+														/>
+														: <p>No reviews yet{UserCTX.user ? ' be the first!' : '!'}</p>
+											}
+
+										</div>
+										{(!hasReviewed && UserCTX.user)
+											? <div className="section__comment-form">
+												<div className="section__comment-form-head">
+													<h6>Write a review</h6>
+												</div>
+
+												<div className="section__comment-form-body">
+													<FormReview
+														bookId={bookId}
+														book={book}
+														updateBookReviewList={updateBookReviewList}
+													/>
+												</div>
+											</div>
+											: ''
 										}
 									</div>
-
-									<BookDetailsOwnerInfo book={bookData} />
-								</div>
-
-								{isOwner &&
-									<div className="section__actions">
-										<div className="section__owner-actions">
-											<Link to={`/catalog/${bookId}/edit`} className="btn btn--edit">EDIT</Link>
-											<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
-										</div>
-									</div>
-								}
-
-								<div className="section__comments">
-									<div className="section__comments-head">
-										<p><u>Users reviews: </u></p>
-									</div>
-
-									<div className="section__comments-list">
-										{bookReviews.length > 0
-											?
-											<ListReviews
-												bookReviews={bookReviews}
-												updateBookReviewList={updateBookReviewList}
-											/>
-											: <p>no reviews yet be the first!</p>
-										}
-									</div>
-									{(!hasReviewed && UserCTX.user)
-										? <div className="section__comment-form">
-											<div className="section__comment-form-head">
-												<h6>Write a review</h6>
-											</div>
-
-											<div className="section__comment-form-body">
-												<FormReview
-													bookId={bookId}
-													book={book}
-													updateBookReviewList={updateBookReviewList}
-												/>
-											</div>
-										</div>
-										: ''
-									}
-								</div>
-							</>
+								</>
 						}
 					</div>
 				</div>

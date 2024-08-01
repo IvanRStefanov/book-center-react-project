@@ -35,28 +35,28 @@ export function UserContextProvider(props) {
         }
     }, []);
 
-    useEffect(() => {
-        async function getMyReviewedBooks() {
-            const response = await getUserReviewedBooks(loggedInUser._id);
+    // useEffect(() => {
+    //     async function getMyReviewedBooks() {
+    //         const response = await getUserReviewedBooks(loggedInUser._id);
 
-            setUserReviewedBooks(response);
-        }
-        getMyReviewedBooks()
+    //         setUserReviewedBooks(response);
+    //     }
+    //     getMyReviewedBooks()
 
-        async function getMyReadBooks() {
-            const response = await getUserReadBooks(loggedInUser._id);
+    //     async function getMyReadBooks() {
+    //         const response = await getUserReadBooks(loggedInUser._id);
 
-            setUserReadBooks(response)
-        }
-        getMyReadBooks()
+    //         setUserReadBooks(response)
+    //     }
+    //     getMyReadBooks()
 
-        async function getMyPostedBooks() {
-            const response = await getUserPostedBooks(loggedInUser._id);
+    //     async function getMyPostedBooks() {
+    //         const response = await getUserPostedBooks(loggedInUser._id);
 
-            setUserPostedBooks(response);
-        }
-        getMyPostedBooks()
-    }, [loggedInUser]);
+    //         setUserPostedBooks(response);
+    //     }
+    //     getMyPostedBooks()
+    // }, [loggedInUser]);
 
     async function updateUserReadBooks() {
         const response = await getUserReadBooks(loggedInUser._id);
