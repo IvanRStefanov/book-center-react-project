@@ -8,12 +8,8 @@ import { getUserReadBooks } from "../../../services/readBooksService";
 
 export default function MyReadBooks() {
 	const UserCTX = useContext(UserContext);
-
-	if (!UserCTX.user) {
-		return <Navigate to={'/'} />
-	}
-
 	const userId = UserCTX.user._id;
+	
 	const {
 		isPending,
 		error,

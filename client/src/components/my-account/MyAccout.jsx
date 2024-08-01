@@ -4,11 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 export default function MyAccount() {
 	const UserCTX = useContext(UserContext);
-
-	if (!UserCTX.user) {
-		return <Navigate to={"/"} />;
-	}
-
+	
 	return (
 		<section className="section-my-acc">
 			<div className="shell">

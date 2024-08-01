@@ -8,11 +8,6 @@ import { getUserPostedBooks } from "../../../services/booksService";
 
 export default function MyPublishedBooks() {
 	const UserCTX = useContext(UserContext);
-
-	if (!UserCTX.user) {
-		return <Navigate to={'/'} />
-	}
-
 	const userId = UserCTX.user._id;
 
 	const {

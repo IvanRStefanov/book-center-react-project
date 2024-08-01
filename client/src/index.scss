@@ -1219,8 +1219,10 @@ main {
 
 	.section__inner {
 		display: grid;
+		min-height: 300px;
 		grid-template-columns: .45fr .55fr;
 		gap: 40px 50px;
+		position: relative;
 	}
 
 	.section__img {

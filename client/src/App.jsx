@@ -15,6 +15,7 @@ import MyPublishedBooks from './components/my-account/my-published-books/MyPubli
 import MyReviews from './components/my-account/my-reviews/MyReviews';
 import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 import BookEdit from './components/book-edit/BookEdit';
+import AuthGuard from './components/guard/AuthGuard';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -40,10 +41,13 @@ function App() {
 							<Route path="/catalog/:bookId" element={<BookDetails />} />
 							<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
 							<Route path="/add-new-book" element={<PublishPage />} />
-							<Route path="/my-account" element={<MyAccount />}>
-								<Route path="my-published-books" element={<MyPublishedBooks />} />
-								<Route path="my-reviews" element={<MyReviews />} />
-								<Route path="my-read-books" element={<MyReadBooks />} />
+							
+							<Route element={<AuthGuard />}>
+								<Route path="/my-account" element={<MyAccount />}>
+									<Route path="my-published-books" element={<MyPublishedBooks />} />
+									<Route path="my-reviews" element={<MyReviews />} />
+									<Route path="my-read-books" element={<MyReadBooks />} />
+								</Route>
 							</Route>
 						</Routes>
 					</main>

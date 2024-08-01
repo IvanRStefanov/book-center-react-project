@@ -7,14 +7,9 @@ import SIngleUserReviewItem from "./single-user-review-item/SingleUserReviewItem
 import { getUserReviewedBooks } from "../../../services/reviewBookSService";
 
 export default function MyReviews() {
-
 	const UserCTX = useContext(UserContext);
-
-	if (!UserCTX.user) {
-		return <Navigate to={'/'} />
-	}
-
 	const userId = UserCTX.user._id;
+
 	const {
 		isPending,
 		error,

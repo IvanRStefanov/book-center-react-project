@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -52,30 +52,18 @@ export default function Header() {
 			<div className="shell">
 				<div className="header__content">
 					<div className="header__logo">
-						<NavLink to="/" className="logo">
+						<Link to={'/'} className="logo">
 							<img src="../src/assets/svgs/opened-book.svg" alt=""></img>
-						</NavLink>
+						</Link>
 					</div>
 
 					<div className="header__actions">
 						<div className="header__menu">
 							<nav>
 								<ul className="menu">
-									{/* <li>
-										<NavLink to="/featured">Featured</NavLink>
-									</li> */}
-
 									<li>
 										<NavLink to="/catalog">Catalog</NavLink>
 									</li>
-
-									{/* <li>
-										<NavLink to="/contact">Contact</NavLink>
-									</li> */}
-
-									{/* <li>
-										<NavLink to="/about">About</NavLink>
-									</li> */}
 
 									{UserCTX.user &&
 										<li>
