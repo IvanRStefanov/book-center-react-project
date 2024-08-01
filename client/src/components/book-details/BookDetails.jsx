@@ -1,6 +1,6 @@
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
@@ -84,40 +84,7 @@ export default function BookDetails() {
 		queryKey: ['bookReviews'],
 		queryFn: () => getBookReviewsById(bookId),
 	})
-	// console.log(hasReviewed)
-
-	// useEffect(() => {
-	// 	async function getBook() {
-	// 		const bookData = await getSingleBook(bookId);
-
-	// 		setBook(bookData);
-	// 	}
-	// 	getBook();
-
-	// 	async function bookReviews() {
-	// 		try {
-	// 			const response = await getBookReviewsById(bookId);
-	// 			setBookReviews(response);
-	// 		} catch (error) {
-	// 			console.log(error)
-	// 		}
-	// 	}
-	// 	bookReviews();
-	// }, []);
-
-	// useEffect(() => {
-	// 	async function getTotalCountBookRead() {
-	// 		try {
-	// 			const response = await getTotalCountBookHasBeenRead(bookId);
-
-	// 			setTotalTimesBookRead(response);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	getTotalCountBookRead();
-	// }, [bookIsRead]);
-
+	
 	async function addBookToMyReadListClickHandler() {
 		try {
 			await addBookToUserReadList(bookId, book.imgUrl);
@@ -140,18 +107,17 @@ export default function BookDetails() {
 		showBodyScroll(true);
 	}
 
-	async function deleteBookHandler() {
-		setIsDeleting(oldState => !oldState);
-		await deleteBookFromOtherCollectionsAsAdmin(bookId);
-		await deleteBook(bookId);
-		setIsDeleting(oldState => !oldState);
-		showBodyScroll(true);
-		UserCTX.updatePostedBooks();
-		UserCTX.updateReadBooks();
-		UserCTX.updateReviews();
-
-		navigate('/my-account/my-published-books');
-	}
+	const deleteBookMutation = useMutation({
+		mutationFn: async () => {
+			console.log(1)
+			setIsDeleting(oldState => !oldState);
+			await deleteBookFromOtherCollectionsAsAdmin(bookId);
+			await deleteBook(bookId);
+			setIsDeleting(oldState => !oldState);
+			showBodyScroll(true);
+			navigate('/my-account/my-published-books');
+		}
+	})
 
 	async function updateBookReviewList() {
 		try {
@@ -167,9 +133,9 @@ export default function BookDetails() {
 
 			{alertDeleteBook &&
 				<ModalDelete
-					book={bookId}
+					book={bookData}
 					isDeleting={isDeleting}
-					deleteBookHandler={deleteBookHandler}
+					deleteBookMutation={deleteBookMutation}
 					hideAlertDeleteBook={hideAlertDeleteBook}
 				/>
 			}

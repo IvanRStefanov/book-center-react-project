@@ -96,13 +96,14 @@
         position: absolute;
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
         display: block;
         width: 25px;
         aspect-ratio: 1;
         border-radius: 50%;
         border: 5px solid #ddd;
         border-top-color: orange;
-        animation: loading 1s linear infinite;
+        animation: loading-centered-absolute 1s linear infinite;
         z-index: 4;
     }
 
@@ -170,6 +171,12 @@
     @keyframes l4 {
         to {
             clip-path: inset(0 -1.5ch 0 0)
+        }
+    }
+
+    @keyframes loading-centered-absolute {
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
         }
     }
 }
