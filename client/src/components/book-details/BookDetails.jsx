@@ -1,6 +1,6 @@
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
@@ -16,6 +16,7 @@ import BookDetailsOwnerInfo from "./book-details-owner-info/BookDetailsOwnerInfo
 
 export default function BookDetails() {
 	const navigate = useNavigate();
+	const queryClient = useQueryClient();
 	const UserCTX = useContext(UserContext);
 	const userId = UserCTX.user._id;
 
@@ -29,9 +30,9 @@ export default function BookDetails() {
 	const [bookReviews, setBookReviews] = useState([]);
 
 	const {
-		isFetching: isFetchingBookData,
-		data: bookData,
+		isLoading: isLoadingBookData,
 		error: bookDataError,
+		data: bookData,
 	} = useQuery({
 		queryKey: ['singleBook'],
 		queryFn: async () => {
@@ -41,61 +42,99 @@ export default function BookDetails() {
 				return Promise.reject('Resource not found!')
 			}
 			return bookObject;
-		}
+		},
 	});
-	// console.log(remainingProps);
-
-	let isOwner = false;
-	if (!isFetchingBookData) {
-		// console.log(bookDataError)
-		isOwner = bookData._ownerId == userId;
-	}
 
 	const {
-		isFetching: isFetchingHasUserReadData,
-		data: hasUserReadData,
+		isLoading: isLoadingUserReadBooksData,
+		error: userReadBooksDataError,
+		data: userReadBooksData,
 	} = useQuery({
-		queryKey: ['hasUserRead'],
-		queryFn: () => getUserReadBooks(userId)
+		queryKey: ['userReadBooks', bookId],
+		queryFn: async () => getUserReadBooks(userId)
 	})
 
-	let hasRead = false;
-	if (!isFetchingHasUserReadData) {
-		hasRead = hasUserReadData.findIndex(book => (book.bookId == bookId)) >= 0
-	}
-
 	const {
-		isFetching: isFetchingHasUserReviewedData,
-		data: hasUserReviewedData,
+		isLoading: isLoadingUserReviewedBooksData,
+		error: userReviewedBooksDataError,
+		data: userReviewedBooksData,
 	} = useQuery({
-		queryKey: ['hasUserReviewed'],
+		queryKey: ['userReviewedBooks', bookId],
 		queryFn: () => getUserReviewedBooks(userId),
 	});
 
-	let hasReviewed = false;
-	if (!isFetchingHasUserReviewedData) {
-		hasReviewed = hasUserReviewedData.findIndex(review => (review.bookId == bookId)) >= 0;
-	}
+	const {
+		isLoading: isLoadingBookReadCount,
+		error: bookReadCountError,
+		data: bookReadCountData,
+	} = useQuery({
+		queryKey: ['bookReadCount'],
+		queryFn: () => getTotalCountBookHasBeenRead(bookId)
+	})
 
 	const {
-		isFetching: isFetchingBookReviewsData,
-		data: bookReviewsData
+		isLoading: isLoadingBookReviewsData,
+		error: bookReviewsError,
+		data: bookReviewsData,
 	} = useQuery({
 		queryKey: ['bookReviews'],
-		queryFn: () => getBookReviewsById(bookId),
+		queryFn: () => getBookReviewsById(bookId)
 	})
-	
-	async function addBookToMyReadListClickHandler() {
-		try {
-			await addBookToUserReadList(bookId, book.imgUrl);
 
-			setTotalTimesBookRead(oldCount => oldCount + 1);
-			UserCTX.updateReadBooks();
-			setBookIsRead(oldState => !oldState);
-		} catch (error) {
-			console.log(error)
+	const deleteBookMutation = useMutation({
+		mutationFn: async () => {
+			setIsDeleting(oldState => !oldState);
+			await deleteBookFromOtherCollectionsAsAdmin(bookId);
+			await deleteBook(bookId);
+			setIsDeleting(oldState => !oldState);
+			showBodyScroll(true);
+			navigate('/my-account/my-published-books');
 		}
+	})
+
+	const markBookAsReadMutation = useMutation({
+		mutationFn: async () => {
+			await addBookToUserReadList(bookId, bookData.imgUrl);
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['bookReadCount'] })
+			queryClient.invalidateQueries({ queryKey: ['userReadBooks', bookId] })
+		}
+	});
+
+	if (isLoadingBookData
+		|| isLoadingUserReadBooksData
+		|| isLoadingUserReviewedBooksData
+		|| isLoadingBookReadCount
+		|| isLoadingBookReviewsData
+	) {
+		return (
+			<div className="section-details">
+				<div className="shell">
+					<div className="section__inner">
+						<div className="loading-spinner"></div>
+					</div>
+				</div>
+			</div>
+		)
 	}
+
+	if (bookDataError
+		|| userReadBooksDataError
+		|| userReviewedBooksDataError
+		|| bookReadCountError
+		|| bookReviewsError
+	) {
+		return (
+			<Navigate to={'/error-page'} />
+		)
+	}
+
+	const isOwner = bookData._ownerId === userId;
+	const hasRead = userReadBooksData.findIndex(book => (book.bookId == bookId)) >= 0;
+	const hasReviewed = userReviewedBooksData.findIndex(review => (review.bookId == bookId)) >= 0;
+
+	console.log(`isOwner: ${isOwner}, hasRead: ${hasRead}, hasReviewed: ${hasReviewed}`)
 
 	function showAlertDeleteBook() {
 		setAlertDeleteBook(oldState => !oldState);
@@ -107,34 +146,22 @@ export default function BookDetails() {
 		showBodyScroll(true);
 	}
 
-	const deleteBookMutation = useMutation({
-		mutationFn: async () => {
-			console.log(1)
-			setIsDeleting(oldState => !oldState);
-			await deleteBookFromOtherCollectionsAsAdmin(bookId);
-			await deleteBook(bookId);
-			setIsDeleting(oldState => !oldState);
-			showBodyScroll(true);
-			navigate('/my-account/my-published-books');
-		}
-	})
 
-	async function updateBookReviewList() {
-		try {
-			const response = await getBookReviewsById(bookId);
-			setBookReviews(response);
-		} catch (error) {
-			console.log(error)
-		}
-	}
+
+	// async function updateBookReviewList() {
+	// 	try {
+	// 		const response = await getBookReviewsById(bookId);
+	// 		setBookReviews(response);
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+	// }
 
 	return (
 		<>
-
 			{alertDeleteBook &&
 				<ModalDelete
 					book={bookData}
-					isDeleting={isDeleting}
 					deleteBookMutation={deleteBookMutation}
 					hideAlertDeleteBook={hideAlertDeleteBook}
 				/>
@@ -143,123 +170,115 @@ export default function BookDetails() {
 			<section className="section-details">
 				<div className="shell">
 					<div className="section__inner">
-						{isFetchingBookData
-							? <div className="loading-spinner"></div>
-							: bookDataError
-								? <Navigate to={'/error-page'} />
-								: <>
-									<div className="section__media">
-										<div className="section__img image-fit">
-											<img src={bookData.imgUrl} alt={`${bookData.name} cover`} />
+						<div className="section__media">
+							<div className="section__img image-fit">
+								<img src={bookData.imgUrl} alt={`${bookData.name} cover`} />
 
-											<span className="section__img-loading-spinner"></span>
-										</div>
+								<span className="section__img-loading-spinner"></span>
+							</div>
+						</div>
+
+						<div className="section__main">
+							<header className="section__title">
+								<h1 className="section__head">{bookData.name}</h1>
+							</header>
+
+							<div className="section__body">
+								<p>
+									<strong>Author:</strong>
+
+									<br></br>
+
+									&nbsp;&nbsp;&nbsp;{bookData.author}
+								</p>
+
+								<p>
+									<strong>Book description: </strong>
+
+									<br></br>
+
+									&nbsp;&nbsp;&nbsp;{bookData.description}
+								</p>
+
+								<p className="section__price">
+									<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(bookData.price).toFixed(2)}
+								</p>
+							</div>
+
+							{bookData.genre &&
+								<div className="section__list">
+									<div className="section__list-head">
+										<p>Genres: </p>
 									</div>
 
-									<div className="section__main">
-										<header className="section__title">
-											<h1 className="section__head">{bookData.name}</h1>
-										</header>
+									<ul>
+										{bookData.genre.map((genre, index) =>
+											<li key={genre}>
+												{genre}{(index == (bookData.genre.length - 1)) ? '' : ','}
+											</li>
+										)}
+									</ul>
+								</div>
+							}
 
-										<div className="section__body">
-											<p>
-												<strong>Author:</strong>
+							<div className="section__main-actions">
+								<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{bookReadCountData} user{bookReadCountData != 1 ? 's' : ''}</p>
 
-												<br></br>
+								{(UserCTX.user && !isOwner && !hasRead) &&
+									< button
+										className={markBookAsReadMutation.isPending ? 'btn btn--spinner' : 'btn'}
+										disabled={markBookAsReadMutation.isPending}
+										onClick={() => markBookAsReadMutation.mutate()}
+									>
+										Add to my read list
+									</button>
+								}
+							</div>
 
-												&nbsp;&nbsp;&nbsp;{bookData.author}
-											</p>
+							<BookDetailsOwnerInfo book={bookData} />
+						</div>
 
-											<p>
-												<strong>Book description: </strong>
-
-												<br></br>
-
-												&nbsp;&nbsp;&nbsp;{bookData.description}
-											</p>
-
-											<p className="section__price">
-												<strong>Price:</strong>&nbsp; <sup>&#36;</sup>{parseFloat(bookData.price).toFixed(2)}
-											</p>
-										</div>
-
-										{bookData.genre &&
-											<div className="section__list">
-												<div className="section__list-head">
-													<p>Genres: </p>
-												</div>
-
-												<ul>
-													{bookData.genre.map((genre, index) =>
-														<li key={genre}>
-															{genre}{(index == (bookData.genre.length - 1)) ? '' : ','}
-														</li>
-													)}
-												</ul>
-											</div>
-										}
-
-										<div className="section__main-actions">
-											<p><strong>This book has been read by:</strong>&nbsp;&nbsp;{totaltimesBookRead} user{totaltimesBookRead != 1 ? 's' : ''}</p>
-
-											{(UserCTX.user && !isOwner && !hasRead) &&
-												< button className="btn" onClick={addBookToMyReadListClickHandler}>
-													Add to my read list
-												</button>
-											}
-										</div>
-
-										<BookDetailsOwnerInfo book={bookData} />
-									</div>
-
-									{isOwner &&
-										<div className="section__actions">
-											<div className="section__owner-actions">
-												<Link to={`/catalog/${bookId}/edit`} className="btn btn--edit">EDIT</Link>
-												<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
-											</div>
-										</div>
-									}
-
-									<div className="section__comments">
-										<div className="section__comments-head">
-											<p><u>Users reviews: </u></p>
-										</div>
-
-										<div className="section__comments-list">
-											{
-												isFetchingBookReviewsData
-													? <div className="loading-text"></div>
-													:
-													bookReviewsData.length > 0
-														?
-														<ListReviews
-															bookReviews={bookReviewsData}
-															updateBookReviewList={updateBookReviewList}
-														/>
-														: <p>No reviews yet{UserCTX.user ? ' be the first!' : '!'}</p>
-											}
-
-										</div>
-										{(!hasReviewed && UserCTX.user)
-											? <div className="section__comment-form">
-												<div className="section__comment-form-head">
-													<h6>Write a review</h6>
-												</div>
-
-												<div className="section__comment-form-body">
-													<FormReview
-														bookId={bookId}
-														book={book}
-														updateBookReviewList={updateBookReviewList}
-													/>
-												</div>
-											</div>
-											: ''
-										}
-									</div>
-								</>
+						{isOwner &&
+							<div className="section__actions">
+								<div className="section__owner-actions">
+									<Link to={`/catalog/${bookId}/edit`} className="btn btn--edit">EDIT</Link>
+									<button className="btn btn--delete" onClick={showAlertDeleteBook}>DELETE</button>
+								</div>
+							</div>
 						}
+
+						<div className="section__comments">
+							<div className="section__comments-head">
+								<p><u>Users reviews: </u></p>
+							</div>
+
+							<div className="section__comments-list">
+								{bookReviewsData.length > 0
+									?
+									<ListReviews
+										bookReviews={bookReviewsData}
+									// updateBookReviewList={updateBookReviewList}
+									/>
+									: <p>No reviews yet{UserCTX.user ? ' be the first!' : '!'}</p>
+								}
+
+							</div>
+							{(!hasReviewed && UserCTX.user)
+								&& <div className="section__comment-form">
+									<div className="section__comment-form-head">
+										<h6>Write a review</h6>
+									</div>
+
+									<div className="section__comment-form-body">
+										<FormReview
+											bookId={bookId}
+											book={book}
+										// updateBookReviewList={updateBookReviewList}
+										/>
+									</div>
+								</div>
+							}
+						</div>
 					</div>
 				</div>
 			</section >

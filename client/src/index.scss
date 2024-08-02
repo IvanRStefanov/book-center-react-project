@@ -361,10 +361,33 @@ main {
 	}
 
 	/*  Btn--red  */
-
 	&.btn--red {
 		background-color: red;
 	}
+
+	/*  Btn--spinner  */
+	&.btn--spinner {
+		position: relative;
+		cursor: not-allowed;
+		background-color: #208040;
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: block;
+			width: 10px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			border: 5px solid #ddd;
+			border-top-color: orange;
+			transform: translate(-50%, -50%);
+			animation: btn-loading 1s linear infinite;
+			z-index: 1;
+		}
+	}
+
 
 }
 

@@ -2,7 +2,6 @@ import styles from './ModalDelete.module.scss'
 
 export default function ModalDelete({
 	book,
-	// isDeleting,
 	hideAlertDeleteBook,
 	deleteBookMutation
 }) {
@@ -36,7 +35,7 @@ export default function ModalDelete({
 
 					{deleteBookMutation.isPending &&
 						<div className={styles['modal__delete-loading']}></div>
-					} 
+					}
 				</div>
 			</div>
 		</div>
