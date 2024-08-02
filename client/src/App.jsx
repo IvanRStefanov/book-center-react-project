@@ -40,10 +40,10 @@ function App() {
 							<Route path="/" element={<HomePage />} />
 							<Route path="/catalog" element={<CatalogPage />} />
 							<Route path="/catalog/:bookId" element={<BookDetails />} />
-							<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
-							<Route path="/add-new-book" element={<PublishPage />} />
-							
+
 							<Route element={<AuthGuard />}>
+								<Route path="/add-new-book" element={<PublishPage />} />
+								<Route path="/catalog/:bookId/edit" element={<BookEdit />} />
 								<Route path="/my-account" element={<MyAccount />}>
 									<Route path="my-published-books" element={<MyPublishedBooks />} />
 									<Route path="my-reviews" element={<MyReviews />} />
