@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 
 import { createNewBook } from '../../../services/booksService';
 import { bookGenres } from '../../../utils/variables';
@@ -8,15 +9,8 @@ import { bookGenres } from '../../../utils/variables';
 import { UserContext } from '../../../contexts/UserContext';
 
 export default function PublishForm() {
-
 	const navigate = useNavigate();
 	const UserCTX = useContext(UserContext);
-
-	useEffect(() => {
-		if (!UserCTX.user) {
-			return navigate('/')
-		}
-	}, [])
 
 	const {
 		register,
@@ -34,26 +28,39 @@ export default function PublishForm() {
 			genre: [],
 			price: ''
 		}
+	});
+
+	const addNewBookMutation = useMutation({
+		mutationFn: async (newBookObject) => {
+			return createNewBook(newBookObject)
+		}
 	})
 
 	const [disableCheckbox, setDisableCheckbox] = useState(true)
 	useEffect(() => {
-		setDisableCheckbox(oldState => !oldState)
+		setDisableCheckbox(false)
 	}, [isSubmitting])
 
 	async function publishNewBookSubmitHandler(data) {
 		try {
-			const response = await createNewBook({
+			const newBookObject = {
 				...data,
 				price: Number(parseFloat(data.price).toFixed(2)),
 				publisherEmail: UserCTX.user.email,
 				publisherFirstName: UserCTX.user.firstName,
 				publisherLastName: UserCTX.user.lastName
+			};
+
+			await addNewBookMutation.mutateAsync(newBookObject, {
+				onSuccess: (data) => {
+					navigate('/catalog/' + data._id);
+				},
+				onError: (error) => {
+					if (error.message == 'Failed to fetch') {
+						throw new Error(error.message)
+					}
+				}
 			});
-
-			UserCTX.updatePostedBooks();
-
-			navigate('/catalog/' + response._id);
 		} catch (error) {
 			console.error(error.message)
 			setError('serverError', {
@@ -65,6 +72,7 @@ export default function PublishForm() {
 
 	function onError(errors) {
 		if (errors.serverError) {
+			setDisableCheckbox(false)
 			clearErrors('serverError');
 			handleSubmit(submitEditedBookHandler)();
 		}
@@ -76,6 +84,8 @@ export default function PublishForm() {
 				?
 				<div className='section__error'>
 					<p>{errors.serverError.message}</p>
+					<br></br>
+					<p><Link to={'/'} className='btn'>Home</Link></p>
 				</div>
 				:
 				<div className="form">
@@ -86,7 +96,12 @@ export default function PublishForm() {
 
 						<div className="form__body">
 							<div className={errors.name ? "form__row form__row--err" : 'form__row'}>
-								<label htmlFor="name" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book name</label>
+								<label
+									htmlFor="name"
+									className={addNewBookMutation.isPending ? "form__label form__label--submiting" : "form__label"}
+								>
+									Book name
+								</label>
 
 								<div className="form__controls">
 									<input
@@ -95,7 +110,7 @@ export default function PublishForm() {
 										name="name"
 										id="name"
 										autoComplete='off'
-										disabled={isSubmitting}
+										disabled={addNewBookMutation.isPending}
 										{...register('name', {
 											required: true,
 										})}
@@ -104,7 +119,12 @@ export default function PublishForm() {
 							</div>
 
 							<div className={errors.author ? "form__row form__row--err" : 'form__row'}>
-								<label htmlFor="author" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Author</label>
+								<label
+									htmlFor="author"
+									className={addNewBookMutation.isPending ? "form__label form__label--submiting" : "form__label"}
+								>
+									Author
+								</label>
 
 								<div className="form__controls">
 									<input
@@ -113,7 +133,7 @@ export default function PublishForm() {
 										name="author"
 										id="author"
 										autoComplete='off'
-										disabled={isSubmitting}
+										disabled={addNewBookMutation.isPending}
 										{...register('author', {
 											required: true,
 										})}
@@ -122,7 +142,12 @@ export default function PublishForm() {
 							</div>
 
 							<div className={errors.imgUrl ? "form__row form__row--err" : 'form__row'}>
-								<label htmlFor="imgUrl" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book cover URL</label>
+								<label
+									htmlFor="imgUrl"
+									className={addNewBookMutation.isPending ? "form__label form__label--submiting" : "form__label"}
+								>
+									Book cover URL
+								</label>
 
 								<div className="form__controls">
 									<input
@@ -130,7 +155,7 @@ export default function PublishForm() {
 										className="field"
 										name="imgUrl"
 										id="imgUrl"
-										disabled={isSubmitting}
+										disabled={addNewBookMutation.isPending}
 										{...register('imgUrl', {
 											required: true,
 										})}
@@ -139,14 +164,19 @@ export default function PublishForm() {
 							</div>
 
 							<div className={errors.description ? "form__row form__row--err" : 'form__row'}>
-								<label htmlFor="description" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Book description</label>
+								<label
+									htmlFor="description"
+									className={addNewBookMutation.isPending ? "form__label form__label--submiting" : "form__label"}
+								>
+									Book description
+								</label>
 
 								<div className="form__controls">
 									<textarea
 										className="textarea"
 										name="description"
 										id="description"
-										disabled={isSubmitting}
+										disabled={addNewBookMutation.isPending}
 										{...register('description', {
 											required: true,
 										})}
@@ -179,7 +209,11 @@ export default function PublishForm() {
 							</div>
 
 							<div className={errors.price ? "form__row form__row--err" : 'form__row'}>
-								<label htmlFor="price" className={isSubmitting ? "form__label form__label--submiting" : "form__label"}>Price</label>
+								<label
+									htmlFor="price"
+									className={addNewBookMutation.isPending ? "form__label form__label--submiting" : "form__label"}
+								>Price
+								</label>
 
 								<div className="form__controls">
 									<input
@@ -200,7 +234,11 @@ export default function PublishForm() {
 						</div>
 
 						<div className="form__actions">
-							<button type="submit" disabled={isSubmitting} className={isSubmitting ? 'form__btn form__btn--spinner' : 'form__btn'}>
+							<button
+								type="submit"
+								disabled={addNewBookMutation.isPending}
+								className={addNewBookMutation.isPending ? 'form__btn form__btn--spinner' : 'form__btn'}
+							>
 								Submit
 							</button>
 						</div>
