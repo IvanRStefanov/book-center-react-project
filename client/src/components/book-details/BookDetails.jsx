@@ -5,7 +5,7 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/re
 import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
-import { getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
+import { createUserReview, getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -22,12 +22,7 @@ export default function BookDetails() {
 
 	const { bookId } = useParams();
 
-	const [book, setBook] = useState({});
-	const [isDeleting, setIsDeleting] = useState(false);
-	const [totaltimesBookRead, setTotalTimesBookRead] = useState(0);
-	const [bookIsRead, setBookIsRead] = useState(false);
 	const [alertDeleteBook, setAlertDeleteBook] = useState(false);
-	const [bookReviews, setBookReviews] = useState([]);
 
 	const {
 		isLoading: isLoadingBookData,
@@ -83,10 +78,8 @@ export default function BookDetails() {
 
 	const deleteBookMutation = useMutation({
 		mutationFn: async () => {
-			setIsDeleting(oldState => !oldState);
 			await deleteBookFromOtherCollectionsAsAdmin(bookId);
 			await deleteBook(bookId);
-			setIsDeleting(oldState => !oldState);
 			showBodyScroll(true);
 			navigate('/my-account/my-published-books');
 		}
@@ -257,7 +250,6 @@ export default function BookDetails() {
 									?
 									<ListReviews
 										bookReviews={bookReviewsData}
-									// updateBookReviewList={updateBookReviewList}
 									/>
 									: <p>No reviews yet{UserCTX.user ? ' be the first!' : '!'}</p>
 								}
@@ -272,8 +264,7 @@ export default function BookDetails() {
 									<div className="section__comment-form-body">
 										<FormReview
 											bookId={bookId}
-											book={book}
-										// updateBookReviewList={updateBookReviewList}
+											book={bookData}
 										/>
 									</div>
 								</div>
