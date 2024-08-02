@@ -139,17 +139,6 @@ export default function BookDetails() {
 		showBodyScroll(true);
 	}
 
-
-
-	// async function updateBookReviewList() {
-	// 	try {
-	// 		const response = await getBookReviewsById(bookId);
-	// 		setBookReviews(response);
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
-
 	return (
 		<>
 			{alertDeleteBook &&
