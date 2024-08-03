@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { deleteUserReview } from "../../../../services/reviewBookSService";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { deleteUserReview } from "../../../../services/reviewBookSService";
 import { UserContext } from "../../../../contexts/UserContext";
 
 export default function SingleBookReviewListItem({
 	review,
-	updateBookReviewList
 }) {
 	const UserCTX = useContext(UserContext);
+	const queryClient = useQueryClient();
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	function showDeleteCommentWarning() {
@@ -23,8 +24,26 @@ export default function SingleBookReviewListItem({
 		await deleteUserReview(reviewId);
 
 		removeDeleteCommentWarning();
-		updateBookReviewList();
-		UserCTX.updateReviews();
+	}
+
+	const deleteReviewMutation = useMutation({
+		mutationFn: async () => {
+			await deleteUserReview(review._id);
+		},
+		onSuccess: () => {
+			const queryKeysToInvalidate = ['bookReviews', 'userReviewedBooks'];
+			queryKeysToInvalidate.forEach(key => {
+				queryClient.invalidateQueries({ queryKey: [key] })
+			})
+		},
+		onError: (error) => {
+			console.error(error);
+		}
+	})
+
+	function resetDeleteReviewMutation() {
+		setIsDeleting(false)
+		deleteReviewMutation.reset();
 	}
 
 	return (
@@ -44,21 +63,40 @@ export default function SingleBookReviewListItem({
 				: ''
 			}
 
-			{isDeleting &&
-				<div className="list__item-warning">
-					<div className="list__item-warning-body">
-						<p>You are about to delete your comment. Are you sure you want to delete it?</p>
-					</div>
+			{(isDeleting && !deleteReviewMutation.isPending && !deleteReviewMutation.isError) &&
+					<div className="list__item-warning">
+						<div className="list__item-warning-body">
+							<p>You are about to delete your comment. Are you sure you want to delete it?</p>
+						</div>
 
-					<div className="list__item-owner-actions">
-						<button className="list__item-warning-btn" onClick={deleteCommentHandler}>
-							Yes, I want to delete the comment.
-						</button>
+						<div className="list__item-owner-actions">
+							<button
+								className="list__item-warning-btn"
+								onClick={() => deleteReviewMutation.mutate()}
+							>
+								Yes, I want to delete the comment.
+							</button>
 
-						<button className="list__item-warning-btn list__item-reject-delete-btn" onClick={removeDeleteCommentWarning}>
-							No, let the comment stay.
-						</button>
+							<button
+								className="list__item-warning-btn list__item-reject-delete-btn"
+								onClick={removeDeleteCommentWarning}
+							>
+								No, let the comment stay.
+							</button>
+						</div>
 					</div>
+			}
+
+			{(deleteReviewMutation.isPending && !deleteReviewMutation.isError) &&
+				<div className="list__item-delete-loading">
+					<div className="loading-spinner"></div>
+				</div>
+			}
+
+			{deleteReviewMutation.isError &&
+				<div className="list__item-error">
+					<p>There seems to be some technical issues, please try again later.</p>
+					<button onClick={() => resetDeleteReviewMutation()} className="list__item-close-error-message-btn"></button>
 				</div>
 			}
 		</li>

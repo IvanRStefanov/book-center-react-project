@@ -128,7 +128,7 @@ export default function BookDetails() {
 	const hasRead = userReadBooksData.findIndex(book => (book.bookId == bookId)) >= 0;
 	const hasReviewed = userReviewedBooksData.findIndex(review => (review.bookId == bookId)) >= 0;
 
-	console.log(`isOwner: ${isOwner}, hasRead: ${hasRead}, hasReviewed: ${hasReviewed}`)
+	// console.log(`isOwner: ${isOwner}, hasRead: ${hasRead}, hasReviewed: ${hasReviewed}`)
 
 	function showAlertDeleteBook() {
 		setAlertDeleteBook(oldState => !oldState);
