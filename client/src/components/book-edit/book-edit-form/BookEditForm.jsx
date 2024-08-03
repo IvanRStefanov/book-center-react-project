@@ -36,12 +36,6 @@ export default function BookEditForm({
         }
     })
 
-    const [disableCheckbox, setDisableCheckbox] = useState(false);
-
-    useEffect(() => {
-        setDisableCheckbox(true)
-    }, [isSubmitting])
-
     async function submitEditedBookHandler(data) {
         const queryKeysToInvalidate = ['singleBook', 'singleBookEdit']
 
@@ -76,7 +70,6 @@ export default function BookEditForm({
 
     function onError(errors) {
         if (errors.serverError) {
-            setDisableCheckbox(false);
             clearErrors('serverError');
             handleSubmit(submitEditedBookHandler)();
         }
