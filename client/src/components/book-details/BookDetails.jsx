@@ -38,6 +38,7 @@ export default function BookDetails() {
 			}
 			return bookObject;
 		},
+		refetchOnMount: "always"
 	});
 
 	const {
