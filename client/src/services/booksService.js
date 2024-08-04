@@ -8,6 +8,18 @@ export async function getAllBooks() {
     return result;
 }
 
+export async function getAllBooksPaginatedWithSearchName(skip, take, bookNameString) {
+    const result = requester.get(baseUrl + `?offset=${skip}&pageSize=${take}&where=name LIKE %22${bookNameString}%22`);
+    
+    return result;
+}
+
+export async function getTotalBookCount() {
+    const result = requester.get(baseUrl + '?count');
+
+    return result;
+}
+
 export async function getSingleBook(bookId) {
     const result = await requester.get(baseUrl + `/${bookId}`)
 
