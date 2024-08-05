@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteUserReview } from "../../../../services/reviewBookSService";
+import { useQueryClient } from "@tanstack/react-query";
 
+import { deleteUserReview } from "../../../../services/reviewBookSService";
 import { UserContext } from "../../../../contexts/UserContext";
 
 export default function SIngleUserReviewItem({
     review,
 }) {
     const UserCTX = useContext(UserContext)
+    const queryClient = useQueryClient()
     const [isDeleting, setIsDeleting] = useState(false)
 
     async function displayWarning() {
@@ -20,7 +22,7 @@ export default function SIngleUserReviewItem({
 
     async function handleDeleteReview() {
         await deleteUserReview(review._id);
-        UserCTX.updateReviews();
+        queryClient.invalidateQueries({queryKey: ['userReviewedBooks']})
         hideWarning();
     }
 

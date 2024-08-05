@@ -14,7 +14,6 @@ export default function MyReviews() {
 		isPending,
 		error,
 		data,
-		...restProps
 	} = useQuery({
 		queryKey: ['userReviewedBooks', userId],
 		queryFn: () => getUserReviewedBooks(userId)
