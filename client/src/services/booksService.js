@@ -39,8 +39,14 @@ export async function getSingleBook(bookId) {
     return result;
 }
 
-export async function getUserPostedBooks(userId) {
-    const response = await requester.get(baseUrl + `/?where=_ownerId%3D%22${userId}%22`);
+export async function getUserPostedBooksPaginated(userId, skip = 0, take = 8) {
+    const response = await requester.get(baseUrl + `/?where=_ownerId%3D%22${userId}%22&offset=${skip}&pageSize=${take}`);
+
+    return response;
+}
+
+export async function getUserPostedBooksCount(userId) {
+    const response = await requester.get(baseUrl + `/?where=_ownerId%3D%22${userId}%22&count`);
 
     return response;
 }

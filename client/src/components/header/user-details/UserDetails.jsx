@@ -5,7 +5,7 @@ import { UserContext } from '../../../contexts/UserContext';
 
 import styles from './UserDetails.module.scss'
 import { useQuery } from '@tanstack/react-query';
-import { getUserPostedBooks } from '../../../services/booksService';
+import { getUserPostedBooksCount } from '../../../services/booksService';
 import { getUserReviewedBooks } from '../../../services/reviewBookSService';
 import { getUserReadBooks } from '../../../services/readBooksService';
 
@@ -19,7 +19,7 @@ export default function UserDetails({
 	const { data: userPostedBooks } = useQuery({
 		queryKey: ['userPostedBooks'],
 		queryFn: () => {
-			return getUserPostedBooks(userId)
+			return getUserPostedBooksCount(userId)
 		}
 	});
 
@@ -60,7 +60,7 @@ export default function UserDetails({
 								<span>Email:</span> {UserCTX.user.email}
 							</li>
 							<li>
-								<span>Books Added:</span> {userPostedBooks?.length}
+								<span>Books Added:</span> {userPostedBooks}
 							</li>
 
 							<li>

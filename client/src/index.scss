@@ -1750,10 +1750,12 @@ main {
 	List-books
 \* ------------------------------------------------------------ */
 .list-books {
-	list-style-type: none;
-	display: grid;
-	grid-template-columns: repeat(5, .25fr);
-	gap: 20px;
+	ul {
+		list-style-type: none;
+		display: grid;
+		grid-template-columns: repeat(4, .25fr);
+		gap: 20px;
+	}
 }
 
 /* ------------------------------------------------------------ *\
@@ -2082,4 +2084,69 @@ main {
 		align-items: center;
 		gap: 10px;
 	}
+}
+
+/* ------------------------------------------------------------ *\
+	Pagination
+\* ------------------------------------------------------------ */
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+
+	&:not(:first-child) {
+		margin-top: 30px;
+	}
+
+	.pagination__btn {
+		width: 25px;
+		aspect-ratio: 1;
+		background-color: $c-green;
+		border: none;
+		border-radius: 50%;
+		position: relative;
+		cursor: pointer;
+		transition: background-color 0.3s ease-in-out;
+
+		&:hover:before {
+			transform: translate(-75%, -50%) rotate(45deg);
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 8px;
+			aspect-ratio: 1;
+			border-left: 2px solid #fff;
+			border-bottom: 2px solid #fff;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(45deg);
+			transition: transform;
+			transition-duration: 0.3s;
+			transition-timing-function: ease-in-out;
+		}
+	}
+
+	.pagination__btn:disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	/*  Pagination__btn--next  */
+	.pagination__btn--next {
+		&:hover:before {
+			transform: translate(-25%, -50%) rotate(-135deg);
+		}
+
+		&:before {
+			transform: translate(-50%, -50%) rotate(-135deg);
+		}
+	}
+
+
+
+
 }
