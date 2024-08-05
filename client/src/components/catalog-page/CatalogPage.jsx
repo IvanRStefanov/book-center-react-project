@@ -36,10 +36,7 @@ export default function CatalogPage() {
 		error: booksCountError,
 	} = useQuery({
 		queryKey: ['books-count', searchBy, searchString],
-		queryFn: () => {
-			console.log('Inside query books-count: ', 'searchBy: ', searchBy, ' searchString: ', searchString)
-			return getTotalBookCount(searchBy, searchString)
-		}
+		queryFn: () => getTotalBookCount(searchBy, searchString)
 	});
 
 	if (isPendingBooksPaginatedData || isPendingBooksCount) {
