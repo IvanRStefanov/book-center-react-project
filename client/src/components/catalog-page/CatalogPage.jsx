@@ -2,18 +2,23 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router-dom";
 
-import { getAllBooksPaginatedWithSearchName, getTotalBookCount, searchBookByName } from "../../services/booksService";
+import { getAllBooksPaginatedWithSearchOption, getTotalBookCount } from "../../services/booksService";
 import TileBook from "../tile-book/TileBook";
+import CatalogSearch from "./catalog-search/CatalogSearch";
 
-export default function TestCatalogPage() {
+export default function CatalogPage() {
 	const pageParameter = 12;
 	const [numberOfBooksToSkip, setNumberOfBooksToSkip] = useState(0);
 	const [numberOfBooksToTake, setNumberOfBooksToTake] = useState(pageParameter);
 
-	const [searchString, setSearchString] = useState('')
+	const [searchString, setSearchString] = useState('');
+	const [searchBy, setSearchBy] = useState('');
 
-	async function getBooks(skip = 0, take = 10, searchString = '') {
-		return await getAllBooksPaginatedWithSearchName(skip, take, searchString);
+
+	async function getBooks(skip = 0, take = 12, searchBy = '', searchString = '') {
+		const books = getAllBooksPaginatedWithSearchOption(skip, take, searchBy, searchString);
+
+		return books;
 	}
 
 	const {
@@ -21,8 +26,8 @@ export default function TestCatalogPage() {
 		data: booksPaginatedData,
 		error: booksPaginatedError,
 	} = useQuery({
-		queryKey: ['books-paginated', numberOfBooksToTake],
-		queryFn: () => getBooks(numberOfBooksToSkip, numberOfBooksToTake, searchString),
+		queryKey: ['books-paginated', numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString],
+		queryFn: () => getBooks(numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString),
 	});
 
 	const {
@@ -30,9 +35,12 @@ export default function TestCatalogPage() {
 		data: booksCountData,
 		error: booksCountError,
 	} = useQuery({
-		queryKey: ['books-count'],
-		queryFn: () => getTotalBookCount()
-	})
+		queryKey: ['books-count', searchBy, searchString],
+		queryFn: () => {
+			console.log('Inside query books-count: ', 'searchBy: ', searchBy, ' searchString: ', searchString)
+			return getTotalBookCount(searchBy, searchString)
+		}
+	});
 
 	if (isPendingBooksPaginatedData || isPendingBooksCount) {
 		return (
@@ -45,14 +53,21 @@ export default function TestCatalogPage() {
 	}
 
 	if (booksPaginatedError || booksCountError) {
-		console.error(booksPaginatedError)
+		console.error(booksPaginatedError);
 		return <Navigate to={'/error-page'} />
 	}
 
-	// console.log('numberOfBooksToSkip: ', numberOfBooksToSkip);
-	// console.log('numberOfBooksToTake: ', numberOfBooksToTake);
+	function submitSearchHandler(data) {
+		setSearchBy(data.searchBy);
+		setSearchString(data.searchString);
+		setNumberOfBooksToSkip(0);
+		setNumberOfBooksToTake(pageParameter)
+	}
+
 	const numberOfPagesToDisplay = Math.ceil(booksCountData / pageParameter);
-	const currentPageToDisplay = numberOfBooksToTake / pageParameter;
+	const currentPageToDisplay = (numberOfBooksToSkip / pageParameter) + 1;
+	const isDisabledPrevButton = (numberOfBooksToSkip + pageParameter) === pageParameter;
+	const isDisabledNextButton = ((numberOfBooksToSkip / pageParameter) + 1) >= numberOfPagesToDisplay;
 
 	return (
 		<section className="section-catalog">
@@ -60,13 +75,13 @@ export default function TestCatalogPage() {
 				<div className="section__inner">
 					<div className="section__aside">
 						<div className="section__aside-search">
-							<form className="search" >
-								<input className="search__field" type="text" placeholder="Search by title..." onChange={(e) => setSearchString(e.target.value)} />
-
-								<button className="search__btn">
-									<img src=".././src/assets/svgs/magnifying-glass.svg" alt="" />
-								</button>
-							</form>
+							<CatalogSearch
+								submitSearchHandler={submitSearchHandler}
+								setSearchBy={setSearchBy}
+								searchBy={searchBy}
+								setSearchString={setSearchString}
+								searchString={searchString}
+							/>
 						</div>
 					</div>
 
@@ -85,30 +100,23 @@ export default function TestCatalogPage() {
 								<div className="section__pagination">
 									<button
 										className="section__pagination-btn"
-										onClick={() => {
-											setNumberOfBooksToTake((oldDumberOfBooksToTake) => Math.max(oldDumberOfBooksToTake - pageParameter, 0));
-											setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => Math.max(oldNumberOfBooksToSkip - pageParameter, 0));
-										}}
-										disabled={numberOfBooksToTake === pageParameter}
+										onClick={
+											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip - pageParameter)
+										}
+										disabled={isDisabledPrevButton}
 									>
 									</button>
 
-									<span
-										className="section__pagination-count"
-									>
+									<span className="section__pagination-count">
 										{currentPageToDisplay} / {Math.ceil(booksCountData / pageParameter)}
 									</span>
 
 									<button
 										className="section__pagination-btn section__pagination-btn--next"
-										onClick={() => {
-
-											setNumberOfBooksToTake((oldNumberOfBooksToTake) => oldNumberOfBooksToTake + pageParameter);
-											setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip + pageParameter);
-											// console.log('offset: ', numberOfBooksToSkip)
-
-										}}
-										disabled={(numberOfBooksToTake / pageParameter) >= numberOfPagesToDisplay}
+										onClick={
+											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip + pageParameter)
+										}
+										disabled={isDisabledNextButton}
 									>
 									</button>
 								</div>

@@ -8,16 +8,29 @@ export async function getAllBooks() {
     return result;
 }
 
-export async function getAllBooksPaginatedWithSearchName(skip, take, bookNameString) {
-    const result = requester.get(baseUrl + `?offset=${skip}&pageSize=${take}&where=name LIKE %22${bookNameString}%22`);
-    
+export async function getAllBooksPaginatedWithSearchOption(
+    skip,
+    take,
+    searchBy,
+    searString
+) {
+    if (searchBy) {
+        const result = await requester.get(baseUrl + `?offset=${skip}&pageSize=${take}&where=${searchBy} LIKE %22${searString}%22`);
+
+        return result;
+    }
+
+    const result = await requester.get(baseUrl + `?offset=${skip}&pageSize=${take}&where=name LIKE %22${searString}%22`);
+
     return result;
 }
 
-export async function getTotalBookCount() {
-    const result = requester.get(baseUrl + '?count');
+export async function getTotalBookCount(searchBy, searchString) {
+    if (searchBy) {
+        return requester.get(baseUrl + `?where=${searchBy} LIKE %22${searchString}%22&count`);
+    }
 
-    return result;
+    return await requester.get(baseUrl + '?count');
 }
 
 export async function getSingleBook(bookId) {
@@ -54,14 +67,14 @@ export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
         const reviewsCollectionUrl = 'http://localhost:3030/data/bookReviews';
 
         const bookReadCollectionsByBookIdResponse = await fetch(`${readCollectionUrl}?where=bookId%3D%22${bookId}%22`);
-        if(bookReadCollectionsByBookIdResponse.ok != true) {
+        if (bookReadCollectionsByBookIdResponse.ok != true) {
             const err = await bookReadCollectionsByBookIdResponse.json();
             throw new Error(err.message);
         }
         const bookReadCollectionsByBookIdData = await bookReadCollectionsByBookIdResponse.json();
 
         const bookReviewCollectionsByBookIdResponse = await fetch(`${reviewsCollectionUrl}?where=bookId%3D%22${bookId}%22`);
-        if(bookReviewCollectionsByBookIdResponse.ok != true) {
+        if (bookReviewCollectionsByBookIdResponse.ok != true) {
             const err = await bookReviewCollectionsByBookIdResponse.json();
             throw new Error(err.message)
         }
@@ -78,7 +91,7 @@ export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
                 }
             });
 
-            if(delResponseReadCollection.ok != true) {
+            if (delResponseReadCollection.ok != true) {
                 const err = await delResponseReadCollection.json();
                 throw new Error(err.message)
             }
@@ -92,7 +105,7 @@ export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
                 }
             });
 
-            if(delResponseReviewCollection.ok != true) {
+            if (delResponseReviewCollection.ok != true) {
                 const err = await delResponseReviewCollection.json();
                 throw new Error(err.message)
             }
@@ -111,7 +124,7 @@ export async function createNewBook(bookData) {
 }
 
 export async function searchBookByName(stringVal) {
-    const result = await requester.get(baseUrl + `?where=name LIKE %22${stringVal}%22` );
+    const result = await requester.get(baseUrl + `?where=name LIKE %22${stringVal}%22`);
 
     return result;
 }

@@ -33,338 +33,486 @@
 		}
 	},
 	"books": {
-		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"name": "The Wheel of Time #1 The Eye of the World",
-			"series": "The Wheel of Time",
-			"author": "Robert Jordan",
-			"genre": [
-				"Fantasy",
-				"Fiction"
-			],
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
-			"description": "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
-			"price": 25,
-			"_createdOn": 1719792000000,
-			"_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
+			"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
+				"name": "The Wheel of Time #1 The Eye of the World",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905815i/228665.jpg",
+				"description": "The Wheel of Time turns and Ages come and pass, leaving memories that become legend. Legend fades to myth, and even myth is long forgotten when the Age that gave it birth returns again. What was, what will be, and what is, may yet fall under the Shadow.\nMoiraine Damodred arrives in Emond’s Field on a quest to find the one prophesized to stand against The Dark One, a malicious entity sowing the seeds of chaos and destruction. When a vicious band of half-men, half beasts invade the village seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light",
+				"price": 25,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1719792000000,
+				"_id": "3987279d-0ad4-4afb-8ca9-5b256ae3b298"
+			},
+			"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
+				"name": "The Wheel of Time #2 The Great Hunt",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
+				"description": "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1719792000000,
+				"_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
+			},
+			"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
+				"name": "The Wheel of Time #3 The Dragon Reborn",
+				"series": "The Wheel of Time",
+				"author": "Robert Jordan",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
+				"description": "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
+				"price": 20,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1719792000000,
+				"_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
+			},
+			"0a272c58-b7ea-4e09-a000-7ec988248f66": {
+				"name": "The Way of Kings (The Stormlight Archive, #1)",
+				"series": "The Stormlight Archive",
+				"author": "Brandon Sanderson",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
+				"description": "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
+				"price": 30,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1719792000000,
+				"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
+			},
+			"07f260f4-466c-4607-9a33-f7273b24f1b4": {
+				"name": "Words of Radiance (The Stormlight Archive, #2)",
+				"series": "The Stormlight Archive",
+				"author": "Brandon Sanderson",
+				"genre": [
+					"Fantasy",
+					"Fiction"
+				],
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
+				"description": "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
+				"price": 35,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1719792000000,
+				"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
+			},
+			"47eb4672-2d88-4f13-a5fe-ca7d0375dd9a": {
+				"name": "Malazan Book of the Fallen #1 Gardens of the Moon",
+				"author": "Steven Erikson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548497031i/55399.jpg",
+				"description": "Vast legions of gods, mages, humans, dragons and all manner of creatures play out the fate of the Malazan Empire in this first book in a major epic fantasy series from Steven Erikson.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Thriller"
+				],
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722161175770,
+				"_id": "47eb4672-2d88-4f13-a5fe-ca7d0375dd9a"
+			},
+			"73429795-4d50-4621-9a7e-2ed1c06f1271": {
+				"name": "Malazan Book of the Fallen #2 Deadhouse Gates",
+				"author": "Steven Erikson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1385272744i/55401.jpg",
+				"description": "In the vast dominion of Seven Cities, in the Holy Desert Raraku, the seer Sha’ik and her followers prepare for the long-prophesied uprising known as the Whirlwind. Unprecedented in size and savagery, this maelstrom of fanaticism and bloodlust will embroil the Malazan Empire in one of the bloodiest conflicts it has ever known, shaping destinies and giving birth to legends.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Thriller"
+				],
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722161307974,
+				"_id": "73429795-4d50-4621-9a7e-2ed1c06f1271"
+			},
+			"47251f37-6cb8-4d37-b63a-d4c465365592": {
+				"name": "Malazan Book of the Fallen #3 Memories of Ice",
+				"author": "Steven Erikson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548497075i/175983.jpg",
+				"description": "The ravaged continent of Genabackis is a terrifying new empire, the Pannion Domin, that devours all. An uneasy allliance resists: Onearm's army, Whiskeyjack's Bridgeburners and former enemies - forces of Warlord Caladan Brood, Anomander Rake and his Tiste Andii mages, and the Rhivi people of the plains. And the Crippled God intends revenge.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Thriller"
+				],
+				"price": 15.25,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722161361501,
+				"_id": "47251f37-6cb8-4d37-b63a-d4c465365592"
+			},
+			"f4d6acb9-6dfc-4fd8-9ba9-756edcc59956": {
+				"name": "Malazan Book of the Fallen #4 House of Chains",
+				"author": "Steven Erikson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548490548i/55398.jpg",
+				"description": "In Northern Genabackis, a raiding party of savage tribal warriors descends from the mountains into the southern flatlands. Their intention is to wreak havoc amongst the despised lowlanders, but for the one named Karsa Orlong it marks the beginning of what will prove to be an extraordinary destiny.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722347315789,
+				"_id": "f4d6acb9-6dfc-4fd8-9ba9-756edcc59956"
+			},
+			"2aac1ee7-0a22-480e-9bac-13294146924e": {
+				"name": "Malazan Book of the Fallen #5 Midnight Tides",
+				"author": "Steven Erikson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1366996057i/345299.jpg",
+				"description": "After decades of warfare, the five tribes of the Tiste Edur are united under the implacable rule of the Warlock King of the Hiroth. But the price of peace is a pact with a hidden power whose motives may be deadly. To the south, the expansionist kingdom of Lether has devoured all lesser neighbors - except the Tiste Edur.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Thriller"
+				],
+				"price": 25,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722347352916,
+				"_id": "2aac1ee7-0a22-480e-9bac-13294146924e"
+			},
+			"89a0e204-164e-4ae3-8806-ef1be7a0f6fe": {
+				"name": "The Stormlight Archive #3 Oathbringer",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654573897i/34002132.jpg",
+				"description": "In Oathbringer, the third volume of the New York Times bestselling Stormlight Archive, humanity faces a new Desolation with the return of the Voidbringers, a foe with numbers as great as their thirst for vengeance.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Mistery"
+				],
+				"price": 20,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722347413316,
+				"_id": "89a0e204-164e-4ae3-8806-ef1be7a0f6fe"
+			},
+			"59e2d2ae-6bab-40ea-9c9d-37b4f0e45f0b": {
+				"name": "The Stormlight Archive #4 Rhythm of War",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1599911216i/49021976.jpg",
+				"description": "After forming a coalition of human resistance against the enemy invasion, Dalinar Kholin and his Knights Radiant have spent a year fighting a protracted, brutal war. Neither side has gained an advantage, and the threat of a betrayal by Dalinar's crafty ally Taravangian looms over every strategic move.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 20,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722347481497,
+				"_id": "59e2d2ae-6bab-40ea-9c9d-37b4f0e45f0b"
+			},
+			"6c83c829-b1c0-4d83-bb8a-8242ad84f5a7": {
+				"name": "The Stormlight Archive #3.5 Dawnshard",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1673892527i/54511226.jpg",
+				"description": "From Brandon Sanderson—author of the #1 New York Times bestselling Stormlight Archive and its fourth massive installment, Rhythm of War—comes a new hefty novella, Dawnshard. Taking place between Oathbringer and Rhythm of War, this tale (like Edgedancer before it) gives often-overshadowed characters their own chance to shine.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 10,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722347530971,
+				"_id": "6c83c829-b1c0-4d83-bb8a-8242ad84f5a7"
+			},
+			"86bf0bc3-a9cd-4d88-8d04-cc8c09524c20": {
+				"name": "The Mistborn Saga #1 The Final Empire",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1617768316i/68428.jpg",
+				"description": "For a thousand years the ash fell and no flowers bloomed. For a thousand years the Skaa slaved in misery and lived in fear. For a thousand years the Lord Ruler, the \"Sliver of Infinity,\" reigned with absolute power and ultimate terror, divinely invincible. Then, when hope was so long lost that not even its memory remained, a terribly scarred, heart-broken half-Skaa rediscovered it in the depths of the Lord Ruler's most hellish prison. Kelsier \"snapped\" and found in himself the powers of a Mistborn. A brilliant thief and natural leader, he turned his talents to the ultimate caper, with the Lord Ruler himself as the mark.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Teen"
+				],
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722348016952,
+				"_id": "86bf0bc3-a9cd-4d88-8d04-cc8c09524c20"
+			},
+			"438b71a9-00bb-4d28-9e9e-e402a4448342": {
+				"name": "The Mistborn Saga #2 The Well of Ascension",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1619538925i/68429.jpg",
+				"description": "The impossible has been accomplished. The Lord Ruler—the man who claimed to be god incarnate and brutally ruled the world for a thousand years—has been vanquished. But Kelsier, the hero who masterminded that triumph, is dead too, and now the awesome task of building a new world has been left to his young protégé, Vin, the former street urchin who is now the most powerful Mistborn in the land, and to the idealistic young nobleman she loves.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Teen"
+				],
+				"price": 15,
+				"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+				"publisherEmail": "peter@abv.bg",
+				"publisherFirstName": "Peter",
+				"publisherLastName": "Peterson",
+				"_createdOn": 1722348069891,
+				"_id": "438b71a9-00bb-4d28-9e9e-e402a4448342"
+			},
+			"ed639aa0-5c7b-44a6-abc2-414f6e832b2d": {
+				"name": "Bloodsworn Saga #1 The Shadow of the Gods",
+				"author": "John Gwynne",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1610375894i/52694527.jpg",
+				"description": "Set in a brand-new, Norse-inspired world, and packed with myth, magic and bloody vengeance, The Shadow of the Gods begins an epic new fantasy saga from bestselling author John Gwynne.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Thriller"
+				],
+				"price": 20,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722348413785,
+				"_id": "ed639aa0-5c7b-44a6-abc2-414f6e832b2d"
+			},
+			"ffb118a5-fa1e-4ed3-82dc-4adcf55224a3": {
+				"name": "Bloodsworn Saga #2 The Hunger of the Gods",
+				"author": "John Gwynne",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639404608i/57341045.jpg",
+				"description": "Lik-Rifa, the dragon god of legend, has been freed from her eternal prison. Now she plots a new age of blood and conquest.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Thriller"
+				],
+				"price": 20,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722348462041,
+				"_id": "ffb118a5-fa1e-4ed3-82dc-4adcf55224a3"
+			},
+			"dc8dacd5-10f4-4b08-b44b-d239f6f4b16d": {
+				"name": "Bloodsworn Saga #3 The Fury of the Gods",
+				"author": "John Gwynne",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1711655158i/61755703.jpg",
+				"description": "The Fury of the Gods is the earth-shattering final book in John Gwynne's bestselling Norse-inspired epic fantasy series, packed with myth, magic and bloody vengeance\n\nTHE FINAL BATTLE FOR THE FATE OF VIGRIÐ APPROACHES",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Thriller"
+				],
+				"price": 25,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722348499033,
+				"_id": "dc8dacd5-10f4-4b08-b44b-d239f6f4b16d"
+			},
+			"a8939521-fd5d-4f74-864d-074e1e31bda8": {
+				"name": "Novels of the Malazan Empire #1 Night of Knives",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327981918i/458394.jpg",
+				"description": "The empire is named for the tiny island and city of Malaz, now a sleepy, seedy backwater port. Tonight however, a once-in-a-generation Shadow Moon brings demon hounds and darker beings. Also, a prophecy promises the return of long missing Emperor Kellanved to the contended imperial throne. This night will determine the fate of the world.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 15,
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838208566,
+				"_id": "a8939521-fd5d-4f74-864d-074e1e31bda8"
+			},
+			"e9c94177-4466-46a0-b7fc-2531d5fe250d": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Novels of the Malazan Empire #2 Return of the Crimson Guard",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327981831i/2485836.jpg",
+				"description": "The returning mercenary Crimson Guard are sworn to oppose the Empire. Some elite Avowed scheme to open paths to power. Ascendants, ancient powerful entities, seek to exploit all sides for gain. \"Traveller\", a swordsman, and his companion Ereko, confront successive enemies until the last from which none have returned. \"Old Hands\", generals and mages from the previous Emperor, direct civil war. But Empress Laseen may draw out survivors for final elimination.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Mistery"
+				],
+				"price": 18,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838329773,
+				"_id": "e9c94177-4466-46a0-b7fc-2531d5fe250d"
+			},
+			"3f7bfb97-d985-4f77-946c-1f7099fc7abe": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Novels of the Malazan Empire #3 Stonewielder",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320434092i/8432418.jpg",
+				"description": "A breathtaking addition to the history of Malaz -- the new epic fantasy from the co-creator of this extraordinary imagined world.\n",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 19,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838371483,
+				"_id": "3f7bfb97-d985-4f77-946c-1f7099fc7abe"
+			},
+			"89691e5d-906c-435f-941b-d47c90edeb73": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Novels of the Malazan Empire #4 Orb Sceptre Throne",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1315502095i/11487809.jpg",
+				"description": "Darujhistan, city of dreams, city of blue flames, is peaceful at last; its citizens free to return to politicking, bickering, trading and, above all, enjoying the good things in life. Yet there are those who will not allow the past to remain buried. A scholar digging in the plains stumbles across an ancient sealed vault. The merchant Humble Measure schemes to drive out the remaining Malazan invaders. And the surviving agents of a long-lost power are stirring, for they sense change and so, opportunity. While, as ever at the centre of everything, a thief in a red waistcoat and of rotund proportions walks the streets, juggling in one hand custard pastries, and in the other the fate of the city itself.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 21,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838418260,
+				"_id": "89691e5d-906c-435f-941b-d47c90edeb73"
+			},
+			"9f8172c7-ce3f-4616-9749-4934dbc7f404": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Novels of the Malazan Empire #5 Blood and Bone",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1345623279i/13573402.jpg",
+				"description": "In the western sky the bright emerald banner of the Visitor descends like a portent of annihilation. On the continent of Jacuruku, the Thaumaturgs have mounted yet another expedition to tame the neighboring wild jungle. Yet this is no normal wilderness. It is called Himatan, and it is said to be half of the spirit-realm and half of the earth. And it is said to be ruled by a powerful entity whom some name the Queen of Witches, and some a goddess: the ancient Ardata. Saeng grew up knowing only the rule of the magus Thaumaturgs -- but it was the voices out of that land's forgotten past that she listened to. And when her rulers mount an invasion of the neighboring jungle, those voices send her and her brother on a desperate mission.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Mistery"
+				],
+				"price": 22,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838455275,
+				"_id": "9f8172c7-ce3f-4616-9749-4934dbc7f404"
+			},
+			"1b30feb1-af93-4c24-8224-81971dbc9bb8": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Novels of the Malazan Empire #6 Assail",
+				"author": "Ian C. Esslemont",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1405300969i/18490649.jpg",
+				"description": "Tens of thousands of years of ice is melting, and the land of Assail, long a byword for menace and inaccessibility, is at last yielding its secrets. Tales of gold discovered in the region's north circulate in every waterfront dive and sailor's tavern, and now countless adventurers and fortune-seekers have set sail in search of riches. All these adventurers have to guide them are legends and garbled tales of the dangers that lie in wait -- hostile coasts, fields of ice, impassable barriers and strange, terrifying creatures. But all accounts concur that the people of the north meet all trespassers with the sword. And beyond are rumoured to lurk Elder monsters out of history's very beginnings.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure",
+					"Thriller",
+					"Mistery"
+				],
+				"price": 25,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722838494759,
+				"_id": "1b30feb1-af93-4c24-8224-81971dbc9bb8"
+			},
+			"9523732e-249f-4e71-b058-e9348538a707": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "The Cosmere #30 The Sunlit Man",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1696146860i/60531420.jpg",
+				"description": "Running. Putting distance between himself and the relentless Night Brigade has been Nomad’s strategy for years. Staying one or two steps ahead of his pursuers by skipping through the Cosmere from one world to the next.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 5,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722842774128,
+				"_id": "9523732e-249f-4e71-b058-e9348538a707"
+			},
+			"c77dbccc-e10a-4c8c-b259-75588a71e603": {
+				"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+				"name": "Elantris #1 Elantris",
+				"author": "Brandon Sanderson",
+				"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1475740953i/68427.jpg",
+				"description": "Elantris was the capital of Arelon: gigantic, beautiful, literally radiant, filled with benevolent beings who used their powerful magical abilities for the benefit of all. Yet each of these demigods was once an ordinary person until touched by the mysterious transforming power of the Shaod. Ten years ago, without warning, the magic failed. Elantrians became wizened, leper-like, powerless creatures, and Elantris itself dark, filthy, and crumbling.",
+				"genre": [
+					"Fantasy",
+					"Fiction",
+					"Adventure"
+				],
+				"price": 15.55,
+				"publisherEmail": "george@abv.bg",
+				"publisherFirstName": "George",
+				"publisherLastName": "Smith",
+				"_createdOn": 1722846304187,
+				"_id": "c77dbccc-e10a-4c8c-b259-75588a71e603"
+			}
 		},
-		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"name": "The Wheel of Time #2 The Great Hunt",
-			"series": "The Wheel of Time",
-			"author": "Robert Jordan",
-			"genre": [
-				"Fantasy",
-				"Fiction"
-			],
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905799i/233649.jpg",
-			"description": "The Forsaken are loose, the Horn of Valere has been found and the Dead are rising from their dreamless sleep. The Prophecies are being fulfilled - but Rand al'Thor, the shepherd the Aes Sedai have proclaimed as the Dragon Reborn, desperately seeks to escape his destiny.\nRand cannot run for ever. With every passing day the Dark One grows in strength and strives to shatter his ancient prison, to break the Wheel, to bring an end to Time and sunder the weave of the Pattern.\nAnd the Pattern demands the Dragon.",
-			"price": 15,
-			"_createdOn": 1719792000000,
-			"_id": "8f414b4f-ab39-4d36-bedb-2ad69da9c830"
-		},
-		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"name": "The Wheel of Time #3 The Dragon Reborn",
-			"series": "The Wheel of Time",
-			"author": "Robert Jordan",
-			"genre": [
-				"Fantasy",
-				"Fiction"
-			],
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905781i/34897.jpg",
-			"description": "The Dragon Reborn—the leader long prophesied who will save the world, but in the saving destroy it; the savior who will run mad and kill all those dearest to him—is on the run from his destiny.\nAble to touch the One Power, but unable to control it, and with no one to teach him how—for no man has done it in three thousand years—Rand al'Thor knows only that he must face the Dark One. But how?\nWinter has stopped the war—almost—yet men are dying, calling out for the Dragon. But where is he?\nPerrin Aybara is in pursuit with Moiraine Sedai, her Warder Lan, and Loial the Ogier. Bedeviled by dreams, Perrin is grappling with another deadly problem—how is he to escape the loss of his own humanity?\nEgwene, Elayne and Nynaeve are approaching Tar Valon, where Mat will be healed—if he lives until they arrive. But who will tell the Amyrlin their news—that the Black Ajah, long thought only a hideous rumor, is all too real? They cannot know that in Tar Valon far worse awaits...\nAhead, for all of them, in the Heart of the Stone, lies the next great test of the Dragon reborn....",
-			"price": 20,
-			"_createdOn": 1719792000000,
-			"_id": "985d9eab-ad2e-4622-a5c8-116261fb1fd2"
-		},
-		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"name": "The Way of Kings (The Stormlight Archive, #1)",
-			"series": "The Stormlight Archive",
-			"author": "Brandon Sanderson",
-			"genre": [
-				"Fantasy",
-				"Fiction"
-			],
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg",
-			"description": "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.\n\nIt has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them.\n\nOne such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
-			"price": 30,
-			"_createdOn": 1719792000000,
-			"_id": "0a272c58-b7ea-4e09-a000-7ec988248f66"
-		},
-		"07f260f4-466c-4607-9a33-f7273b24f1b4": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"name": "Words of Radiance (The Stormlight Archive, #2)",
-			"series": "The Stormlight Archive",
-			"author": "Brandon Sanderson",
-			"genre": [
-				"Fantasy",
-				"Fiction"
-			],
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905768i/17332218.jpg",
-			"description": "Expected by his enemies to die the miserable death of a military slave, Kaladin survived to be given command of the royal bodyguards, a controversial first for a low-status 'darkeyes'. Now he must protect the king and Dalinar from every common peril as well as the distinctly uncommon threat of the Assassin, all while secretly struggling to master remarkable new powers that are somehow linked to his honorspren, Syl.",
-			"price": 35,
-			"_createdOn": 1719792000000,
-			"_id": "07f260f4-466c-4607-9a33-f7273b24f1b4"
-		},
-		"47eb4672-2d88-4f13-a5fe-ca7d0375dd9a": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "Malazan Book of the Fallen #1 Gardens of the Moon",
-			"author": "Steven Erikson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548497031i/55399.jpg",
-			"description": "Vast legions of gods, mages, humans, dragons and all manner of creatures play out the fate of the Malazan Empire in this first book in a major epic fantasy series from Steven Erikson.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Thriller"
-			],
-			"price": 15,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722161175770,
-			"_id": "47eb4672-2d88-4f13-a5fe-ca7d0375dd9a"
-		},
-		"73429795-4d50-4621-9a7e-2ed1c06f1271": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "Malazan Book of the Fallen #2 Deadhouse Gates",
-			"author": "Steven Erikson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1385272744i/55401.jpg",
-			"description": "In the vast dominion of Seven Cities, in the Holy Desert Raraku, the seer Sha’ik and her followers prepare for the long-prophesied uprising known as the Whirlwind. Unprecedented in size and savagery, this maelstrom of fanaticism and bloodlust will embroil the Malazan Empire in one of the bloodiest conflicts it has ever known, shaping destinies and giving birth to legends.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Thriller"
-			],
-			"price": 15,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722161307974,
-			"_id": "73429795-4d50-4621-9a7e-2ed1c06f1271"
-		},
-		"47251f37-6cb8-4d37-b63a-d4c465365592": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "Malazan Book of the Fallen #3 Memories of Ice",
-			"author": "Steven Erikson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548497075i/175983.jpg",
-			"description": "The ravaged continent of Genabackis is a terrifying new empire, the Pannion Domin, that devours all. An uneasy allliance resists: Onearm's army, Whiskeyjack's Bridgeburners and former enemies - forces of Warlord Caladan Brood, Anomander Rake and his Tiste Andii mages, and the Rhivi people of the plains. And the Crippled God intends revenge.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Thriller"
-			],
-			"price": 15.25,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722161361501,
-			"_id": "47251f37-6cb8-4d37-b63a-d4c465365592"
-		},
-		"f4d6acb9-6dfc-4fd8-9ba9-756edcc59956": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "Malazan Book of the Fallen #4 House of Chains",
-			"author": "Steven Erikson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548490548i/55398.jpg",
-			"description": "In Northern Genabackis, a raiding party of savage tribal warriors descends from the mountains into the southern flatlands. Their intention is to wreak havoc amongst the despised lowlanders, but for the one named Karsa Orlong it marks the beginning of what will prove to be an extraordinary destiny.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure"
-			],
-			"price": 15,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722347315789,
-			"_id": "f4d6acb9-6dfc-4fd8-9ba9-756edcc59956"
-		},
-		"2aac1ee7-0a22-480e-9bac-13294146924e": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "Malazan Book of the Fallen #5 Midnight Tides",
-			"author": "Steven Erikson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1366996057i/345299.jpg",
-			"description": "After decades of warfare, the five tribes of the Tiste Edur are united under the implacable rule of the Warlock King of the Hiroth. But the price of peace is a pact with a hidden power whose motives may be deadly. To the south, the expansionist kingdom of Lether has devoured all lesser neighbors - except the Tiste Edur.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Thriller"
-			],
-			"price": 25,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722347352916,
-			"_id": "2aac1ee7-0a22-480e-9bac-13294146924e"
-		},
-		"89a0e204-164e-4ae3-8806-ef1be7a0f6fe": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "The Stormlight Archive #3 Oathbringer",
-			"author": "Brandon Sanderson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654573897i/34002132.jpg",
-			"description": "In Oathbringer, the third volume of the New York Times bestselling Stormlight Archive, humanity faces a new Desolation with the return of the Voidbringers, a foe with numbers as great as their thirst for vengeance.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Mistery"
-			],
-			"price": 20,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722347413316,
-			"_id": "89a0e204-164e-4ae3-8806-ef1be7a0f6fe"
-		},
-		"59e2d2ae-6bab-40ea-9c9d-37b4f0e45f0b": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "The Stormlight Archive #4 Rhythm of War",
-			"author": "Brandon Sanderson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1599911216i/49021976.jpg",
-			"description": "After forming a coalition of human resistance against the enemy invasion, Dalinar Kholin and his Knights Radiant have spent a year fighting a protracted, brutal war. Neither side has gained an advantage, and the threat of a betrayal by Dalinar's crafty ally Taravangian looms over every strategic move.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure"
-			],
-			"price": 20,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722347481497,
-			"_id": "59e2d2ae-6bab-40ea-9c9d-37b4f0e45f0b"
-		},
-		"6c83c829-b1c0-4d83-bb8a-8242ad84f5a7": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "The Stormlight Archive #3.5 Dawnshard",
-			"author": "Brandon Sanderson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1673892527i/54511226.jpg",
-			"description": "From Brandon Sanderson—author of the #1 New York Times bestselling Stormlight Archive and its fourth massive installment, Rhythm of War—comes a new hefty novella, Dawnshard. Taking place between Oathbringer and Rhythm of War, this tale (like Edgedancer before it) gives often-overshadowed characters their own chance to shine.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure"
-			],
-			"price": 10,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722347530971,
-			"_id": "6c83c829-b1c0-4d83-bb8a-8242ad84f5a7"
-		},
-		"86bf0bc3-a9cd-4d88-8d04-cc8c09524c20": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "The Mistborn Saga #1 The Final Empire",
-			"author": "Brandon Sanderson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1617768316i/68428.jpg",
-			"description": "For a thousand years the ash fell and no flowers bloomed. For a thousand years the Skaa slaved in misery and lived in fear. For a thousand years the Lord Ruler, the \"Sliver of Infinity,\" reigned with absolute power and ultimate terror, divinely invincible. Then, when hope was so long lost that not even its memory remained, a terribly scarred, heart-broken half-Skaa rediscovered it in the depths of the Lord Ruler's most hellish prison. Kelsier \"snapped\" and found in himself the powers of a Mistborn. A brilliant thief and natural leader, he turned his talents to the ultimate caper, with the Lord Ruler himself as the mark.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Teen"
-			],
-			"price": 15,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722348016952,
-			"_id": "86bf0bc3-a9cd-4d88-8d04-cc8c09524c20"
-		},
-		"438b71a9-00bb-4d28-9e9e-e402a4448342": {
-			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-			"name": "The Mistborn Saga #2 The Well of Ascension",
-			"author": "Brandon Sanderson",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1619538925i/68429.jpg",
-			"description": "The impossible has been accomplished. The Lord Ruler—the man who claimed to be god incarnate and brutally ruled the world for a thousand years—has been vanquished. But Kelsier, the hero who masterminded that triumph, is dead too, and now the awesome task of building a new world has been left to his young protégé, Vin, the former street urchin who is now the most powerful Mistborn in the land, and to the idealistic young nobleman she loves.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Teen"
-			],
-			"price": 15,
-			"publisherEmail": "peter@abv.bg",
-			"publisherFirstName": "Peter",
-			"publisherLastName": "Peterson",
-			"_createdOn": 1722348069891,
-			"_id": "438b71a9-00bb-4d28-9e9e-e402a4448342"
-		},
-		"ed639aa0-5c7b-44a6-abc2-414f6e832b2d": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"name": "Bloodsworn Saga #1 The Shadow of the Gods",
-			"author": "John Gwynne",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1610375894i/52694527.jpg",
-			"description": "Set in a brand-new, Norse-inspired world, and packed with myth, magic and bloody vengeance, The Shadow of the Gods begins an epic new fantasy saga from bestselling author John Gwynne.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Thriller"
-			],
-			"price": 20,
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"_createdOn": 1722348413785,
-			"_id": "ed639aa0-5c7b-44a6-abc2-414f6e832b2d"
-		},
-		"ffb118a5-fa1e-4ed3-82dc-4adcf55224a3": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"name": "Bloodsworn Saga #2 The Hunger of the Gods",
-			"author": "John Gwynne",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639404608i/57341045.jpg",
-			"description": "Lik-Rifa, the dragon god of legend, has been freed from her eternal prison. Now she plots a new age of blood and conquest.",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Thriller"
-			],
-			"price": 20,
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"_createdOn": 1722348462041,
-			"_id": "ffb118a5-fa1e-4ed3-82dc-4adcf55224a3"
-		},
-		"dc8dacd5-10f4-4b08-b44b-d239f6f4b16d": {
-			"_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-			"name": "Bloodsworn Saga #3 The Fury of the Gods",
-			"author": "John Gwynne",
-			"imgUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1711655158i/61755703.jpg",
-			"description": "The Fury of the Gods is the earth-shattering final book in John Gwynne's bestselling Norse-inspired epic fantasy series, packed with myth, magic and bloody vengeance\n\nTHE FINAL BATTLE FOR THE FATE OF VIGRIÐ APPROACHES",
-			"genre": [
-				"Fantasy",
-				"Fiction",
-				"Adventure",
-				"Thriller"
-			],
-			"price": 25,
-			"publisherEmail": "george@abv.bg",
-			"publisherFirstName": "George",
-			"publisherLastName": "Smith",
-			"_createdOn": 1722348499033,
-			"_id": "dc8dacd5-10f4-4b08-b44b-d239f6f4b16d"
-		}
-	},
 	"bookReviews": {
 		"0a272c58-b7ea-4e09-a000-7ec988248f66": {
 			"_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
