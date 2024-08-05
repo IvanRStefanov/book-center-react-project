@@ -1743,6 +1743,8 @@ main {
 	.section__main {
 		padding: 20px;
 		position: relative;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
@@ -1750,6 +1752,10 @@ main {
 	List-books
 \* ------------------------------------------------------------ */
 .list-books {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-grow: 1;
 	ul {
 		list-style-type: none;
 		display: grid;

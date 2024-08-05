@@ -7,7 +7,7 @@ import styles from './UserDetails.module.scss'
 import { useQuery } from '@tanstack/react-query';
 import { getUserPostedBooksCount } from '../../../services/booksService';
 import { getUserReviewedBooks } from '../../../services/reviewBookSService';
-import { getUserReadBooks } from '../../../services/readBooksService';
+import { getUserReadBooksCount } from '../../../services/readBooksService';
 
 export default function UserDetails({
 	onClose,
@@ -34,7 +34,7 @@ export default function UserDetails({
 		queryKey: ['userReadBooks'],
 
 		queryFn: () => {
-			return getUserReadBooks(userId);
+			return getUserReadBooksCount(userId);
 		}
 	});
 
@@ -68,7 +68,7 @@ export default function UserDetails({
 							</li>
 
 							<li>
-								<span>Books Read:</span> {userReadBooks?.length}
+								<span>Books Read:</span> {userReadBooks}
 							</li>
 						</ul>
 					</div>

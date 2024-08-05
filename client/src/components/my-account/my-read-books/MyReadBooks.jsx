@@ -1,41 +1,68 @@
 import { Navigate } from "react-router-dom";
-
-import TileReadBook from "./tile-read-book/TileReadBook";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { useQuery } from "@tanstack/react-query";
-import { getUserReadBooks } from "../../../services/readBooksService";
+
+import { getUserReadBooksCount, getUserReadBooksPaginated } from "../../../services/readBooksService";
+
+import Pagination from "../pagination/Pagination";
+import TileReadBook from "./tile-read-book/TileReadBook";
 
 export default function MyReadBooks() {
+	const pageParameter = 8;
+
 	const UserCTX = useContext(UserContext);
 	const userId = UserCTX.user._id;
-	
+
+	const [numberOfBooksToSkip, setNumberOfBooksToSkip] = useState(0);
+	const [numberOfBooksToTake, setNumberOfBooksToTake] = useState(pageParameter)
+
 	const {
-		isPending,
-		error,
-		data
+		isPending: isPendingUserReadBooks,
+		error: userReadBooksError,
+		data: userReadBooksData
 	} = useQuery({
-		queryKey: ['userReadBooks', userId],
-		queryFn: () => getUserReadBooks(userId)
-	})
+		queryKey: ['userReadBooks', userId, numberOfBooksToSkip, numberOfBooksToTake],
+		queryFn: () => getUserReadBooksPaginated(userId, numberOfBooksToSkip, numberOfBooksToTake)
+	});
+
+	const {
+		isPending: isPendingUserReadCount,
+		error: userReadCountError,
+		data: userReadCountData,
+	} = useQuery({
+		queryKey: ['user-read-count'],
+		queryFn: () => getUserReadBooksCount(userId),
+	});
+
+	const hasPendingData = isPendingUserReadBooks || isPendingUserReadCount;
+
+	if (userReadBooksError || userReadCountError) {
+		return <Navigate to={'/error-page'} />
+	}
 
 	return (
 		<>
-			{error
-				?
-				<p>There are some technical issues, please try again later</p>
+
+			{hasPendingData
+				? <div className="loading-spinner"></div>
 				:
-				isPending
-					? <div className="loading-spinner"></div>
-					:
-					<ul className="list-books">
-						{data.map(readBook =>
+				<div className="list-books">
+					<ul>
+						{userReadBooksData.map(readBook =>
 							<li key={readBook._id}>
 								<TileReadBook readBook={readBook} />
 							</li>
 						)}
 					</ul>
-			}
+
+					<Pagination
+						paginationParemeter={pageParameter}
+						setNumberToSkip={setNumberOfBooksToSkip}
+						numberToSkip={numberOfBooksToSkip}
+						maxCount={userReadCountData}
+					/>
+				</div>}
 		</>
 	);
 }

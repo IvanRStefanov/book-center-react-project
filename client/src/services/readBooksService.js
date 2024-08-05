@@ -18,3 +18,15 @@ export async function getUserReadBooks (userId) {
 
     return response;
 }
+
+export async function getUserReadBooksPaginated (userId, skip = 0, take = 8) {
+    const response = await requester.get(baseUrl + `/?where=_ownerId%3d%22${userId}%22&offset=${skip}&pageSize=${take}`);
+
+    return response;
+}
+
+export async function getUserReadBooksCount(userId) {
+    const response = await requester.get(baseUrl + `/?where=_ownerId%3d%22${userId}%22&count`);
+
+    return response;
+}
