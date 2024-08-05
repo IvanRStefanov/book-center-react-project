@@ -8,7 +8,6 @@ import { UserContext } from "../../../../contexts/UserContext";
 export default function SIngleUserReviewItem({
     review,
 }) {
-    const UserCTX = useContext(UserContext)
     const queryClient = useQueryClient()
     const [isDeleting, setIsDeleting] = useState(false)
 

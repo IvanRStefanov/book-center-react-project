@@ -8,12 +8,14 @@ import { UserContext } from '../../../../contexts/UserContext';
 export default function LoginForm({
     hideLoginRegisterModal
 }) {
+    const UserCTX = useContext(UserContext)
+    
     const {
         register,
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors, isSubmitting }
+        formState: { errors }
     } = useForm({
         defaultValues: {
             'email': '',
@@ -21,7 +23,6 @@ export default function LoginForm({
         },
         mode: 'onBlur'
     });
-    const UserCTX = useContext(UserContext)
 
     async function loginSubmitHandler(data) {
 

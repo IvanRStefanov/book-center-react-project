@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "../../contexts/UserContext";
 

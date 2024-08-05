@@ -1,11 +1,11 @@
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useContext, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
 import { showBodyScroll } from "../../utils/utils";
-import { createUserReview, getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
+import { getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
 
 import { UserContext } from "../../contexts/UserContext";
 

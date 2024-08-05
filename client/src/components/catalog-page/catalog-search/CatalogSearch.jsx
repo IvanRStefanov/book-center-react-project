@@ -1,7 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useQueryClient } from "@tanstack/react-query";
-import { getAllBooksPaginatedWithSearchOption, searchBookByName } from "../../../services/booksService";
-
 
 export default function CatalogSearch({
 	submitSearchHandler,
@@ -27,8 +24,6 @@ export default function CatalogSearch({
 	function resetSearch() {
 		setSearchBy('');
 		setSearchString('');
-		console.log('searchBy: ', searchBy)
-		console.log('searchString: ', searchString)
 		reset({
 			searchBy: '',
 			searchString: ''

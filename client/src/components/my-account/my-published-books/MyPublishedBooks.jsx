@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useContext, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "../../../contexts/UserContext";
-import TileBook from "../../tile-book/TileBook";
-import { useQuery } from "@tanstack/react-query";
 import { getUserPostedBooksCount, getUserPostedBooksPaginated } from "../../../services/booksService";
+
 import Pagination from "../pagination/Pagination";
+import TileBook from "../../tile-book/TileBook";
 
 export default function MyPublishedBooks() {
 	const pageParameter = 8;

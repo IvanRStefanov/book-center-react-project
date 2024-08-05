@@ -17,7 +17,6 @@ export default function PublishForm() {
 		handleSubmit,
 		setError,
 		clearErrors,
-		watch,
 		formState: { errors, isSubmitting }
 	} = useForm({
 		defaultValues: {
@@ -246,6 +245,5 @@ export default function PublishForm() {
 				</div>
 			}
 		</>
-
 	);
 }

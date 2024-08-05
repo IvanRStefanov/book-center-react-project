@@ -1,13 +1,13 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
 import { UserContext } from '../../../contexts/UserContext';
 
-import styles from './UserDetails.module.scss'
-import { useQuery } from '@tanstack/react-query';
 import { getUserPostedBooksCount } from '../../../services/booksService';
 import { getUserReviewedBooks } from '../../../services/reviewBookSService';
 import { getUserReadBooksCount } from '../../../services/readBooksService';
+import styles from './UserDetails.module.scss'
 
 export default function UserDetails({
 	onClose,

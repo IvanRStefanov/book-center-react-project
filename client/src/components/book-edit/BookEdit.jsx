@@ -1,17 +1,12 @@
-import { useContext, useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-
-import { UserContext } from "../../contexts/UserContext";
-import { getSingleBook, updateBook } from "../../services/booksService";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { getSingleBook } from "../../services/booksService";
+import { useQuery } from "@tanstack/react-query";
 import BookEditForm from "./book-edit-form/BookEditForm";
 
 export default function BookEdit() {
   const { bookId } = useParams();
-  // const UserCTX = useContext(UserContext);
-  // const navigate = useNavigate();
-
+  
   const {
     isLoading: isLoadingBookData,
     error: bookDataError,
@@ -26,7 +21,6 @@ export default function BookEdit() {
       }
       return bookObject;
     },
-    // refetchOnWindowFocus: "always"
   });
 
   if (isLoadingBookData) {
