@@ -25,3 +25,15 @@ export async function getUserReviewedBooks(userId) {
 
     return result;
 }
+
+export async function getUserReviewedBooksPaginated(userId, skip = 0, take = 4) {
+    const result = await requester.get(baseUrl + `?where=_ownerId%3D%22${userId}%22&offset=${skip}&pageSize=${take}`);
+
+    return result;
+}
+
+export async function getUserReviewedBooksCount(userId) {
+    const result = await requester.get(baseUrl + `?where=_ownerId%3D%22${userId}%22&count`);
+
+    return result;
+}

@@ -1769,8 +1769,15 @@ main {
 \* ------------------------------------------------------------ */
 
 .list-user-reviewed-books {
-	list-style-type: none;
-	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: space-between;
+	
+	ul {
+		list-style-type: none;
+		font-size: 16px;
+	}
 
 	.list__item {
 		position: relative;
