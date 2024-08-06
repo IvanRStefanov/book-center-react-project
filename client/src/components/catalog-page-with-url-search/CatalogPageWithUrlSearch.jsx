@@ -94,7 +94,7 @@ export default function CatalogPageWithUrlSearch() {
 								searchBy={searchBy}
 								setSearchString={setSearchString}
 								searchString={searchString}
-								clearSeearchParams = {clearSeearchParams}
+								clearSeearchParams={clearSeearchParams}
 							/>
 						</div>
 					</div>
@@ -121,11 +121,16 @@ export default function CatalogPageWithUrlSearch() {
 									>
 									</button> */}
 
-									<Link
-										onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip - pageParameter))}
-										to={`/catalog-with-url-search?numberOfBooksToSkip=${(numberOfBooksToSkip - pageParameter) < 0 ? 0 : (numberOfBooksToSkip - pageParameter)}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
-									>PREV
-									</Link>
+									{((numberOfBooksToSkip - pageParameter) >= 0) &&
+										<Link
+											className="section__pagination-btn"
+											onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip - pageParameter))}
+											to={`/catalog-with-url-search?numberOfBooksToSkip=${(numberOfBooksToSkip - pageParameter) < 0 ? 0 : (numberOfBooksToSkip - pageParameter)}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+										>
+											{/* PREV */}
+										</Link>
+									}
+
 
 
 									<span className="section__pagination-count">
@@ -140,12 +145,17 @@ export default function CatalogPageWithUrlSearch() {
 										disabled={isDisabledNextButton}
 									>
 									</button> */}
-									<Link
-										onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip + pageParameter))}
-										to={`/catalog-with-url-search?numberOfBooksToSkip=${numberOfBooksToSkip + pageParameter}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
-									>
-										NEXT
-									</Link>
+
+									{((numberOfBooksToSkip + pageParameter) <= booksCountData) &&
+										<Link
+											className="section__pagination-btn section__pagination-btn--next"
+											onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip + pageParameter))}
+											to={`/catalog-with-url-search?numberOfBooksToSkip=${numberOfBooksToSkip + pageParameter}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+										>
+											{/* NEXT */}
+										</Link>
+									}
+
 								</div>
 							</>
 							:

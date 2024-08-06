@@ -18,7 +18,7 @@ import BookEdit from './components/book-edit/BookEdit';
 import AuthGuard from './components/guard/AuthGuard';
 import Page404 from './components/page-404/Page404';
 import AboutUs from './components/about-us-page/AboutUs';
-import CatalogPageWithUrlSearch from './components/catalog-page -with-url-search/CatalogPageWithUrlSearch';
+import CatalogPageWithUrlSearch from './components/catalog-page-with-url-search/CatalogPageWithUrlSearch';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
