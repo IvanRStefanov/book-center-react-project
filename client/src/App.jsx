@@ -17,6 +17,7 @@ import MyReadBooks from './components/my-account/my-read-books/MyReadBooks';
 import BookEdit from './components/book-edit/BookEdit';
 import AuthGuard from './components/guard/AuthGuard';
 import Page404 from './components/page-404/Page404';
+import AboutUs from './components/about-us-page/AboutUs';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -40,6 +41,7 @@ function App() {
 							<Route path="/" element={<HomePage />} />
 							<Route path="/catalog" element={<CatalogPage />} />
 							<Route path="/catalog/:bookId" element={<BookDetails />} />
+							<Route path='/about-us'element={<AboutUs />} />
 
 							<Route element={<AuthGuard />}>
 								<Route path="/add-new-book" element={<PublishPage />} />

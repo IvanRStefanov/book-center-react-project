@@ -2195,8 +2195,46 @@ main {
 			transform: translate(-50%, -50%) rotate(-135deg);
 		}
 	}
+}
 
+/* ------------------------------------------------------------ *\
+	Section-about-us
+\* ------------------------------------------------------------ */
 
+.section-about-us {
+	padding: 90px 0;
+	
+	.section__inner {
+		display: grid;
+		grid-template-columns: .55fr .45fr;
+		gap: 50px;
+	}
 
+	.section__head {
+		text-align: center;
+	}
 
+	.section__head h1 {
+		font-size: 50px;
+	}
+
+	.section__head + .section__body {
+		margin-top: 50px;
+	}
+
+	.section__group + .section__group {
+		margin-top: 30px;
+	}
+
+	.section__group {
+		h5 + p {
+			margin-top: 10px;
+		}
+	}
+
+	.section__img {
+		width: 100%;
+		aspect-ratio: 1500 / 900;
+		border-radius: 10px;
+	}
 }

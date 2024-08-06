@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
     return (
         <footer className="footer">
@@ -6,9 +8,9 @@ export default function Footer() {
                     <div className="footer__cols">
                         <div className="footer__col">
                             <div className="footer__logo">
-                                <a href="#" className="logo logo--footer">
+                                <Link to={'/'} className="logo logo--footer">
                                     <img src="../src/assets/svgs/opened-book.svg" alt=""></img>
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -19,16 +21,11 @@ export default function Footer() {
                                 <nav className="quick-links-nav">
                                     <ul>
                                         <li>
-                                            <a href="#">Featured</a>
+                                            <Link to="/catalog">Catalog</Link>
                                         </li>
+
                                         <li>
-                                            <a href="#">Catalog</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Contact</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">About</a>
+                                            <Link to="/about-us">About Us</Link>
                                         </li>
                                     </ul>
                                 </nav>
