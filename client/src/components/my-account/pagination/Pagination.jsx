@@ -1,3 +1,5 @@
+import styles from './Pagination.module.scss'
+
 export default function Pagination({
     paginationParemeter,
     setNumberToSkip,
@@ -10,9 +12,9 @@ export default function Pagination({
     const isDisabledNextButton = ((numberToSkip / paginationParemeter) + 1) >= numberOfPagesToDisplay;
 
     return (
-        <div className="pagination">
+        <div className={styles.pagination}>
             <button
-                className="pagination__btn"
+                className={styles["pagination__btn"]}
                 onClick={
                     () => setNumberToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip - paginationParemeter)
                 }
@@ -20,12 +22,12 @@ export default function Pagination({
             >
             </button>
 
-            <span className="pagination__count">
+            <span className={styles["pagination__count"]}>
                 {currentPageToDisplay} / {Math.ceil(maxCount / paginationParemeter)}
             </span>
 
             <button
-                className="pagination__btn pagination__btn--next"
+                className={`${styles["pagination__btn"]} ${styles["pagination__btn--next"]}`}
                 onClick={
                     () => setNumberToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip + paginationParemeter)
                 }
