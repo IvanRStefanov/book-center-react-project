@@ -1722,9 +1722,17 @@ main {
 
 	.section__aside {
 		border-right: 1px solid #000;
-		overflow: hidden;
 		border-top-left-radius: inherit;
 		border-bottom-left-radius: inherit;
+		position: relative;
+	}
+
+	.section__list {
+		position: sticky;
+		top: 100px;
+		lefT: 0;
+		border-radius: inherit;
+		overflow: hidden;
 	}
 
 	.section__list ul {
