@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { deleteUserReview } from "../../../../services/reviewBookSService";
 import { UserContext } from "../../../../contexts/UserContext";
+import { formatDate } from "../../../../utils/utils";
 
 export default function SingleBookReviewListItem({
 	review,
@@ -48,6 +49,7 @@ export default function SingleBookReviewListItem({
 
 	return (
 		<li>
+			<p><small>{formatDate(review._createdOn)}</small></p>
 			<p className="list__item-comment">
 				{review.comment}
 			</p>

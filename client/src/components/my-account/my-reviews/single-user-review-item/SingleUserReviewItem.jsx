@@ -4,12 +4,14 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { deleteUserReview } from "../../../../services/reviewBookSService";
 import { UserContext } from "../../../../contexts/UserContext";
+import { formatDate } from "../../../../utils/utils";
 
 export default function SIngleUserReviewItem({
     review,
 }) {
     const queryClient = useQueryClient()
     const [isDeleting, setIsDeleting] = useState(false)
+    console.log(review)
 
     async function displayWarning() {
         setIsDeleting(oldState => !oldState);
@@ -59,6 +61,8 @@ export default function SIngleUserReviewItem({
 
                 <p className="list__item-body">
                     Review:&nbsp;&nbsp;&nbsp;{review.comment}
+                    <br />
+                    Reviewed at: {formatDate(review._createdOn)}
                 </p>
             </div>
 

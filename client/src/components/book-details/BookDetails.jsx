@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { addBookToUserReadList, getTotalCountBookHasBeenRead, getUserReadBooks } from "../../services/readBooksService";
 import { deleteBook, deleteBookFromOtherCollectionsAsAdmin, getSingleBook } from "../../services/booksService";
-import { showBodyScroll } from "../../utils/utils";
+import { formatDate, showBodyScroll } from "../../utils/utils";
 import { getBookReviewsById, getUserReviewedBooks } from "../../services/reviewBookSService";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -32,6 +32,7 @@ export default function BookDetails() {
 		queryKey: ['singleBook'],
 		queryFn: async () => {
 			const bookObject = await getSingleBook(bookId);
+			console.log(bookObject)
 			if (bookObject.code === 404) {
 				console.error(bookDataError.message)
 				return Promise.reject('Resource not found!')
@@ -128,8 +129,6 @@ export default function BookDetails() {
 	const hasRead = userReadBooksData.findIndex(book => (book.bookId == bookId)) >= 0;
 	const hasReviewed = userReviewedBooksData.findIndex(review => (review.bookId == bookId)) >= 0;
 
-	// console.log(`isOwner: ${isOwner}, hasRead: ${hasRead}, hasReviewed: ${hasReviewed}`)
-
 	function showAlertDeleteBook() {
 		setAlertDeleteBook(oldState => !oldState);
 		showBodyScroll(false);
@@ -167,6 +166,11 @@ export default function BookDetails() {
 							</header>
 
 							<div className="section__body">
+								<p>
+									<strong>Published:</strong>
+									<br></br>
+									&nbsp;&nbsp;&nbsp;{formatDate(bookData._createdOn)}
+								</p>
 								<p>
 									<strong>Author:</strong>
 
