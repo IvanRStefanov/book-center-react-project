@@ -39,7 +39,7 @@ export default function AboutUs() {
 
 					<div className="section__media">
 						<div className="section__img image-fit">
-							<img src=".././src/assets/images/book-shelf.jpeg" alt="" />
+							<img src="/assets/images/book-shelf.jpeg" alt="" />
 						</div>
 					</div>
 				</div>

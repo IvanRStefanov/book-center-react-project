@@ -71,7 +71,7 @@ export default function CatalogSearch({
 
 				<div className="search__actions">
 					<button className="search__btn">
-						<img src=".././src/assets/svgs/magnifying-glass.svg" alt="" />
+						<img src="/assets/svgs/magnifying-glass.svg" alt="" />
 					</button>
 
 				</div>

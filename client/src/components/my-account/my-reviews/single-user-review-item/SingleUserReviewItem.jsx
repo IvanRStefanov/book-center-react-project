@@ -66,7 +66,7 @@ export default function SIngleUserReviewItem({
             </div>
 
             <button className="list__item-delete-btn" onClick={displayWarning}>
-                <img src="../../src/assets/images/delete-icon.png" alt="" />
+                <img src="/assets/images/delete-icon.png" alt="" />
             </button>
         </li>
     );

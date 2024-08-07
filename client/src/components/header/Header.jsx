@@ -52,7 +52,7 @@ export default function Header() {
 				<div className="header__content">
 					<div className="header__logo">
 						<Link to={'/'} className="logo">
-							<img src="../src/assets/svgs/opened-book.svg" alt=""></img>
+							<img src="/assets/svgs/opened-book.svg" alt=""></img>
 						</Link>
 					</div>
 

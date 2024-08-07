@@ -2,7 +2,7 @@ export default function Hero() {
 	return (
 		<div className="hero">
 			<div className="hero__bg-video">
-				<video src="./src/assets/video/video-bg-2.mp4" autoPlay={true} muted={true} loop playsInline></video>
+				<video src="/assets/video/video-bg-2.mp4" autoPlay={true} muted={true} loop playsInline></video>
 			</div>
 
 			<div className="hero__body">

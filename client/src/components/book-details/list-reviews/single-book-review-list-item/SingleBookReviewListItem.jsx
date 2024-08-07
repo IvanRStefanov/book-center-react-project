@@ -60,7 +60,7 @@ export default function SingleBookReviewListItem({
 
 			{UserCTX.user._id == review._ownerId
 				? <button className="list__item-owner-delete-btn" onClick={showDeleteCommentWarning}>
-					<img src="../../src/assets/images/delete-icon.png" alt="" />
+					<img src="/assets/images/delete-icon.png" alt="" />
 				</button>
 				: ''
 			}

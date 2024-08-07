@@ -9,7 +9,7 @@ export default function Footer() {
                         <div className="footer__col">
                             <div className="footer__logo">
                                 <Link to={'/'} className="logo logo--footer">
-                                    <img src="../src/assets/svgs/opened-book.svg" alt=""></img>
+                                    <img src="/assets/svgs/opened-book.svg" alt=""></img>
                                 </Link>
                             </div>
                         </div>
