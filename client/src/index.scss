@@ -451,21 +451,27 @@ main {
 	flex-grow: 1;
 	flex-direction: column;
 
-	>a {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 5;
+	&:has(.tile__img > a:hover) {
+		.tile__head {
+			color: $c-light-green;
+		}
 	}
-
+	
 	.tile__img {
 		width: 100%;
 		aspect-ratio: 578 / 867;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		>a {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 5;
+		}
 
 		img {
 			object-fit: fill;
@@ -1291,7 +1297,7 @@ main {
 		align-items: center;
 		justify-content: center;
 		font-size: 30px;
-		color: red;
+		text-align: center;
 	}
 }
 

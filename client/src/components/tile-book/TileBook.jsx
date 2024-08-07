@@ -16,6 +16,7 @@ export default function TileBook({
 	return (
 		<div className={classes}>
 			<div className="tile__img image-fit">
+				<Link to={`/catalog/${book._id}`}/>
 				<img src={book.imgUrl} alt={`${book.name} cover`}></img>
 
 				<span className="tile__img-loading-spinner"></span>

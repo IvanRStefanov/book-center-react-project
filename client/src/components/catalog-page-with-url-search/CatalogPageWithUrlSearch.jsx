@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import * as qs from 'qs';
@@ -11,18 +10,20 @@ export default function CatalogPageWithUrlSearch() {
 	const pageParameter = 12;
 
 	const location = useLocation();
-	console.log('location search sliced: ', location.search.slice(1))
-	const querySearch = qs.parse(location.search.slice(1));
-	console.log('querySearch: ', querySearch)
-
-	console.log(Number(querySearch.numberOfBooksToSkip))
-	const [numberOfBooksToSkip, setNumberOfBooksToSkip] = useState(() => { console.log(1); return (Number(querySearch.numberOfBooksToSkip) || 0) });
-	console.log('numberOfBooksToSkip: ', numberOfBooksToSkip)
-
-	const [numberOfBooksToTake, setNumberOfBooksToTake] = useState(pageParameter);
-	const [searchString, setSearchString] = useState(querySearch.searchString || '');
-	const [searchBy, setSearchBy] = useState(querySearch.searchBy || '');
 	const [searchParams, setSearchParams] = useSearchParams()
+	
+	const querySearchFromUrl = qs.parse(location.search.slice(1));
+	const {
+		searchBy,
+		searchString,
+		numberOfBooksToSkip,
+		...restProps
+	} = {
+		...querySearchFromUrl,
+		searchBy: querySearchFromUrl.searchBy || '',
+		searchString: querySearchFromUrl.searchString || '',
+		numberOfBooksToSkip: Number(querySearchFromUrl.numberOfBooksToSkip) || 0,
+	}
 
 	async function getBooks(skip = 0, take = pageParameter, searchBy = '', searchString = '') {
 		const books = getAllBooksPaginatedWithSearchOption(skip, take, searchBy, searchString);
@@ -35,8 +36,8 @@ export default function CatalogPageWithUrlSearch() {
 		data: booksPaginatedData,
 		error: booksPaginatedError,
 	} = useQuery({
-		queryKey: ['books-paginated', location, numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString],
-		queryFn: () => getBooks(numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString),
+		queryKey: ['books-paginated', location, searchBy, searchString, numberOfBooksToSkip],
+		queryFn: () => getBooks(numberOfBooksToSkip, pageParameter, searchBy, searchString),
 	});
 
 	const {
@@ -44,7 +45,7 @@ export default function CatalogPageWithUrlSearch() {
 		data: booksCountData,
 		error: booksCountError,
 	} = useQuery({
-		queryKey: ['books-count', searchBy, searchString],
+		queryKey: ['books-count', location, searchBy, searchString],
 		queryFn: () => getTotalBookCount(searchBy, searchString)
 	});
 
@@ -64,14 +65,10 @@ export default function CatalogPageWithUrlSearch() {
 	}
 
 	function submitSearchHandler(data) {
-		setSearchBy(data.searchBy);
-		setSearchString(data.searchString);
 		setSearchParams({
 			numberOfBooksToSkip: 0,
 			...data
 		})
-		setNumberOfBooksToSkip(0);
-		setNumberOfBooksToTake(pageParameter)
 	}
 	function clearSeearchParams() {
 		setSearchParams({})
@@ -79,9 +76,10 @@ export default function CatalogPageWithUrlSearch() {
 
 	const numberOfPagesToDisplay = Math.ceil(booksCountData / pageParameter);
 	const currentPageToDisplay = (numberOfBooksToSkip / pageParameter) + 1;
-	const isDisabledPrevButton = (numberOfBooksToSkip + pageParameter) === pageParameter;
-	const isDisabledNextButton = ((numberOfBooksToSkip / pageParameter) + 1) >= numberOfPagesToDisplay;
-
+	const prevPageSkipCount = numberOfBooksToSkip - pageParameter;
+	const nextPageSkipCount = numberOfBooksToSkip + pageParameter;
+	const hasSearchInputs = ((searchBy != '') || (searchString != ''));
+	
 	return (
 		<section className="section-catalog">
 			<div className="shell">
@@ -90,9 +88,7 @@ export default function CatalogPageWithUrlSearch() {
 						<div className="section__aside-search">
 							<CatalogSearch
 								submitSearchHandler={submitSearchHandler}
-								setSearchBy={setSearchBy}
 								searchBy={searchBy}
-								setSearchString={setSearchString}
 								searchString={searchString}
 								clearSeearchParams={clearSeearchParams}
 							/>
@@ -112,20 +108,10 @@ export default function CatalogPageWithUrlSearch() {
 								</div>
 
 								<div className="section__pagination">
-									{/* <button
-										className="section__pagination-btn"
-										onClick={
-											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip - pageParameter)
-										}
-										disabled={isDisabledPrevButton}
-									>
-									</button> */}
-
-									{((numberOfBooksToSkip - pageParameter) >= 0) &&
+									{(prevPageSkipCount >= 0) &&
 										<Link
 											className="section__pagination-btn"
-											onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip - pageParameter))}
-											to={`/catalog-with-url-search?numberOfBooksToSkip=${(numberOfBooksToSkip - pageParameter) < 0 ? 0 : (numberOfBooksToSkip - pageParameter)}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+											to={`/catalog-with-url-search?numberOfBooksToSkip=${prevPageSkipCount}${hasSearchInputs ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
 										>
 											{/* PREV */}
 										</Link>
@@ -134,23 +120,13 @@ export default function CatalogPageWithUrlSearch() {
 
 
 									<span className="section__pagination-count">
-										{currentPageToDisplay} / {Math.ceil(booksCountData / pageParameter)}
+										{currentPageToDisplay} / {numberOfPagesToDisplay}
 									</span>
 
-									{/* <button
-										className="section__pagination-btn section__pagination-btn--next"
-										onClick={
-											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip + pageParameter)
-										}
-										disabled={isDisabledNextButton}
-									>
-									</button> */}
-
-									{((numberOfBooksToSkip + pageParameter) <= booksCountData) &&
+									{(nextPageSkipCount <= booksCountData) &&
 										<Link
 											className="section__pagination-btn section__pagination-btn--next"
-											onClick={() => setNumberOfBooksToSkip((numberOfBooksToSkip + pageParameter))}
-											to={`/catalog-with-url-search?numberOfBooksToSkip=${numberOfBooksToSkip + pageParameter}${(searchBy && searchString) ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+											to={`/catalog-with-url-search?numberOfBooksToSkip=${nextPageSkipCount}${hasSearchInputs ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
 										>
 											{/* NEXT */}
 										</Link>

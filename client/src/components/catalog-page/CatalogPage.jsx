@@ -1,21 +1,31 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
+import * as qs from 'qs';
 
 import { getAllBooksPaginatedWithSearchOption, getTotalBookCount } from "../../services/booksService";
 import TileBook from "../tile-book/TileBook";
 import CatalogSearch from "./catalog-search/CatalogSearch";
 
-export default function CatalogPage() {
+export default function Catalog() {
 	const pageParameter = 12;
-	const [numberOfBooksToSkip, setNumberOfBooksToSkip] = useState(0);
-	const [numberOfBooksToTake, setNumberOfBooksToTake] = useState(pageParameter);
 
-	const [searchString, setSearchString] = useState('');
-	const [searchBy, setSearchBy] = useState('');
+	const location = useLocation();
+	const [searchParams, setSearchParams] = useSearchParams()
 
+	const querySearchFromUrl = qs.parse(location.search.slice(1));
+	const {
+		searchBy,
+		searchString,
+		numberOfBooksToSkip,
+		...restProps
+	} = {
+		...querySearchFromUrl,
+		searchBy: querySearchFromUrl.searchBy || '',
+		searchString: querySearchFromUrl.searchString || '',
+		numberOfBooksToSkip: Number(querySearchFromUrl.numberOfBooksToSkip) || 0,
+	}
 
-	async function getBooks(skip = 0, take = 12, searchBy = '', searchString = '') {
+	async function getBooks(skip = 0, take = pageParameter, searchBy = '', searchString = '') {
 		const books = getAllBooksPaginatedWithSearchOption(skip, take, searchBy, searchString);
 
 		return books;
@@ -26,8 +36,8 @@ export default function CatalogPage() {
 		data: booksPaginatedData,
 		error: booksPaginatedError,
 	} = useQuery({
-		queryKey: ['books-paginated', numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString],
-		queryFn: () => getBooks(numberOfBooksToSkip, numberOfBooksToTake, searchBy, searchString),
+		queryKey: ['books-paginated', location, searchBy, searchString, numberOfBooksToSkip],
+		queryFn: () => getBooks(numberOfBooksToSkip, pageParameter, searchBy, searchString),
 	});
 
 	const {
@@ -35,7 +45,7 @@ export default function CatalogPage() {
 		data: booksCountData,
 		error: booksCountError,
 	} = useQuery({
-		queryKey: ['books-count', searchBy, searchString],
+		queryKey: ['books-count', location, searchBy, searchString],
 		queryFn: () => getTotalBookCount(searchBy, searchString)
 	});
 
@@ -55,16 +65,20 @@ export default function CatalogPage() {
 	}
 
 	function submitSearchHandler(data) {
-		setSearchBy(data.searchBy);
-		setSearchString(data.searchString);
-		setNumberOfBooksToSkip(0);
-		setNumberOfBooksToTake(pageParameter)
+		setSearchParams({
+			numberOfBooksToSkip: 0,
+			...data
+		})
+	}
+	function clearSeearchParams() {
+		setSearchParams({})
 	}
 
 	const numberOfPagesToDisplay = Math.ceil(booksCountData / pageParameter);
 	const currentPageToDisplay = (numberOfBooksToSkip / pageParameter) + 1;
-	const isDisabledPrevButton = (numberOfBooksToSkip + pageParameter) === pageParameter;
-	const isDisabledNextButton = ((numberOfBooksToSkip / pageParameter) + 1) >= numberOfPagesToDisplay;
+	const prevPageSkipCount = numberOfBooksToSkip - pageParameter;
+	const nextPageSkipCount = numberOfBooksToSkip + pageParameter;
+	const hasSearchInputs = ((searchBy != '') || (searchString != ''));
 
 	return (
 		<section className="section-catalog">
@@ -74,10 +88,9 @@ export default function CatalogPage() {
 						<div className="section__aside-search">
 							<CatalogSearch
 								submitSearchHandler={submitSearchHandler}
-								setSearchBy={setSearchBy}
 								searchBy={searchBy}
-								setSearchString={setSearchString}
 								searchString={searchString}
+								clearSeearchParams={clearSeearchParams}
 							/>
 						</div>
 					</div>
@@ -95,32 +108,37 @@ export default function CatalogPage() {
 								</div>
 
 								<div className="section__pagination">
-									<button
-										className="section__pagination-btn"
-										onClick={
-											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip - pageParameter)
-										}
-										disabled={isDisabledPrevButton}
-									>
-									</button>
+									{(prevPageSkipCount >= 0) &&
+										<Link
+											className="section__pagination-btn"
+											to={`/catalog?numberOfBooksToSkip=${prevPageSkipCount}${hasSearchInputs ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+										/>
+									}
+
+
 
 									<span className="section__pagination-count">
-										{currentPageToDisplay} / {Math.ceil(booksCountData / pageParameter)}
+										{currentPageToDisplay} / {numberOfPagesToDisplay}
 									</span>
 
-									<button
-										className="section__pagination-btn section__pagination-btn--next"
-										onClick={
-											() => setNumberOfBooksToSkip((oldNumberOfBooksToSkip) => oldNumberOfBooksToSkip + pageParameter)
-										}
-										disabled={isDisabledNextButton}
-									>
-									</button>
+									{(nextPageSkipCount < booksCountData) &&
+										<Link
+											className="section__pagination-btn section__pagination-btn--next"
+											to={`/catalog?numberOfBooksToSkip=${nextPageSkipCount}${hasSearchInputs ? `&searchBy=${searchBy}&searchString=${searchString}` : ''}`}
+										/>
+									}
+
 								</div>
 							</>
 							:
 							<div className="section__empty">
-								<p>There are no posted books yet.</p>
+								{searchBy
+									? <p>There are no posted books matching your search
+										<br></br>
+										<em><strong>{searchBy}</strong></em> as <em><strong>{searchString}</strong></em>
+									</p>
+									: <p>There are no posted books yet.</p>
+								}
 							</div>
 						}
 					</div>

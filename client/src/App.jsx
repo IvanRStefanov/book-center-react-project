@@ -18,7 +18,6 @@ import BookEdit from './components/book-edit/BookEdit';
 import AuthGuard from './components/guard/AuthGuard';
 import Page404 from './components/page-404/Page404';
 import AboutUs from './components/about-us-page/AboutUs';
-import CatalogPageWithUrlSearch from './components/catalog-page-with-url-search/CatalogPageWithUrlSearch';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -43,9 +42,6 @@ function App() {
 							<Route path="/catalog" element={<CatalogPage />} />
 							<Route path="/catalog/:bookId" element={<BookDetails />} />
 							<Route path='/about-us'element={<AboutUs />} />
-							<Route path="/catalog-with-url-search" element={<CatalogPageWithUrlSearch />} />
-							<Route path="/catalog-with-url-search/:bookId" element={<BookDetails />} />
-
 
 							<Route element={<AuthGuard />}>
 								<Route path="/add-new-book" element={<PublishPage />} />

@@ -2,9 +2,7 @@ import { useForm } from "react-hook-form";
 
 export default function CatalogSearchWithUrl({
 	submitSearchHandler,
-	setSearchBy,
 	searchBy,
-	setSearchString,
 	searchString,
 	clearSeearchParams
 }) {
@@ -23,8 +21,6 @@ export default function CatalogSearchWithUrl({
 	});
 
 	function resetSearch() {
-		setSearchBy('');
-		setSearchString('');
 		reset({
 			searchBy: '',
 			searchString: ''

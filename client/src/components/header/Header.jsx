@@ -64,10 +64,6 @@ export default function Header() {
 										<NavLink to="/catalog">Catalog</NavLink>
 									</li>
 									
-									<li>
-										<NavLink to="/catalog-with-url-search">Catalog with url search</NavLink>
-									</li>
-
 									{UserCTX.user &&
 										<li>
 											<NavLink to="/add-new-book">Publish</NavLink>

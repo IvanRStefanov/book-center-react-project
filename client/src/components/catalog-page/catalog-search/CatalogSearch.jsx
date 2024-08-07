@@ -2,12 +2,11 @@ import { useForm } from "react-hook-form";
 
 export default function CatalogSearch({
 	submitSearchHandler,
-	setSearchBy,
 	searchBy,
-	setSearchString,
 	searchString,
+	clearSeearchParams
 }) {
-
+	
 	const {
 		register,
 		handleSubmit,
@@ -22,12 +21,11 @@ export default function CatalogSearch({
 	});
 
 	function resetSearch() {
-		setSearchBy('');
-		setSearchString('');
 		reset({
 			searchBy: '',
 			searchString: ''
 		});
+		clearSeearchParams()
 	}
 
 	return (
