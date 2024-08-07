@@ -21,13 +21,18 @@ The server comes with prepopulated data and pre-made users:
 
 Non-registered users can only review the site and of course, create a new account.
 
-Registered users can publish new books and delete the ones they previously created.
+Registered users can publish new books and edit or delete the ones they previously created.
+![](https://github.com/IvanRStefanov/book-center-react-project/blob/main/screenshots/book-details-owner-view.png)
 
 They can add a single review to a book, regardless of whether it is theirs.
+![](https://github.com/IvanRStefanov/book-center-react-project/blob/main/screenshots/book-details-registered-users-review-form.png)
 
 Also, there is a has-read functionality that is available to registered users who are not owners of the book and who have not read it previously.
+![](https://github.com/IvanRStefanov/book-center-react-project/blob/main/screenshots/book-details-register-non-owner-view.png)
 
 Every registered user has a personal space that is accessible through the user utils button located in the header: 
+![](https://github.com/IvanRStefanov/book-center-react-project/blob/main/screenshots/user-details-modal.png)
+![](https://github.com/IvanRStefanov/book-center-react-project/blob/main/screenshots/user-personal-space.png)
 
 ---
 
