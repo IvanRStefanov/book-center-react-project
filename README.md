@@ -16,9 +16,6 @@ The server comes with prepopulated data and pre-made users:
 
 ---
 
-### The deployed version of the project can be reviewed here:
-### https://boook-center-app.web.app/
-
 Non-registered users can only review the site and of course, create a new account.
 
 Registered users can publish new books and edit or delete the ones they previously created.

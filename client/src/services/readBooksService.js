@@ -1,6 +1,6 @@
 import * as requester from '../requester/requester';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/data/booksRead`;
+const baseUrl = `http://localhost:3030/data/booksRead`;
 
 export async function getTotalCountBookHasBeenRead(bookId) {
     const response = await requester.get(baseUrl + `/?where=bookId%3D%22${bookId}%22&count`);
