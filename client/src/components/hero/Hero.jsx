@@ -7,17 +7,9 @@ export default function Hero() {
 
 			<div className="hero__body">
 				<div className="shell">
-					<div className="hero__content">
-						<header className="hero__head">
-							<h1>Dive into a new <strong>adventure</strong></h1>
-						</header>
-
-						<div className="hero__actions">
-							<a href="#" className="btn btn--uppercase">
-								Join now
-							</a>
-						</div>
-					</div>
+					<header className="hero__head">
+						<h1>Dive into a new <strong>adventure</strong> with <br></br>Book Center</h1>
+					</header>
 				</div>
 			</div>
 		</div>

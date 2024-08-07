@@ -11,7 +11,6 @@ export default function SIngleUserReviewItem({
 }) {
     const queryClient = useQueryClient()
     const [isDeleting, setIsDeleting] = useState(false)
-    console.log(review)
 
     async function displayWarning() {
         setIsDeleting(oldState => !oldState);

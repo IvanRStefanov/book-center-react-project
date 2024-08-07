@@ -32,7 +32,6 @@ export default function BookDetails() {
 		queryKey: ['singleBook'],
 		queryFn: async () => {
 			const bookObject = await getSingleBook(bookId);
-			console.log(bookObject)
 			if (bookObject.code === 404) {
 				console.error(bookDataError.message)
 				return Promise.reject('Resource not found!')

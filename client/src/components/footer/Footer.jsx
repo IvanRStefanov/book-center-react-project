@@ -35,7 +35,7 @@ export default function Footer() {
                         <div className="footer__col">
                             <div className="footer__address">
                                 <address>
-                                    <p>Lorem str #8, Lansing Michigan, USA</p>
+                                    <p>Lorem str #8, Lorem, Lorem</p>
                                     <p><a href="mailto: sample@sample.com">sample@sample.com</a></p>
                                     <p><a href="tel: +123456789">+123456789</a></p>
                                 </address>

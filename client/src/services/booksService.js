@@ -86,9 +86,6 @@ export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
         }
         const bookReviewCollectionsByBookIdData = await bookReviewCollectionsByBookIdResponse.json();
 
-        // console.log('bookReadCollectionsByBookId DATA: ', bookReadCollectionsByBookIdData)
-        // console.log('bookReviewCollectionsByBookId DATA: ', bookReviewCollectionsByBookIdData)
-
         bookReadCollectionsByBookIdData.forEach(async (collection) => {
             const delResponseReadCollection = await fetch(`${readCollectionUrl}/${collection._id}`, {
                 method: 'DELETE',
@@ -118,7 +115,7 @@ export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
         })
 
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
     }
 
 }

@@ -220,6 +220,7 @@ main {
 	text-decoration: none;
 	width: 40px;
 	height: 40px;
+	background-color: transparent;
 	border: 2px solid #000;
 	border-radius: 50%;
 
@@ -280,11 +281,14 @@ main {
 	.hero__head {
 		text-align: center;
 		font-family: $ff-cursive;
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
 	}
 
 	.hero__head h1 {
 		font-family: inherit;
-		font-size: 100px;
+		font-size: 75px;
 	}
 
 	.hero__head+.hero__actions {
