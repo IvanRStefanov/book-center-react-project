@@ -44,7 +44,7 @@ export default function PublishForm() {
 		try {
 			const newBookObject = {
 				...data,
-				imgUrl: data.imgUrl ? data.imgUrl : '../../src/assets/images/book-cover-placeholder.png',
+				imgUrl: data.imgUrl ? data.imgUrl : '/assets/images/book-cover-placeholder.png',
 				price: Number(parseFloat(data.price).toFixed(2)),
 				publisherEmail: UserCTX.user.email,
 				publisherFirstName: UserCTX.user.firstName,

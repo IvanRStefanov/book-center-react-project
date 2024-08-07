@@ -1,6 +1,6 @@
 import * as requester from '../requester/requester';
 
-const baseUrl = `http://localhost:3030/data/books`;
+const baseUrl = `${import.meta.env.VITE_API_URL}/data/books`;
 
 export async function getAllBooks() {
     const result = await requester.get(baseUrl);
@@ -69,8 +69,8 @@ export async function deleteBook(bookId) {
 
 export async function deleteBookFromOtherCollectionsAsAdmin(bookId) {
     try {
-        const readCollectionUrl = 'http://localhost:3030/data/booksRead';
-        const reviewsCollectionUrl = 'http://localhost:3030/data/bookReviews';
+        const readCollectionUrl = `${import.meta.env.VITE_API_URL}/data/booksRead`;
+        const reviewsCollectionUrl = `${import.meta.env.VITE_API_URL}/data/bookReviews`;
 
         const bookReadCollectionsByBookIdResponse = await fetch(`${readCollectionUrl}?where=bookId%3D%22${bookId}%22`);
         if (bookReadCollectionsByBookIdResponse.ok != true) {

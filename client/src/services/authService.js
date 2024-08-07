@@ -1,7 +1,7 @@
 import { removeUserData } from '../utils/utils';
 import * as requester from '../requester/requester';
 
-const baseUrl = 'http://localhost:3030/users';
+const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 
 export async function login(email, password) {
 	try {
